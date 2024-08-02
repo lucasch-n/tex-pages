@@ -1,0 +1,27 @@
+\documentclass{amsart}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Honors B Final Part B}
+\author{Lucas\ Chen}
+\date{May 2024}
+\begin{document}
+
+\maketitle
+
+\maketitle
+
+\section{PSET 1 Problem 3}
+\textbf{Problem}: Let $I=[0,1]$ and let $f:I\rightarrow I$ such that $f(f(x))=x$ and $f(x)\neq x$ for any $x\in I$. Show that $f$ has an infinite number of points of discontinuity.
+
+\noindent\textbf{Proof}:
+
+Assume there are n points of discontinuity in $f$, i.e. that the number of discontinuities is finite. We proceed with a proof by contradiction.
+
+We list the $x$-values of the points of discontinuity in increasing order: $$\{x_1, x_2,\dots, x_n\}$$ We know that for any $x$-value $x_j$ that $f(x_j) = x_k$, $f(x_k)=x_j$ for some $k\in{1,\dots,n}$. If $f(x_j)$ is not a point of discontinuity, then it must be within an interval $A$ on which $f$ is continuous, and thus $f(f(x_j))=x_j\in f(A)$, where $f|_A$ is necessarily homeomorphic since every closed set in $A$ is compact  and therefore $f|_A$ is continuous and closed. Then $f|_{f(A)}$ is continuous and contains $x_j$ which is a contradiction.
+
+Thus, we have that the points of discontinuity must come in pairs. If $n$ is odd, then necessarily we have $f(x_j) = x_j$ for some $x_j$ and we arrive at a contradiction. If $n$ is even, we consider the continuous intervals between the $x$-values: $$\{A_1,\dots,A_{n+1}\}$$ where $A_m$ is a continuous open interval between $x_{k-1}$ and $x_{k}$, or between $0$ and $x_1$, or $x_n$ and $1$. We similarly argue that $f(A_m)=A_p$ for some $p\in\{1,\dots,n-1\}$: $f|_{A_m}$ is a homeomorphism by the previous argument, so $f(A_m)=U\subset A_p$ for some $p$. However, if $U\neq A_p$ then $f$ cannot be continuous on $A_p$ since $A_m$ is surrounded by discontinuous points and is fully accounted for (and $f$ is injective) and therefore $f(A_p)$ would not be connected — thus $f(A_m) = f(A_p)$ for some $p$. 
+
+Then if $n$ is even, $n+1$ is odd and we have that $f(A_m)=A_m$ for some $m$. We can now use the result of PSET 1 Problem 2 to find that $f|_{A_m}$ must cross $y=x$ by shrinking the domain and codomain of its function from $[0,1]$ to $A_m$ and substituting its function with $f_{A_m}$. This yields us yet another contradiction for both cases, so $f$ cannot have finitely many points of discontinuity.
+
+\end{document}
