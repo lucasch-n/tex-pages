@@ -1,0 +1,84 @@
+\documentclass{amsart}
+\usepackage{../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Article Template}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Problems: 5.21, 5.23, 5.44, 5.51, 5.62
+
+\subsection*{Problem 5.21} For \( U \) as described above, assume that \( f \) is second-differentiable everywhere, and \( (D^2 f)_p = 0 \) for all \( p \). What can you say about \( f \)? Generalize to higher-order differentiability.
+
+\medskip \noindent 
+
+\newpage
+
+\subsection*{Problem 5.23} Assume that \( f : [a, b] \times Y \to \mathbb{R}^m \) is continuous, where \( Y \) is an open subset of \( \mathbb{R}^n \), the partial derivatives \( \partial f_i(x, y) / \partial y_j \) exist, and they are continuous. Let \( D_y f \) be the linear transformation \( \mathbb{R}^n \to \mathbb{R}^m \) represented by the \( m \times n \) matrix of partials.
+
+(a) Show that
+    \[
+    F(y) = \int_a^b f(x, y) \, dx
+    \]
+    is of class \( C^1 \) and
+    \[
+    (DF)_y = \int_a^b (D_y f) \, dx.
+    \]
+    This generalizes Theorem 14 to higher dimensions.
+
+(b) Generalize (a) to higher-order differentiability.
+
+\medskip \noindent
+
+\newpage
+
+\subsection*{Problem 5.44} Let \( S \subset M \) be given.
+
+(a) Define the characteristic function \( \chi_S : M \to \mathbb{R} \).
+
+(b) If \( M \) is a metric space, show that \( \chi_S(x) \) is discontinuous at \( x \) if and only if \( x \) is a boundary point of \( S \).
+
+\medskip \noindent
+
+\newpage
+
+\subsection*{Problem 5.51} A region \( R \) in the plane is of type 1 if there are smooth functions \( g_1 : [a, b] \to \mathbb{R} \), \( g_2 : [a, b] \to \mathbb{R} \) such that \( g_1(x) \leq g_2(x) \) and
+\[
+R = \{(x, y) : a \leq x \leq b \text{ and } g_1(x) \leq y \leq g_2(x)\}.
+\]
+\( R \) is of type 2 if the roles of \( x \) and \( y \) can be reversed, and it is a \textbf{simple region} if it is of both type 1 and type 2.
+
+(a) Give an example of a region that is type 1 but not type 2.
+
+(b) Give an example of a region that is neither type 1 nor type 2.
+
+(c) Is every simple region starlike? Convex?
+
+(d) If a convex region is bounded by a smooth simple closed curve, is it simple?
+
+(e) Give an example of a region that divides into three simple subregions but not into two.
+
+(f) If a region is bounded by a smooth simple closed curve $C$ then it need not divide into a finite number of simple subregions. Find an example.
+
+(g) Infer that the standard proof of Green's Formulas for simple regions (as, for example, in J. Stewart's \textit{Calculus} does not immediately carry over to the general planar region $R$ with smooth boundary; i.e., cutting $R$ into simple regions can fail.
+
+(h) Is there a planar region bounded by a smooth simple closed curve such that for every linear coordinate system (i.e., a new pair of axes), the region does not divine into finitely many simple subregions? In other words, is Stewart's proof of Green's Theorem doomed?
+
+(i) Show that if the curve in (f) is analytic, then no such example exists. [Hint: $C$ is analytic if it is locally the graph of a function defined by convergent power series. A nonconstant analytic function has the property that for each $x$, there is some derivative of $f$ which is nonzero, $f^{(r)}(x)\neq 0$.]
+
+\medskip \noindent
+
+\newpage
+
+\subsection*{Problem 5.62} Does there exist a continuous mapping from the circle to itself that has no fixed-point? What about the 2-torus? The 2-sphere?
+
+\medskip \noindent
+
+\newpage
+
+\end{document}
+

@@ -1,0 +1,489 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 1}
+\author{Lucas Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+
+\subsection*{Lemma 1} (General lemma I will use): For a cut $x=A|B$ if $a'\in\mathbb{Q}$ and $a'<a$ for $a\in A$ then $a'\in A$:
+
+\medskip
+\noindent \textbf{Proof:} Since $a'\in\mathbb{Q}$ and $A\cup B=\mathbb{Q}$ and $A\cap B=\emptyset$ then if $a'\notin B$ it must be in
+$A$. Then $a'\in A$ since if $a'\in B$ by definition $a'>a$, which is impossible.
+
+\subsection*{Problem 9}
+\noindent Let $x = A|B$, $x' = A'|B'$ be cuts in $\mathbb{Q}$. We defined $$x+x'=(A+A') \text{ }| \text{ rest of }\mathbb{Q}$$
+\indent (a) Show that although $B + B'$ is disjoint from $A + A'$, 
+it may happen in degenerate cases that $\mathbb{Q}$ is not the union of $A + A'$ and $B + B'$.
+
+\medskip
+\noindent \textbf{Sol:} For a degenerate case, we consider $x$, $x'$ for which $A = \{x: x<0$ or $x^2<2\}$, and 
+$A' = \{x' : (x'-1)^2>2$ and $x'<0\}$. 
+
+\medskip
+\noindent Intuitively, these cuts represent real numbers $\sqrt{2}$ and $1-\sqrt{2}$, 
+but since they are irrational their corresponding $B$-sets do not contain their greatest lower bounds. $B+B'$
+therefore also does not include $1$, which means $1$ is excluded from the sets $A+A'$ and $B+B'$. This means $(A+A')$ $|$ $(B+B')$
+is by definition not a cut.
+
+\medskip
+\noindent Rigorously, we prove that $\nexists a\in A, a'\in A'$ where $a+a'=1$, and $\nexists b\in B, b'\in B'$ where $b+b'=1$, 
+so $1\notin A+A' \cup B+B'$. We note that the conditions for $B$ and $B'$ are $B= \{y: y\geq 0$ and $y^2\geq 2\}$ 
+$B'= \{y' : (y'-1)^2\leq2$ or $y'\geq0\}$.
+
+\medskip
+\noindent We first assume the negative of our desired result for the $A$-sets. Then given $a$ s.t. $a<0$ or $a^2<2$, we plug in
+$a'=1-a$ to the condition for $A'$: $$a^2>2 \text{ and } a>1$$ which yields us a contradiction since $a\in A$. Now we test the 
+corresponding hypothesis for $B$, $B'$: Given $b\in B'$ we plug in $1-b$ to $B$'s conditions: $b\leq 1$ and $(1-b)^2=(b-1)^2\geq 2$
+yields a contradiction. Then $A+A'\cup B+B'$ excludes $1$.
+
+\bigskip
+
+\indent (b) Infer that the definition of $x + x'$ as $(A + A')\text{ }| \text{ }(B + B')$ would be incorrect.
+
+\medskip
+\noindent \textbf{Sol:} As stated above $A+A'\cup B+B'$ excludes $1$ and $\neq \mathbb{Q}$: thus $(A + A')\text{ }| \text{ }(B + B')$
+is not a cut.
+
+\bigskip
+
+\indent (c) Why did we not define $x\cdot x' =(A\cdot A')\text{ } |\text{ rest of }\mathbb{Q}$?
+
+\medskip
+\noindent \textbf{Sol:} Given two positive cuts $A$ $|$ $B$ and $A'$ $|$ $B'$ $A\cdot A'$ includes all of $\mathbb{Q}^+$ since $\mathbb{Q}^- \subset A$
+and $\mathbb{Q}^- \subset A'$. Thus the cut $(A\cdot A')\text{ } |\text{ rest of }\mathbb{Q}$ does not make sense because every product of positive
+numbers would correspond to $\infty$ or be undefined.
+
+
+
+
+\newpage
+\subsection*{Problem 10}
+\noindent Prove that for each cut $x$ we have $x + (-x) = 0\text{*}$
+
+\medskip
+\noindent \textbf{Sol:} From the definition of the cut $-x$ we have $x + (-x) = A$ $|$ $B$ where $A = \{x : x = a+b, a\in A', -b \in B', -b$ 
+not a lower bound of $B'\}$, for $x = A'$ $|$ $B'$. We note that by definition of a cut $-b > a$, so $a+b<0$ and $A$ is bounded above by $0$.
+
+\medskip
+\noindent We now prove that $\forall$ $c<0$, $c = a+b \in A$ for some $a\in A'$, $-b\in B'$. 
+To do this, we pick an arbitrary $a'$ in $A'$ and an arbitrary $b'$ in $B'$, since neither can be the empty set. Given $c$ we can find the 
+multiple of $c$ by the smallest natural $d$ where $d\in\mathbb{N}$, and $cd < a'-b'$, since every rational is in an interval of integers — 
+$a'-cd>b'\implies a'-cd\in B'$. 
+
+\medskip
+\noindent From here we note that $a' - cn$ for $n\in \mathbb{N} \cap [0, d]$ is a rational and therefore $a'-cn\in A'$ or 
+$a'-cn\in B'$. As such $\exists n$ s.t. $a'-cn\in A'$ and $a'-c(n+1)\in B'$, since $a'\in A'$ and $a'-cd\in B'$. Thus we set $a=a'-cn$ and 
+$-b=a'-c(n+1)\implies a+b=c$. 
+
+\medskip
+\noindent In the case that $a'-c(n+1)$ is the l.u.b. of $A'$, we may add a rational $f$ less than $c$ to both values for satisfactory
+elements of $A'$ and $B'$ — since $a'-c(n+1)$ is the l.u.b., $a'-cn +f<a'-c(n+1)\implies a'-cn+f\notin B'$ but in $A'$. Then in all cases $\exists$ 
+elements $a$ and $b$ that satisfy $a+b=c$ for $c<0$ and the cut is the zero cut. 
+
+\subsection*{Lemma 2}  Multiplication by a positive real preserves inequalities and equalities.
+
+\medskip
+\noindent \textbf{Proof:} Given $a,b\in \mathbb{R}$ with $a<b$ and $r\in\mathbb{R}^+$ we aim to prove $ar<br$. For $a<b$ we have $a+(-a)<b+(-a)$
+by translation or $0<b-a$. Then $b-a$ is a positive real number. Then we have $r(b-a)>0$ as a property of multiplication, and we use the 
+distributive property for $br-ar>0$. By translation $br>ar$. 
+
+Equality is proven since the lower sets of the equal cuts are the same and so the product cuts have the same definition. Equality-inclusive
+inequalities are consistent by considering the case of inequality and the case of equality.
+
+
+
+
+\newpage
+\subsection*{Problem 11}
+\noindent A multiplicative inverse of a nonzero cut $x = A\text{ } | \text{ }B$ is a cut $y = C\text{ } | \text{ }D$ such that
+ $x\cdot y=1$*.
+
+\indent (a) If $x>0$*, what are $C$ and $D$?
+
+\medskip
+\noindent \textbf{Sol:} We posit that $C = \{x\in\mathbb{Q}: x\leq 0 $ or $\frac{1}{x}\in B$ but not g.l.b. of $B\}$.
+(Note: we define g.l.b. later but
+here it only matters if it is the smallest element of $B$, so we use it in place of that term, i.e. I do not have the time to replace "g.l.b." with smallest
+element everywhere.)
+
+\medskip
+\noindent \textbf{Proof:} $x>0$ and $1>0\implies y>0$, so we have for $x=A|B$ and $y=C|D$ $xy= E'|F'$ where 
+$$E' = \{r\in\mathbb{Q}:r\leq0 \text{ or } \exists a\in A \text{ and } \exists c\in C \text{ such that } a>0, c>0, \text{ and } r=ac\}$$
+We prove for $1= E|F$ that $E\subset E'$ and $E'\subset E$. First we prove that $E'$ is bounded above at 1, which implies it is a 
+subset of $E$. Assume $\exists r\geq 1$ where $r=ac$ for $a>0, c>0, a\in A, c\in C$. We have $a\in A$, $\frac{1}{c}\in B$, so $a<\frac{1}{c}$:
+however, $r=ac\implies a=\frac{r}{c}$ for $r\geq 1$ meaning $a\geq c$ which is a contradiction.
+
+\medskip
+\noindent Now we prove that $r\in E'$ $\forall$ $r<1, r\in\mathbb{Q}$. If $r\leq 0$, $r\in E'$ by definition. We aim to, for $r\in (0,1)$,
+find $a\in A$ and $b\in B (b\neq $ l.u.b $B)$ such that $\frac{a}{b}=r$. 
+
+\medskip
+\noindent As in Problem 10 we select arbitrary $a'\in A$ and $b'\in B$. Since
+$a'$, $b'$ are positive rationals with $b'>a'$ and $1/r > 1$, we have $\frac{b'}{a'}< (1/r)^d$ for some $d\in\mathbb{N}$. Then we have 
+$a'(1/r)^d\in B$ and $\exists$ $n\in\mathbb{N}$ s.t. $a'(1/r)^n\in A$ and $a'(1/r)^{n+1}\in B$. Setting $a=a'(1/r)^n$ and $b= a'(1/r)^{n+1}$
+yields us $a\cdot\frac{1}{b}=r$. 
+
+\medskip
+\noindent If incidentally $b$ is the lower bound of $B$ we pick $s\in (1, 1/r)$ and choose $a=a'(1/r)^ns$ and 
+$b=a'(1/r)^{n+1}s$ where $a\in A$ since $s<1/r$. Thus, $E\subset E'$ and we have $E=E'$ and $y = \frac{1}{x}$. 
+
+\bigskip
+
+\indent (b) If $x<0$*, what are they?
+
+\medskip
+\noindent \textbf{Sol:} If $x<0$ then $y<0$, and $x\cdot y$ is defined by $(-x) \cdot (-y)$. We write $-x = A'|B'$ and $-y = C'|D'$. We have 
+$$A' = \{a'\in\mathbb{Q} : a' = -b \text{ for some }b \in B, b \text{ not a lower bound}\}$$
+Then $$C'= \{c'\in\mathbb{Q} : c'\leq 0\text{ or }\frac{1}{c'}\in B', \frac{1}{c'} \text{ not a lower bound.}\}$$ 
+Two cases: If $B$ includes a lower bound $x$, then $-x\in B'$ since it is excluded from $A'$. Note here that $-x$ becomes the lower bound
+of $B'$ since $x$ is an upper bound for $A$ (whose negatives are excluded from $A'$). Then $-\frac{1}{x}$ is excluded from $C'$. If $B$ does not
+include a lower bound then naturally $C'$ does not include a function of the lower bound of $B'$ since it does not exist. 
+
+\medskip
+\noindent From here, we combine the two sets: $$B'=\{b'\in\mathbb{Q}: b'=-a \text{ for some }a \in A \text{ or }a \text{ lower bound of }B\}$$ 
+$$C'=\{c'\in\mathbb{Q}: c'\leq 0\text{ or }-\frac{1}{c'}\in A\}$$
+We can then take the negative of this cut: 
+$$D'=\{d'\in\mathbb{Q}: d'>0\text{ and }-\frac{1}{d'}\in B\}$$
+$$C=\{c\in\mathbb{Q}: -c=d'>0\text{ and }\frac{1}{c}\in B \text{ but not g.l.b. of} B\}$$
+
+(note: the g.l.b. of $D'$ is $-\frac{1}{b}$ for $b$ the g.l.b. of $B$)
+and we have $$C =\{c\in\mathbb{Q}: c<0\text{ and }\frac{1}{c}\in B \text{ but not g.l.b of } B\}$$
+
+
+\bigskip
+
+\indent (c) Prove that $x$ uniquely determines $y$.
+
+\medskip
+\noindent \textbf{Sol:} We must consider the cases of positive and negative $x$. For positive $x$ assume there exists $y\neq y'$: we will prove the contrapositive,
+that $xy \neq xy'$ and thus $\exists$ a unique $y$ for $xy = 1$. 
+
+\medskip
+\noindent We have $y = C|D$ and $y' = C'|D'$: we will assume WLOG that $y>y'$ (trichotomy) so that $\exists s\in C, s\notin C'$. Then we write
+$xy = E|F$ with $E=\{r\in \mathbb{Q}: r\leq 0 $ or $r=ac$ for $a\in A\cap\mathbb{Q}^+$ and $c\in C\cap\mathbb{Q}^+\}$ and $xy'= E'|F'$ with $E'
+= \{r' :$ defined similarly as above.$\}$ 
+
+\medskip
+\noindent We plug $s$ into $E$ to get $r = as$: since $a\in\mathbb{Q}^+$ $r>ac'$ $\forall$ $c'\in C'$ so $\exists$ $r\in E$, $r\notin E'$. Then 
+$E\neq E'$.
+
+\medskip
+\noindent For the negative case, we define $y$ and $y'$ similarly as above and assume $y>y'$. Then since $\exists s\in c, s\notin C'$, $s\in D'
+, s\notin D$. (We note that we can pick $s$ not the lower bound of $D'$ since if only the lower bound is in $D'$ but not $D$, then $s$ is necessarily
+the least upper bound of $C$ and in $C$, which is impossible). Then for $-y= C^{-} | D^{-}$ and  $-y'=C^{-'} | D^{-'}$ we have $-s\in C^{-'}$, $-s\notin
+C^{-}$. From here, we compare $C^{-'}$ and $C^{-}$ to $-x$ as in the positive case to achieve $E\neq E'$. 
+
+
+
+
+
+\newpage
+\subsection*{Problem 13}
+\noindent Let $b = $ l.u.b $S$, where $S$ is a bounded nonempty subset of $\mathbb{R}$.
+
+\indent (a) Given $\epsilon > 0$ show that there exists an $s\in S$ with $$b-\epsilon\leq s\leq b.$$
+
+\medskip
+\noindent \textbf{Sol:} Since $b$ is the l.u.b., $\forall$ $s\in S$ $b\geq s$. Thus if $\nexists s$ for $b-\epsilon\leq s\leq b$ then $s<b-\epsilon$ $\forall$
+ $s\in S$. Then $b-\epsilon$ is an upper bound of $S$, and since $b-\epsilon<b$, this is a contradiction.
+
+\bigskip
+
+\indent (b) Can $s\in S$ always be found so that $b-\epsilon<s<b$?
+
+\medskip
+\noindent \textbf{Sol:} No, because of the counterexample $S = {b}$, which $b$ is an upper bound for. 
+
+\bigskip
+
+\indent (c) If $x=A$ $|$ $B$ is a cut in $\mathbb{Q}$, show that $x=$ l.u.b.$A$.
+
+\medskip
+\noindent \textbf{Sol:} For $a\in A$ we have $a^*\in\mathbb{R}$ with $a^* = A'|B'$ $A'=\{a'<a\}$ the rational cut in $\mathbb{R}$ corresponding to $a$. Then
+we have $A'\subset A$ since $\forall$ $a'\in A'$ we have $a'<a\in A$: if $a'\notin A$ then $a\in B$ and $a'>a$, contradiction. Then $x$ is an
+upper bound of $A^* = \{a^*\}$. To prove $x$ is the least upper bound assume $\exists$ an upper bound y of $A^*$. Then for $a$ in $A$ we have 
+$a^*\leq y$. If $a^* = y$ then $y$ is a rational cut and therefore in $A$, but since $a^*<y$ $\forall$ $a\in A$ ($y$ is an upper bound
+of rational set $A$) this contradicts the definition of the cut $x$. Thus $a^*<y$ implies $x\leq y$, and $x$ is the l.u.b..
+
+
+
+
+\newpage
+\subsection*{Problem 14}
+\noindent Prove that $\sqrt{2}\in\mathbb{R}$ by showing that $x\cdot x=2$ where $x=A|B$ is the cut
+in $\mathbb{Q}$ with $A=\{r \in \mathbb{Q}: r\leq 0 $ or $r^2<2\}$.
+
+\medskip
+\noindent \textbf{Sol:} We note that $x$ is a positive cut, so $x^2=y=E|F$ where $E= \{r\in\mathbb{Q}: r\leq 0$ or $r=ab$ for $a\in A\cap\mathbb{Q}^+$
+and $b\in A\cap\mathbb{Q}^+\}$. We also note that if an element $r$ of one set $\leq 0$ it must be in the other by definition.
+
+\subsection*{Lemma:} Given $0<r<2$ $\exists a\in\mathbb{Q}$ s.t. $a^2\in[r, 2)$.
+
+\noindent \textbf{Proof:} By problem 13 we have that $x=\sup A^*$ with $A^* =\{a^*\in\mathbb{R}: a^*$ for a in $A\}$. Then we define $\epsilon=
+\frac{x^2-r}{2x}$. Then $\exists a\in A$ s.t. $x-\epsilon\leq a^*\leq x$. We note that $x-\epsilon = \frac{x^2+r}{2x}>0$. Then 
+$$x-\epsilon\leq a^*\implies x^2-2x\epsilon\leq (x-\epsilon)^2\leq a^{*2} < 2$$ since $a > 0$ and $a\in A$. (Note $(x-\epsilon)^2\leq a^*(x-\epsilon)\leq a^{*2}$
+by Lemma 2, and$(x-\epsilon)^2\leq a^{*2}$ by transitivity.) 
+This yields us $r\leq a^2<2$ since an inequality in $\mathbb{R}$ of rational cuts implies the corresponding inequality in the rationals. 
+
+From here, the proof follows: $r\leq a^2\implies \frac{r}{a}\leq a$, and $\frac{r}{a}>0\implies (\frac{r}{a})^2\leq a^2 <2$, and $\frac{r}{a}
+\in A$. Thus we define $b=\frac{r}{a}$ and we have achieved $ab=r$ $\forall r>0, r\in E$. Then $2\leq x^2$. 
+
+\medskip
+\noindent For the opposite direction we assume $r\in E$ and we prove $r < 2$. Assume $r\geq 2$. Then $r=ab$ with $a,b>0\implies a^2b^2\geq 4$, 
+but $a^2, b^2<2\implies a^2b^2<4$: contradiction. Thus $x^2\leq 2$ and $x\cdot x = 2$. 
+
+
+
+
+
+\newpage
+\subsection*{Problem 18}
+\noindent Prove that real numbers correspond bijectively to decimal expansions not terminating in 
+an infinite string of nines, as follows. The decimal expansion of $x\in\mathbb{R}$ is $N.x_1x_2\dots,$ 
+where $N$ is the largest integer $\leq x$, $x_1$ is the largest integer $\leq 10(x-N)$, $x_2$ is the
+largest integer $\leq 100(x-(N+x_1/10))$, and so on.
+
+\indent (a) Show that each $x_k$ is a digit between 0 and 9.
+
+\medskip
+\noindent \textbf{Sol:} Describe $x_k$ the greatest integer $\leq 10^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10^j))$. Thus, 
+$10^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10^j))-x_k<1$ and $$10^{k+1}(x-(N+\sum\limits_{j=1}^kx_j/10^j))<10$$ implies for $k\geq 2$ $x_k<10$ and
+is an digit from $0-9$. For $x_1$, since $x-N<1$ and $10(x-N)<10$, $x_1$ is a digit.  
+
+\bigskip
+
+\indent (b) Show that for each $k$ there is an $l\geq k$ such that $x_l\neq 9$.
+
+\medskip
+\noindent \textbf{Sol:} Assume $\exists$ $k$ where $x_l = 9$ $\forall l > k$. Then $\frac{9}{10^l}\leq x-(N+\sum\limits_{j=1}^{l-1}x_j/10^j)$ 
+$\forall l > k$ and $$x\geq N+\sum\limits^k_{j=1}\frac{x_j}{10^j}+\sum\limits^l_{m=k+1}\frac{9}{10^m}$$ 
+
+\medskip
+\noindent We aim to prove that $\forall$ $a\geq\sum\limits^l_{m=k+1}\frac{9}{10^m}$ $\forall$ $l>k$, $a\geq\frac{1}{10^k}$ For this, we aim 
+to use $\epsilon$-principle. Define $y = \frac{1}{10^k}$. Then for any upper bound of our sequence $b$, and any given $\epsilon>0$, we can
+take the least $c\in\mathbb{N}$ so that $10^c\geq1/\epsilon$. Then if $c>k$, $\epsilon\geq1/10^c\implies
+\frac{1}{10^k}-\epsilon\leq\frac{1}{10^k}-\frac{1}{10^c}=\sum\limits^l_{m=k+1}\frac{9}{10^m}\leq y$ implies $\frac{1}{10^k}-\epsilon\leq y$
+and $\frac{1}{10^k} \leq y$ by $\epsilon$-principle. Then $$x\geq N+\sum\limits^k_{j=1}\frac{x_j}{10^j}+\frac{1}{10^k}$$ 
+$$x_k+1\leq 10^k(x-(N+\sum\limits_{j=1}^{k-1}\frac{x_j}{10^j}))$$ which contradicts the definition of $x_j$. By proof by 
+contradiction, there must $\exists$ some $l\geq k$ $\forall k$ s.t. $x_l\neq 9$. 
+
+
+\bigskip
+
+\indent (c) Conversely, show that for each such expansion $N.x_1x_2\dots$ not terminating in an infinite
+string of nines, the set $$\{N, N+\frac{x_1}{10}, N+\frac{x_1}{10}+\frac{x_2}{100}, \dots\}$$ is bounded 
+and its least upper bound is a real number $x$ with decimal expansion $N.x_1x_2\dots$.
+
+\noindent We prove first that $x$ is an upper bound of the given set. By the definition of each $x$-term, we have 
+$$x_k\leq 10^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10^j))\implies x\geq N+\sum_{j=1}^{k}x_j/10^j$$ for each 
+$j\in\mathbb{N}$. Thus $x$ is an upper bound by definition. 
+
+\medskip
+\noindent We then prove that $x$ is the least upper bound. Assume $\exists y<x$ with $y$ an upper bound of
+our sequence. Then $\exists$ $r_1, r_2, r_1\neq r_2,$ By definition $r_1$, $r_2$ are upper bounds of the set.
+
+\medskip
+\noindent We have: for $s_k = N+\sum_{j=1}^{k}x_j/10^j$ $s_k<r_1$ $\forall$ $k\in\mathbb{N}$. Then 
+$s_k + (r_2-r_1)< r_2$ $\forall k\in\mathbb{N}$. We consider the least $k$ such that $1/10^k<(r_2-r_1)$, which exists
+since $s_k$ and $r_2-r_1$ are rationals: then $s_k + 1/10^k<s_k+(r_2-r_1)<r_2<x$. This yields us 
+$$x_k+1< 10^k(x-(N+\sum^{k-1}_{j=1} \frac{x_j}{10^j}))$$ which contradicts the definition of $x_k$. Therefore, $\nexists$
+$y<x$ a lower bound of our set $\{s_k\}$.
+
+\medskip
+\noindent Thus, the decimal expansion is well-defined, and the real number $x$ may be derived as the l.u.b. of $N, x_1,\dots$.
+By definition this makes the decimal expansion invertible and a bijection.
+
+\bigskip
+\indent (d) Repeat the exercise with a general base in place of $10$.
+
+\medskip
+\noindent We copy the entire proof again and replace $10$ with $10_b$ for an arbitrary base $b$, and $9$ 
+with $b-1$. 
+
+\noindent Prove that real numbers correspond bijectively to decimal expansions not terminating in 
+an infinite string of nines, as follows. The decimal expansion of $x\in\mathbb{R}$ is $N.x_1x_2\dots,$ 
+where $N$ is the largest integer $\leq x$, $x_1$ is the largest integer $\leq 10(x-N)$, $x_2$ is the
+largest integer $\leq 100(x-(N+x_1/10))$, and so on.
+
+\indent (d-a) Show that each $x_k$ is a digit between 0 and $b-1$.
+
+\medskip
+\noindent \textbf{Sol:} (Note that $10_b = b_{10}$.) Describe $x_k$ the greatest integer $\leq 10_b^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10_b^j))$. Thus, 
+$10_b^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10_b^j))-x_k<1$ and $$10_b^{k+1}(x-(N+\sum\limits_{j=1}^kx_j/10_b^j))<10_b$$ implies for $k\geq 2$ $x_k<10_b$ and
+is an digit from $0-(b-1)$. For $x_1$, since $x-N<1$ and $10_b(x-N)<10_b$, $x_1$ is a digit.  
+
+\bigskip
+
+\indent (d-b) Show that for each $k$ there is an $l\geq k$ such that $x_l\neq b-1$.
+
+\medskip
+\noindent \textbf{Sol:} Assume $\exists$ $k$ where $x_l = b-1$ $\forall l > k$. Then $\frac{b-1}{10_b^l}\leq x-(N+\sum\limits_{j=1}^{l-1}x_j/10_b^j)$ 
+$\forall l > k$ and $$x\geq N+\sum\limits^k_{j=1}\frac{x_j}{10_b^j}+\sum\limits^l_{m=k+1}\frac{b-1}{10_b^m}$$ 
+
+\medskip
+\noindent We aim to prove that $\forall$ $a\geq\sum\limits^l_{m=k+1}\frac{b-1}{10_b^m}$ $\forall$ $l>k$, $a\geq\frac{1}{10_b^k}$ For this, we aim 
+to use $\epsilon$-principle. Define $y = \frac{1}{10_b^k}$. Then for any upper bound of our sequence $d$, and any given $\epsilon>0$, we can
+take the least $c\in\mathbb{N}$ so that $10_b^c\geq1/\epsilon$. Then if $c>k$, $\epsilon\geq1/10_b^c\implies
+\frac{1}{10_b^k}-\epsilon\leq\frac{1}{10_b^k}-\frac{1}{10_b^c}=\sum\limits^l_{m=k+1}\frac{b-1}{10^m}\leq y$ implies $\frac{1}{10_b^k}-\epsilon\leq y$
+and $\frac{1}{10_b^k} \leq y$ by $\epsilon$-principle. Then $$x\geq N+\sum\limits^k_{j=1}\frac{x_j}{10_b^j}+\frac{1}{10_b^k}$$ 
+$$x_k+1\leq 10_b^k(x-(N+\sum\limits_{j=1}^{k-1}\frac{x_j}{10_b^j}))$$ which contradicts the definition of $x_j$. By proof by 
+contradiction, there must $\exists$ some $l\geq k$ $\forall k$ s.t. $x_l\neq b-1$. 
+
+
+\bigskip
+
+\indent (d-c) Conversely, show that for each such expansion $N.x_1x_2\dots$ not terminating in an infinite
+string of $b-1$s, the set $$\{N, N+\frac{x_1}{10_b}, N+\frac{x_1}{10_b}+\frac{x_2}{100_b}, \dots\}$$ is bounded 
+and its least upper bound is a real number $x$ with decimal expansion $N.x_1x_2\dots$.
+
+\noindent We prove first that $x$ is an upper bound of the given set. By the definition of each $x$-term, we have 
+$$x_k\leq 10_b^k(x-(N+\sum\limits_{j=1}^{k-1}x_j/10_b^j))\implies x\geq N+\sum_{j=1}^{k}x_j/10_b^j$$ for each 
+$j\in\mathbb{N}$. Thus $x$ is an upper bound by definition. 
+
+\medskip
+\noindent We then prove that $x$ is the least upper bound. Assume $\exists y<x$ with $y$ an upper bound of
+our sequence. Then $\exists$ $r_1, r_2, r_1\neq r_2,$ By definition $r_1$, $r_2$ are upper bounds of the set.
+
+\medskip
+\noindent We have: for $s_k = N+\sum_{j=1}^{k}x_j/10_b^j$ $s_k<r_1$ $\forall$ $k\in\mathbb{N}$. Then 
+$s_k + (r_2-r_1)< r_2$ $\forall k\in\mathbb{N}$. We consider the least $k$ such that $1/10_b^k<(r_2-r_1)$, which exists
+since $s_k$ and $r_2-r_1$ are rationals: then $s_k + 1/10_b^k<s_k+(r_2-r_1)<r_2<x$. This yields us 
+$$x_k+1< 10_b^k(x-(N+\sum^{k-1}_{j=1} \frac{x_j}{10_b^j}))$$ which contradicts the definition of $x_k$. Therefore, $\nexists$
+$y<x$ a lower bound of our set $\{s_k\}$.
+
+
+\noindent Thus, the decimal expansion is well-defined, and the real number $x$ may be derived as the l.u.b. of $N, x_1,\dots$.
+By definition this makes the decimal expansion invertible and a bijection.
+
+
+
+\newpage
+\subsection*{Problem 19}
+\noindent Formulate the definition of the \textbf{greatest lower bound} (g.l.b.) of a set of real numbers.
+State a g.l.b. property of $\mathbb{R}$ and show it is equivalent to the l.u.b. property of $\mathbb{R}$.
+
+\medskip
+\noindent First, definitions:
+
+\subsection*{Definition} $M\in\mathbb{R}$ is a \textbf{lower bound} for a set $S\subset \mathbb{R}$ if each
+$s\in S$ satisfies $s\geq M$. The \textbf{greatest lower bound} is the lower bound $M$ such that $M\geq M'$
+for each $M'$ a lower bound of $S$.
+
+\medskip
+\noindent The \textbf{Greatest Lower Bound Property} of the complete set $\mathbb{R}$ states: If $S$ is a nonempty 
+subset of $\mathbb{R}$ and is bounded above then in $\mathbb{R}$ there exists a greatest lower bound of $S$.
+
+\medskip
+\noindent Proof of equivalence to l.u.b. property: Assume the greatest lower bound property. Then for a set $S$ we define
+$S'={s : -s\in S}$. $S'$ follows the greatest lower bound property, so $\exists M$ where $s\geq M$ $\forall$ $s\in S'$.
+Then we argue that $-M$ is the least upper bound of $S$. For each $s'\in S$ we have $-s'\in S'$: ($s+(-s)=0=(-s)+(-(-(s)))
+\implies s= -(-(s))$). Then $-s'\geq M\implies -M\geq s$ by translation. 
+
+\medskip
+\noindent For each $M'$ an upper bound of $S$ we have $M'\geq s'$
+for each $s'\in S$: by translation this gives us $-M'\leq s$ for $s\in S'$ since $-s\in S$. Then $-M'$ is
+a lower bound of $S'$ which gives us $-M'\leq M\implies M'\geq -M$ and $-M$ is the least upper bound of $S$ for each 
+bounded $S\subset\mathbb{R}$.
+
+\medskip
+\noindent The proof in the other direction (l.u.b property $\implies$ g.l.b. property) is the same with the properties,
+but I'm copy-pasting it below anyway out of anxiety :(
+
+\medskip
+\noindent Assume the least upper bound property. Then for a set $S$ we define
+$S'={s : -s\in S}$. $S'$ follows the least upper bound property, so $\exists M$ where $s\geq M$ $\forall$ $s\in S'$.
+Then we argue that $-M$ is the least upper bound of $S$. For each $s'\in S$ we have $-s'\in S'$: ($s+(-s)=0=(-s)+(-(-(s)))
+\implies s= -(-(s))$). Then $-s'\leq M\implies -M\leq s$ by translation. 
+
+\medskip
+\noindent For each $M'$ a lower bound of $S$ we have $M'\leq s'$
+for each $s'\in S$: by translation this gives us $-M'\geq s$ for $s\in S'$ since $-s\in S$. Then $-M'$ is
+an upper bound of $S'$ which gives us $-M'\geq M\implies M'\leq -M$ and $-M$ is the greatest lower bound of $S$ for each 
+bounded $S\subset\mathbb{R}$.
+
+
+\newpage
+\subsection*{Problem 20}
+\noindent Prove that limits are unique, i.e., if $(a_n)$ is a sequence of real numbers that converges to a 
+real number $b$ and also converges to a real number $b'$, then $b=b'$.
+
+\medskip
+\noindent \textbf{Sol:} Assume $\exists$ $b\neq b'$ where $(a_n)$ converges to both $b$ and $b'$. WLOG assume $b<b'$. Then
+$\exists$ $c\in\mathbb{R}$ where $c\in (b, b')$. Take $\epsilon = c-b$. Then by the definition of convergence 
+$\exists N\in\mathbb{N}$ where for $n\geq N$, $|a_n-b|<\epsilon$. If $a_n-b$ is positive, $|a_n-b|=a_n-b<c-b\implies a_n<c$. 
+If $a_n-b$ is negative, nevertheless we have $a_n-b<0<c-b\implies a_n<c$. From here we take $\epsilon'= b'-c$: $\epsilon'$
+is positive. Then $a_n<c\implies b'-a_n>b'-c=\epsilon'$ for all $n\geq N$, and since $b'-a_n$ is positive it cannot satisfy the
+definition of convergence to $b'$. Thus, $b=b'$ for any two limits of $(a_n)$.
+
+
+
+
+
+
+
+\newpage
+\subsection*{Problem 26}
+\noindent Let $b(R)$ and $s(R)$ be the number of integer unit cubes in $\mathbb{R}^m$ that intersect the ball
+and sphere of radius $R$, centered at the origin.
+
+\indent (a) Let $m=2$ and calculate the limits $$\lim_{R\rightarrow\infty}\frac{s(R)}{b(R)} \text{ and } \lim_{R\rightarrow\infty}\frac{s(R)^2}{b(R)}.$$ 
+
+\medskip
+\noindent \textbf{Sol:} We'll calculate $s(R)$ exactly and $b(R)$ using an upper and lower bound, then use the squeeze theorem.
+We know $s(R)=b(R)-c(R)$, so we can define sums for $b(R)/4$ and $c(R)/4$ (quadrants) without evaluating them: $$b(R)/4=\sum_{n=0}^{\lfloor R\rfloor}\Big{\lceil}\sqrt{R^2-n^2}\Big{\rceil}$$
+$$c(R)/4=\sum_{n=1}^{\lfloor R\rfloor}\Big{\lceil}\sqrt{R^2-n^2}\Big{\rceil}-1$$
+Note that we can use the ceiling function here with half-open boxes only. Then $b(R)-c(R)=\lfloor R\rfloor + \lceil R\rceil$. We define upper and lower bounds for $b(R)$:
+$$\pi R^2 < b(R) < \pi (R+\sqrt{2})^2$$ We note that the circle with radius $R+\sqrt{2}$ is an outer bound for $b(R)$ since the greatest distance between points in a unit cube in $\mathbb{R}^2$ is $\sqrt{2}$.
+
+Then we have $$\frac{8R}{\pi(R+\sqrt{2})^2}\leq\frac{4(\lfloor R\rfloor +\lceil R\rceil)}{\pi (R+\sqrt{2})^2} \leq\frac{s(R)}{b(R)}\leq \frac{4(\lfloor R\rfloor +\lceil R\rceil)}{\pi R^2}\leq\frac{8(R+1)}{\pi R^2}$$
+
+$$\frac{8}{\pi(R+\sqrt{2})}-\frac{8\sqrt{2}}{\pi(R+\sqrt{2})^2}\leq \frac{s(R)}{b(R)}\leq \frac{8}{\pi R}+ \frac{8}{\pi R^2}$$
+$$\lim_{R\rightarrow\infty}\frac{8}{\pi(R+\sqrt{2})}-\frac{8\sqrt{2}}{\pi(R+\sqrt{2})^2}\leq \lim_{R\rightarrow\infty}\frac{s(R)}{b(R)}\leq \lim_{R\rightarrow\infty}\frac{8}{\pi R}+ \frac{8}{\pi R^2}$$
+$$0\leq\lim_{R\rightarrow\infty}\frac{s(R)}{b(R)}\leq 0\implies \lim_{R\rightarrow\infty}\frac{s(R)}{b(R)}=0$$
+
+We can now consider $\frac{s(R)^2}{b(R)}$, noting once again $2R\leq\lfloor R\rfloor+\lceil R\rceil\leq 2(R+1)$:
+$$\frac{64R^2}{\pi(R+\sqrt{2})^2}\leq\frac{16(\lfloor R\rfloor +\lceil R\rceil)^2}{\pi (R+\sqrt{2})^2} \leq\frac{s(R)^2}{b(R)}\leq \frac{16(\lfloor R\rfloor +\lceil R\rceil)^2}{\pi R^2}\leq\frac{64(R+1)^2}{\pi R^2}$$
+
+$$\frac{64(R+\sqrt{2})^2}{\pi(R+\sqrt{2})^2}-\frac{64(2\sqrt{2}R+2)}{\pi(R+\sqrt{2})^2}\leq\frac{s(R)^2}{b(R)}\leq\frac{64R^2}{\pi R^2}+\frac{64(2R+1)}{\pi R^2}$$
+$$\frac{64}{\pi}\leq\lim_{R\rightarrow\infty}\frac{s(R)^2}{b(R)}\leq\frac{64}{\pi}\implies\lim_{R\rightarrow\infty}\frac{s(R)^2}{b(R)}=\frac{64}{\pi}$$
+
+\bigskip
+
+\indent (b) Take $m\geq 3$. What exponent $k$ makes the limit $$\lim_{R\rightarrow\infty}\frac{s(R)^k}{b(R)}$$ interesting?
+
+\medskip
+\noindent \textbf{Sol:} For $k=m/m-1$ the limit is interesting: for any $m\in\mathbb{N}$ we slice the sphere into $\lceil R\rceil$ sections, each of which we can
+then take the largest and smallest $m-1$-sphere slices and compare $b(R)$ and $c(R)$. In this case $s(R)$ becomes a degree-$m-1$ function of $\lfloor R\rfloor$ and 
+$\lceil R\rceil$. Then $b(R)$ is bounded by $R^m$ and $(R+\sqrt{m})^m$, and so the degrees of the numerator and denominator are the same if $k=\frac{m}{m-1}$, which
+yields us nonzero finite bounds for the limit.
+
+\bigskip
+
+\indent (c) Let $c(R)$ be the number of integer unit cubes that are contained in the ball of radius $R$, centered at the origin.
+Calculate $$\lim_{R\rightarrow\infty} \frac{c(R)}{b(R)}.$$
+
+\medskip
+\noindent \textbf{Sol:} $\lim\limits_{R\rightarrow\infty} \frac{c(R)}{b(R)}=\lim\limits_{R\rightarrow\infty} 1-\frac{s(R)}{b(R)}=1-0=1$. 
+
+\bigskip
+
+\indent (d) Shift the ball to a new, arbitrary center (not on the integer lattice) and re-calculate the limits.
+
+We note that it does not matter in what cube the center is but rather the location of the center within the cube. We can still divide the ball into four
+quadrants and exclude the cubes that contain the $y$- or $x$-value of the center of the ball, $(x_0, y_0)$ (WLOG assume $x_0, y_0\in[0,1)^2$). From there we have 
+$$b(R)-c(R)=4+2\lceil R+y_0\rceil +2\lceil R-y_0\rceil +2\lfloor R+x_0\rfloor +2\lfloor R-x_0\rfloor$$ which is once again bounded between $8R+4$ and $8R+12$. 
+We take the same bounds for $b(R)$ to get $$\frac{8R+4}{\pi(R+\sqrt{2})^2}\leq \frac{s(R)}{b(R)}\leq \frac{8R+12}{\pi R^2}$$ and 
+$$\frac{(8R+4)^2}{\pi(R+\sqrt{2})^2}\leq \frac{s(R)}{b(R)}\leq \frac{(8R+12)^2}{\pi R^2}$$ After some calculation we achieve $\lim_{R\rightarrow\infty}\frac{s(R)}{b(R)}=0$ and $\lim_{R\rightarrow\infty}\frac{s(R)^2}{b(R)}=\frac{64}{\pi}$. 
+
+(In general, since the difference between interior and exterior cube numbers remains a function of a rounded $R$-value through the height difference of interior/exterior of adjacent columns,
+the ratios and R-degrees remain the same regardless of the center's location.)
+
+\end{document}
+

@@ -1,0 +1,128 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 2}
+\author{Lucas Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Problems:} 5, 6, 7, 9, 11, 12, 13, 17, 22, 28 and 101.
+
+\subsection*{Problem 5} For $p, q\in S^1$, the unit circle in the plane, let
+$$d_a(p, q) = \min\{|\measuredangle(p) - \measuredangle(q)|, 2\pi - |\measuredangle(p) - \measuredangle(q)|\}$$
+where $\measuredangle(z)\in[0,2\pi)$ refers to the angle that z makes with the positive x-axis.
+Use your geometric talent to prove that $d_a$ is a metric on $S^1$.
+
+\noindent 
+
+\bigskip
+
+\subsection*{Problem 6} For $p,q \in [0,\pi/2)$ let
+$$d_s(p, q) = \sin |p - q|.$$
+Use your calculus talent to decide whether $d_s$ is a metric.
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 7} Prove that every convergent sequence $(p_n)$ in a metric space $M$ is bounded, i.e.,
+that for some $r>0$, some $q\in M$, and all $n\in \mathbb{N}$, we have $p_n\in M_rq.$
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 9} A sequence $(x_n)$ in $\mathbb{R}$ \textbf{increases} if $n < m$ implies $x_n\leq x_m$. 
+It \textbf{strictly increases} if $n < m$ implies $x_n < x_m$. It decreases or strictly decreases if $n < m$ 
+always implies $x_n\geq x_m$ or always implies $x_n > x_m$. A sequence is monotone if it increases or it decreases. 
+Prove that every sequence in $\mathbb{R}$ which is monotone and bounded converges in $\mathbb{R}.$
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 11} Let $(x_n)$ be a sequence in $\mathbb{R}$.
+
+*(a) Prove that $(x_n)$ has a monotone subsequence.
+
+(b) How can you deduce that every bounded sequence in $\mathbb{R}$ has a convergent subsequence?
+
+(c) Infer that you have a second proof of the Bolzano-Weierstrass Theorem in $\mathbb{R}$.
+
+(d) What about the Heine-Borel Theorem?
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 12} Let $(p_n)$ be a sequence and $f : \mathbb{N} \rightarrow \mathbb{N}$ 
+be a bijection. The sequence $(q_k)_{k\in N}$
+with $q_k = p_{f(k)}$ is a rearrangement of $(p_n)$.
+
+(a) Are limits of a sequence unaffected by rearrangement? 
+
+(b) What if $f$ is an injection?
+
+(c) A surjection?
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 13} Assume that $f : M \rightarrow N$ is a function from one metric space to another 
+which satisfies the following condition: If a sequence $(p_n)$ in $M$ converges then the sequence 
+$(f(p_n))$ in $N$ converges. Prove that $f$ is continuous. [This result improves Theorem 4.]
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 17} 17. Which capital letters of the Roman alphabet are homeomorphic? Are any
+isometric? Explain.
+
+
+\bigskip
+
+\subsection*{Problem 22} If every closed and bounded subset of a metric space $M$ is compact, does it 
+follow that $M$ is complete?
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 28} A map $f : M \rightarrow N$ is open if for each open set $U \subset M$, the image set $f(U)$ is
+open in $N$.
+
+(a) If $f$ is open, is it continuous?
+
+(b) If $f$ is a homeomorphism, is it open?
+
+(c) If $f$ is an open, continuous bijection, is it a homeomorphism?
+
+(d) If $f : R \rightarrow R$ is a continuous surjection, must it be open?
+
+(e) If $f : R \rightarrow R$ is a continuous, open surjection, must it be a homeomorphism?
+
+(f) What happens in (e) if $R$ is replaced by the unit circle $S^1$?
+
+\noindent
+
+\bigskip
+
+\subsection*{Problem 101} Let $\Sigma$ be the set of all infinite sequences of zeroes and ones. For example, $(100111000011111 . . .) \in\Sigma$. Define the metric
+$$d(a,b)=\sum \frac{|a_n-b_n|}{2^n}$$
+where $a = (a_n)$ and $b = (b_n)$ are points in $\Sigma$.
+(a) Prove that $\Sigma$ is compact.
+(b) Prove that $\Sigma$ is homeomorphic to the Cantor set.
+
+\noindent
+
+\bigskip
+
+
+\end{document}
+

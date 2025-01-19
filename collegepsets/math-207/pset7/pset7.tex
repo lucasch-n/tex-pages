@@ -1,0 +1,236 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./} }
+
+\title{Problem Set 7}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Problems: 5.21, 5.23, 5.44, 5.51, 5.62
+
+\subsection*{Problem 5.21} For \( U \) as described above, assume that \( f \) is second-differentiable everywhere, and \( (D^2 f)_p = 0 \) for all \( p \). What can you say about \( f \)? Generalize to higher-order differentiability.
+
+\medskip \noindent Assuming the $n^{\text{th}}$ total derivative is $0$ implies that each $n^{\text{th}}$ order
+partial derivative is $0$. Thus for component $f_k$ we have $\frac{\partial}{\partial x_{i_1}}\dots\frac{\partial}{\partial x_{i_n}}f_k =0$
+for each $i_j\in 1,\dots,m$. Then we have $\frac{\partial}{\partial x_{i_2}}\dots\frac{\partial}{\partial x_{i_n}}f_k= C_{i_2\dots i_n}$ a constant,
+since $\frac{\partial}{\partial x_{i_2}}\dots\frac{\partial}{\partial x_{i_n}}f_k$ must be independent of each $x_{i_1}$ (and by 20).
+
+\medskip \noindent From here we will prove by induction that $f$ must be an at most degree $n-1$ polynomial for 
+$D^nf=0$. Assume that for $D^{n-1}f=0$ we have $f$ a degree at most $n-2$ polynomial. We know that the order of the $i$s in $C_{i_2\dots i_n}$ 
+can be rearranged since rearranging partial variable order results in the same derivative. Take $g=f-\sum C_{?}\frac{x_1^{p_1}\dots x_m^{p_m}}{p_1!\dots p_m!}$,
+where the coefficient corresponds to the constant partial ($n-1$)th derivative with respect to each $x_j$ taken $p_j$ times ($\sum p_j = n-1$). (? represents the code corresponding to $p_j$ number of $x_j$s each.)
+Then every $(n-1)^{\text{th}}$ partial derivative of $g$ is 0 (since mismatched partial counts lead to the term being differentiated to $0$, and the $(n-1)$th partial of $f$ is $C_?$)
+and we know $g$ is a degree at most $n-2$ polynomial. 
+
+\medskip \noindent Since $\sum C_{?}\frac{x_1^{p_1}\dots x_m^{p_m}}{p_1!\dots p_m!}$ is a degree $n-1$ polynomial, we have
+that $f= g+\sum C_{?}\frac{x_1^{p_1}\dots x_m^{p_m}}{p_1!\dots p_m!}$ must be a degree $n-1$ polynomial and our inductive hypothesis holds.
+Our base case is $n=1$, since we know if $Df=0$ then $f$ is constant (or degree 0). Thus by induction our hypothesis holds for all $n$.
+
+\newpage
+
+\subsection*{Problem 5.23} Assume that \( f : [a, b] \times Y \to \mathbb{R}^m \) is continuous, where \( Y \) is an open subset of \( \mathbb{R}^n \), the partial derivatives \( \partial f_i(x, y) / \partial y_j \) exist, and they are continuous. Let \( D_y f \) be the linear transformation \( \mathbb{R}^n \to \mathbb{R}^m \) represented by the \( m \times n \) matrix of partials.
+
+(a) Show that
+    \[
+    F(y) = \int_a^b f(x, y) \, dx
+    \]
+    is of class \( C^1 \) and
+    \[
+    (DF)_y = \int_a^b (D_y f) \, dx.
+    \]
+    This generalizes Theorem 14 to higher dimensions.
+
+\medskip \noindent We use the $C^1$ mean value theorem on $f(x, y)$ with respect to $y$. Since $Y$
+is open, for some $y_1$ we take the $\epsilon$-neighborhood around $y_1$ and choose $h$ where $|h|<\epsilon$. 
+Then the segment between $y_1$ and $y_1+h$ is in $Y$ and we have \[f(x, y_1+h)-f(x, y_1)=\left(\int^1_0(D_yf)_{(x,y_1+th)}\,dt\right)h.\]
+Then we take the integral of both sides: \[F(y_1+h)-F(y_1)= \int_a^b\left(\int^1_0(D_yf)_{(x,y_1+th)}\,dt\right)h\,dx\]
+
+Take $D_yF = \int_a^b (D_y f) \, dx$. If \[\lim_{h\to 0} \frac{F(y_1+h)-F(y_1)-(D_yF)_{y_1}h}{|h|} = 0\] then we have verified the derivative.
+Since both $F(y_1+h)-F(y_1)$ and $(D_yF)_{y_1}$ are linear transformations we can distribute the scalar divisor
+$|h|$ and merge the transformations: \[\lim_{h\to 0}\left(\int_a^b\left(\int^1_0(D_yf)_{(x,y_1+th)}\,dt\right)h\,dx-\int_a^b(D_yf)_{y_1}\,dx\right)\frac{h}{|h|}\]
+Then if the transformation is identically $0$ we have proven the derivative. The inner integral is the average derivative over the segment from
+$y_1$ to $y_1+h$, which approaches $(D_yf)_{y_1}$ as $h\to 0$, which yields the transformation as the zero transformation. We have 
+$D_yF$ continuous since the integral of a continuous function is continuous. 
+
+
+\bigskip
+
+(b) Generalize (a) to higher-order differentiability.
+
+\medskip \noindent We take an inductive step of the same proof. We must assume that $f$ is $C^n$ and take $D^{n-1}_yf$
+as the function whose integral is $D^{n-1}_yF$. Since these derivatives are $(n-1)$-linear transformations we can
+fix their inputs and then redo the proof with an additional derivative with respect to $h_n$: the proof then follows the exact
+same way replacing $f$ with $D^{n-1}_yf(h_1,\dots h_{n-1})$ since nothing we did required $f$ to map to $R^m$ necessarily (please don't make me write it out please please please :'( )
+
+
+\newpage
+
+\subsection*{Problem 5.44} Let \( S \subset M \) be given.
+
+(a) Define the characteristic function \( \chi_S : M \to \mathbb{R} \).
+
+\medskip \noindent \[\chi_S(x)=\begin{cases}
+    1 & \text{if } x\in S\\
+    0 & \text{otherwise.}
+\end{cases}
+\]
+
+(b) If \( M \) is a metric space, show that \( \chi_S(x) \) is discontinuous at \( x \) if and only if \( x \) is a boundary point of \( S \).
+
+\medskip \noindent Assume first that $x\in S$. If $x$ is a boundary point of $S$, then for each $r>0$ there exists a point $p$
+where $p\notin \overline{S}$ but $p\in B_r(x)$. Take $r_n = 1/n$ for $n\in \mathbb{N}$, and the corresponding point
+$p_n$. Then $(p_n)$ is a sequence that by definition converges to $x\in S$, but every point of which is mapped
+to $0$ by $\chi_S$: thus the sequence $\chi_S(p_n)$ converges to $0$ but $\chi_S(x)=1$ implies discontinuity.
+
+\medskip \noindent Now assume that $x\notin S$. Then if $x$ is a boundary point of $S$ it is in $\overline{S}$, and
+is therefore a limit point of a sequence $(x_n)$ in $S$. Once again $\chi_S(x_n)=1$ for all $n$, and
+thus the limit of $\chi_S(x_n)$ is $1$: however, $(x_n)$ converges to $x$ and $\chi_S(x)=0$, implying discontinuity.
+
+\medskip \noindent In the other direction, we assume $\chi_S$ is discontinuous at $x$. Then there exists
+some sequence $x_n$ that converges to $x$ where $\chi_S(x_n)$ does not converge to $\chi_S(x)$, or where $\chi_S(x_n)$
+does not converge. Once again consider $\chi_S(x)=1$: then since $\chi_S(a)=0$ or $\chi_S(a)=1$ for all
+$a\in M$, we must have infinitely many $x_k$ where $\chi_S(x_k)=0$, since otherwise we have a maximum $N$ past which
+all $x_n$ for $n>N$ must be mapped to $1$. As such, for any $\epsilon>0$ we can pick an $M$ where 
+$k>M$ implies $d(x_k, x)<\epsilon$: since $\chi_S(x_k)=0$ we have $x_k\notin S$ for all $k$. Thus $x$ is a boundary point.
+
+\medskip \noindent Now assume $\chi_S(x)=0$. We take the same argument with a convergent sequence $(x_n)$ and infinitely many $k$ for which
+$\chi_S(x_k)=1$: then since $x_k\in S$ for all $k$ $(x_k)\to x$ (since it is a subsequence) implies $x$ is a limit point of $S$ and therefore in
+the closure of $S$. Thus $x$ is a boundary point.
+
+\newpage
+
+\subsection*{Problem 5.51} A region \( R \) in the plane is of type 1 if there are smooth functions \( g_1 : [a, b] \to \mathbb{R} \), \( g_2 : [a, b] \to \mathbb{R} \) such that \( g_1(x) \leq g_2(x) \) and
+\[
+R = \{(x, y) : a \leq x \leq b \text{ and } g_1(x) \leq y \leq g_2(x)\}.
+\]
+\( R \) is of type 2 if the roles of \( x \) and \( y \) can be reversed, and it is a \textbf{simple region} if it is of both type 1 and type 2.
+
+(a) Give an example of a region that is type 1 but not type 2.
+
+\medskip \noindent Take $g_1, g_2: [-2\pi, 2\pi]\to\mathbb{R}$ with $g_1(x)=\sin(x)-2$ and
+$g_2(x)=\sin(x)+2$. The points $(\pi/4, 2)$ and $(-3\pi/4, 2)$ are in this set but the horizontal
+line between them is not (for instance, $(-\pi/4, 2)$.) Thus the region is not type 2. 
+
+\bigskip
+
+(b) Give an example of a region that is neither type 1 nor type 2.
+
+\medskip \noindent Just take a disconnected set of two points $x_1, y_1$, $x_2, y_2$ with
+$x_1\neq x_2$ and $y_1\neq y_2$. Then the set is not type 1 since there is no horizontal interval
+of values of $x$ which correspond to points in the set, and the same reason with vertical intervals for type 2.
+(Or, take a donut.)
+
+\bigskip
+
+
+(c) Is every simple region starlike? Convex?
+
+\medskip \noindent Not convex: take the region bounded in $y$ by $y=0$ and $y=x^2$, and in $x$ by $0, 2$. Then the points $(0,0)$ and 
+$(2, 4)$ are in the set but the point $(1, 2)$ is not despite being on the segment between them.
+
+\medskip \noindent Not every simple region is starlike :( tried to prove it for twenty minutes
+
+\medskip \noindent Take the simple region bounded by $x^3$ and $x^2$: this is horizontally bounded
+by $\sqrt{y}$ and $\sqrt[3]{y}$, each of which is smooth as they are polynomials. The point $(0, 0)$ has
+derivative $0$ at both points, so any segment with derivative $>0$ necessarily exceeds $x^3$ initially, and
+$y=0$ is less than $x^2$ immediately after $0$. Thus no point is connected by segment to $(0, 0)$ and the
+region is not starlike.
+
+
+\bigskip 
+
+(d) If a convex region is bounded by a smooth simple closed curve, is it simple?
+
+\medskip \noindent Since a smooth simple closed curve is a parametrization $\gamma$ from a compact interval, we can
+use the extreme value theorem on the continuous $x$- and $y$-components of the curve to find the 
+$t$-values that achieve maximum and minimum of $x$ and $y$. 
+
+\medskip \noindent We show via convexity that the curve has a vertical or horizontal tangent line
+on at most two mutually disconnected intervals for each. If there are three vertical tangent lines, then two must
+have the same orientation with regard to the parametrization. We assume these two tangent lines
+are distinct (because if they are the same with a disconnection between the intervals, then mean value and 
+intermediate value theorems imply a third distinct vertical tangent line).
+
+\medskip \noindent Then the line between these points must cross the curve, since both points start in
+a vertical direction and begin on opposite sides of the segment. Contradiction. As such there are at most two
+vertical and horizontal tangent lines each (due to opposite orientations of the parametrization.) These two must be
+the minimum and maximum of $x$ and $y$ respectively. Since the parametrization is smooth, the intermediate value theorem
+implies on the intervals between the extrema that the components of the parametrization are monotonic. If we
+redo the parametrization with respect to distance (i'm grasping at straws here) then they are strictly monotonic
+since the parametrization can't just stop. This implies homeomorphism since the parametrization's components are continuous bijections (by
+monotonicity) on compact intervals: since the distance parametrization's components are smooth homeomorphisms and 
+strictly monotonic (derivative zero nowhere) by the inverse function theorem they are smooth diffeomorphisms. As a result
+the inverse of the $y$-component of the parametrization composed under the $x$-component of the parametrization on the 
+interval between $y$-extrema is a smooth function (note that it is not a homeomorphism since $x$ is not monotonic between $y$-extrema!)
+and we have the conditions for a simple region satisfied (holy garbage.) 
+
+
+(Continuous bijection on a compact interval is a homeomorphism: will use later.)
+
+\bigskip
+
+
+
+
+(e) Give an example of a region that divides into three simple subregions but not into two.
+
+\medskip \noindent Take the union of three mutually disconnected simple regions. You are done.
+
+\medskip \noindent If annoying, instead take the union of three rectangles that share only parts of their
+boundary. Then this region is connected but any cut of the set into two subregions yields too many corners for
+both of the subregions to be simple.
+
+\bigskip
+
+(f) If a region is bounded by a smooth simple closed curve $C$ then it need not divide into a finite number of simple subregions. Find an example.
+
+\medskip \noindent Take any smooth simple closed curve with a smooth transition to the function $f(x)=e^{-\frac{1}{x}}\sin(\frac{1}{x})$. This function
+has infinitely many zeros and crosses the $x$-axist across each one, since $e^{-\frac{1}{x}}$ is positive for all $x>0$. Then any attempt
+to cut the region into finitely many simple subregions will yield a subregion with more than three zeros, which excludes that subregion from type 2 status.
+
+
+\bigskip
+
+(g) Infer that the standard proof of Green's Formulas for simple regions (as, for example, in J. Stewart's \textit{Calculus} does not immediately carry over to the general planar region $R$ with smooth boundary; i.e., cutting $R$ into simple regions can fail.
+
+\medskip \noindent $R$ cannot always be cut into simple regions and therefore Stewart's proof of
+Green's Theorem does not always have a valid split into useable boundaries and regions. (Essentially,
+this follows exactly from (f).)
+
+\bigskip
+
+
+(h) Is there a planar region bounded by a smooth simple closed curve such that for every linear coordinate system (i.e., a new pair of axes), the region does not divine into finitely many simple subregions? In other words, is Stewart's proof of Green's Theorem doomed?
+
+(i) Show that if the curve in (f) is analytic, then no such example exists. [Hint: $C$ is analytic if it is locally the graph of a function defined by convergent power series. A nonconstant analytic function has the property that for each $x$, there is some derivative of $f$ which is nonzero, $f^{(r)}(x)\neq 0$.]
+
+\medskip \noindent We prove it is impossible for an analytic function to cross a point $a$ infinitely many times on
+a compact set. Assume the opposite. Then since the set is compact there is a convergent subsequence whose limit $c$ also
+is mapped to $a$ by continuity. By mean value theorem, for each point $x_n$ there is a point between $x_n$ and $c$ whose
+derivative is $0$: these points must also converge to $c$ since they are closer than the original sequence, and therefore
+since the function is analytic its derivative at $c$ must also be $0$. We continue using the mean value theorem in this way
+to conclude that each derivative of the function at $c$ is $0$, which leads to a contradiction since the function is analytic.
+Thus the curve cannot cross an $x$ or $y$ value infinitely many times, or on any axis, meaning that the region
+is able to be subdivided into finitely many type 1 and type 2 regions, the intersection of which should be finitely many
+simple regions. 
+
+\newpage
+
+\subsection*{Problem 5.62} Does there exist a continuous mapping from the circle to itself that has no fixed-point? What about the 2-torus? The 2-sphere?
+
+\medskip \noindent Yes, yes, and yes: for the circle, simply take a rotation of the circle about the origin by some
+angle $\neq 2\pi$. For the 2-torus, take the plane parametrization of the torus and translate the plane by some vector
+$\neq$ the vector difference between two corners and modulate the outside vectors back into the plane
+(this representation is homeomorphic to the torus and thus any fixed points should be preserved.)
+For the 2-sphere, map each point to the opposite pole: then no point can be mapped to itself, but
+the map is continous (we take $f(x)=-x$.)
+
+\newpage
+
+\end{document}
+

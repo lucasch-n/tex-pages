@@ -1,0 +1,35 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Break Pset and Extras}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\subsection*{Dini's Theorem} Prove that if a sequence of continuous functions is pointwise convergent and monotonically decreasing, then it is uniformly convergent.
+
+\medskip \noindent \textbf{Proof:} For the sequence $f_n$ where $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in M$ a compact set, we must prove that $\exists$ $N\in\mathbb{N}$ where for $n>N$ $d(f_n, f)<\epsilon$ for each $\epsilon$. 
+Assume not uniformly convergent. Then $\exists$ an $\epsilon$ where $d(f, f_n)\geq\epsilon$ for all $n$ since if $d(f,f_n)<\epsilon$ for any $n$ then extreme value theorem implies that $f_m<f_n(x')$ the maximum and $d(f, f_m)<\epsilon$ for all $m>n$. Take the set of points $\geq\epsilon$ for each function $f_n$ and call it $A_n$. We have that for $m>n$, $A_m\subset A_n$.
+
+\medskip \noindent We prove that the set of points where $f\geq\epsilon$ is the intersection of $A_n$. We note that if $f(x)\geq\epsilon$ then monotonicity guarantees $f_n(x)\geq \epsilon$ for all $n$. On the other hand, if $f(x)<\epsilon$ then pointwise convergence guarantees $f_n(x)<\epsilon$ for some $n$. However, since $A_n$ are nested compact sets their intersection cannot be empty, which implies $A$ is nonempty and therefore $\epsilon$ is $0$.  
+
+\newpage
+
+\subsection*{Problem 1} A rabbit is running around in a square field 10 miles wide with a maximum speed of 1 mile per hour. A blind Tasmanian devil is trying to catch the rabbit. Find a path for Taz that ensures that he will catch the rabbit in less than one hour.
+
+\medskip \noindent Note that the Tasmanian devil does not know the initial position, nor the direction of movement of the rabbit. The rabbit trajectory can be any curve with speed less than 1 mi/h. The Tasmanian devil trajectory has no restriction on its speed, it is supposed to be merely a continuous path.
+
+\medskip \noindent \textbf{Solution}: 
+
+\newpage
+
+\subsection*{Problem 2} Let $f: \mathbb{R} \to \mathbb{R}$ be a $C^3$ function. Let us define the sequence
+\[x_0 = 1,\hspace{0.5cm}x_{n+1}=f(x_n).\]
+Assume that $\lim_{n\to\infty}nx_n^2=1$. From this, we observe that $x_n\to 0$ and thus $f(0)=0$. Using the information above, compute $f'(0), f''(0)$, and $f'''(0)$. 
+
+\end{document}
+

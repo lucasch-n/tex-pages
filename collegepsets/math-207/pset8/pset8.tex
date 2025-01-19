@@ -1,0 +1,356 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb, amsthm, wasysym}
+\usepackage{graphicx}
+
+\newtheorem{q}{Exercise}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\dv}{div}
+\newcommand{\note}{\noindent \textbf{Note. }}
+\newcommand{\hint}{\noindent \textbf{Hint. }}
+
+\title{Problem Set 8}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\subsection*{Exercise 1} Let $R_t=(t,t+2\pi)\times(-\frac{1}{2},\frac{1}{2})\subset\mathbb{R}^2$. For each $t$, parametrize the M\"obius band by $\alpha_t:R_t\rightarrow\mathbb{R}^3$ as
+\begin{equation*}
+\alpha_t(\theta,r)=\begin{pmatrix}(1+r\sin(\theta/2))\cos\theta \\ (1+r\sin(\theta/2))\sin\theta \\ r\cos(\theta/2)\end{pmatrix}.
+\end{equation*}
+
+\noindent Show that the surface integral
+\begin{equation*}
+\iint_{R_t}F\cdot\bigg(\frac{\partial\alpha_t}{\partial\theta}\times\frac{\partial\alpha_t}{\partial r}\bigg)\:d\theta dr
+\end{equation*}
+
+\noindent for the constant vector field $F=\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}$ will depend on $t$. Evaluate the surface integral for $t\in\{0,\frac{\pi}{2},\pi,\frac{3\pi}{2},2\pi\}$. Why are the values for $t=0$ and $t=2\pi$ related?
+
+\medskip \noindent We solve for the integrand first. We have that 
+\[\frac{\partial\alpha_t}{\partial\theta}\times\frac{\partial\alpha_t}{\partial r}
+=\begin{pmatrix}
+    \frac{r}{2}\cos^2\frac{\theta}{2}\sin\theta+\cos\theta\cos\frac{\theta}{2}\left(1+r\sin\frac{\theta}{2}\right)+\frac{r}{2}\sin^2\frac{\theta}{2}\sin\theta\\
+    -\frac{r}{2}\sin^2\frac{\theta}{2}\cos\theta-\frac{r}{2}\cos^2\frac{\theta}{2}\cos\theta+\sin\theta\cos\frac{\theta}{2}(1+r\sin\frac{\theta}{2})\\
+    -\sin\frac{\theta}{2}\sin^2\theta(1+r\sin\frac{\theta}{2})-\sin\frac{\theta}{2}\cos^2\theta(1+r\sin\frac{\theta}{2})
+\end{pmatrix}\]
+and \[F\cdot \frac{\partial\alpha_t}{\partial\theta}\times\frac{\partial\alpha_t}{\partial r} =
+\frac{r}{2}\sin\theta-\frac{r}{2}\cos\theta+(\sin\theta+\cos\theta)\left(1+r\sin\frac{\theta}{2}\right)\cos\frac{\theta}{2}-\sin\frac{\theta}{2}\left(1+r\sin\frac{\theta}{2}\right).\]
+We note that as a linear combination of compositions of continuous functions, this integrand is continuous and we can apply Fubini's Theorem to integrate
+with respect to $r$ first. Pulling out all the $r$-terms yields 
+\[(\sin\theta+\cos\theta)\left(\cos\frac{\theta}{2}\right)-\sin\frac{\theta}{2}+r(g(\theta))\] where $g$ is independent of $r$. Then
+\[\iint_{R_t}F\cdot\bigg(\frac{\partial\alpha_t}{\partial\theta}\times\frac{\partial\alpha_t}{\partial r}\bigg)\:d\theta dr
+= \int_{t}^{t+2\pi}\int_{-\frac{1}{2}}^{\frac{1}{2}}\left((\sin\theta+\cos\theta)\left(\cos\frac{\theta}{2}\right)-\sin\frac{\theta}{2}+r(g(\theta))\right)\:d\theta dr\]
+\[=\int_{t}^{t+2\pi}(\sin\theta+\cos\theta)\left(\cos\frac{\theta}{2}\right)-\sin\frac{\theta}{2}\: d\theta\]
+\[=\int_{t}^{t+2\pi}\cos\frac{\theta}{2}-\sin\frac{\theta}{2}+2\sin\frac{\theta}{2}\cos^2\frac{\theta}{2}-2\sin^2\frac{\theta}{2}\cos\frac{\theta}{2}\:d\theta.\]
+by trig identities. Take $\gamma=\frac{\theta}{2}$. Then the expression evaluates to 
+\[\left(2\sin\gamma+2\cos\gamma-\frac{4}{3}(\sin^3\gamma+\cos^3\gamma)\right)\Big|^{t/2+\pi}_{t/2}\]
+\[=\frac{8}{3}\left(\sin^3\frac{t}{2}+\cos^3\frac{t}{2}\right)-4\left(\sin\frac{t}{2}+\cos\frac{t}{2}\right).\]
+We evaluate this expression at each of the values of $t$: 
+\begin{itemize}
+    \item $t=0$: $\frac{8}{3}-4=-\frac{4}{3}$
+    \item $t=\frac{\pi}{2}$: $\frac{8}{3}(\sqrt{2}/2)-4\sqrt{2}=-\frac{8\sqrt{2}}{3}$
+    \item $t=\pi$: $\frac{8}{3}-4=-\frac{4}{3}$
+    \item $t=\frac{3\pi}{2}$: $\frac{8}{3}(0)-4(0)=0$
+    \item $t=2\pi$: $-\frac{8}{3}+4=\frac{4}{3}$
+\end{itemize}
+
+\medskip \noindent The values for $t=0$ and $t=2\pi$ are related because at $t=2\pi$ the orientation of the parametrization
+is flipped (the parametrization has period $4\pi$ rather than $2\pi$). If we continued to evaluate
+the integral at further values of $t$ we would achieve the negatives of each of the next three $t$-values. 
+
+\bigskip
+
+\subsection*{Exercise 2} Let $\alpha:\mathbb{R}^2\rightarrow\mathbb{R}^3$ given by
+\begin{equation*}
+\alpha(u,v)=\bigg(\frac{2u}{1+u^2+v^2},\:\frac{2v}{1+u^2+v^2},\:\frac{-1+u^2+v^2}{1+u^2+v^2}\bigg)
+\end{equation*}
+
+\noindent be a parametrization for a surface $\Sigma\subset\mathbb{R}^3$
+
+(a) Show that $\Sigma\subset S^2$.
+
+\medskip \noindent We check that $|\alpha(u,v)|=1$ for all $u,v$:
+\[\sqrt{\alpha\cdot\alpha}=\frac{4u^2+4v^2+(u^2+v^2)^2+1-2(u^2+v^2)}{(1+u^2+v^2)^2}=\frac{(1+u^2+v^2)^2}{(1+u^2+v^2)^2}=1.\]
+Thus $\alpha(u,v)\in S^2$ $\forall u,v$.
+
+
+\bigskip
+
+(b) Show that $\alpha$ is a bijection from $\mathbb{R}^2$ to $S^2\setminus(0,0,1)$. The parametrization $\alpha$ is known as stereographic projection, and can be viewed geometrically as follows: take a line $L$ in $\mathbb{R}^3$ that connects the north pole $(0,0,1)$ and a point $(u,v,0)$. Then $\alpha(u,v)$ is the point of intersection of $L$ and $S^2\setminus(0,0,1)$.
+
+\medskip \noindent Assume $\alpha(u_1, v_1)=\alpha(u_2, v_2).$ Take $\alpha(u_1,v_1)=(\alpha_{11},\alpha_{12},\alpha_{13})$
+and $\alpha(u_2, v_2)=(\alpha_{21},\alpha_{22},\alpha_{23}).$ We have $\alpha_{11}/\alpha_{12}=\alpha_{21}/\alpha_{22}\implies u_1/v_1=u_2/v_2=k$.
+Then we have \[\alpha_{13}=1-\frac{2}{1+v_1^2(1+k^2)}=\alpha_{23}=1-\frac{2}{1+v_2^2(1+k^2)}\implies v_1=v_2\implies u_1=u_2.\]
+Thus injectivity is proven. We proceed with a proof of surjectivity: for a given $(x,y,z)\in S^2\setminus(0,0,1)$ take 
+$u=\frac{x}{1-z}$, $v=\frac{y}{1-z}$.
+
+\medskip \noindent We have:
+\[\frac{2u}{1+u^2+v^2}=\frac{\frac{2x}{1-z}}{\frac{(1-z)^2+x^2+y^2}{(1-z)^2}}=\frac{2x(1-z)}{1-2z+x^2+y^2+z^2}=x\]
+\[\frac{2v}{1+u^2+v^2}=\frac{\frac{2y}{1-z}}{\frac{(1-z)^2+x^2+y^2}{(1-z)^2}}=\frac{2y(1-z)}{1-2z+x^2+y^2+z^2}=y\]
+\[1-\frac{2}{1+u^2+v^2}=1-\frac{2}{\frac{(1-z)^2+x^2+y^2}{(1-z)^2}}=1-\frac{2}{\frac{2-2z}{(1-z)^2}}=z.\]
+
+\bigskip
+
+(c) Using the parametrization $\alpha$, compute the surface area of $S^2$.
+
+\medskip \noindent We evaluate the integral \[\iint_{S^2} 1 \: dA=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\left|\frac{\partial\alpha}{\partial u}\times\frac{\partial\alpha}{\partial v}\right|\:du\,dv\]
+We solve for $\left|\frac{\partial\alpha}{\partial u}\times\frac{\partial\alpha}{\partial v}\right|$:
+\[\frac{\partial\alpha}{\partial u}=\begin{pmatrix}
+    \frac{2(1-u^2+v^2)}{(1+u^2+v^2)^2}\\
+    \frac{-4uv}{(1+u^2+v^2)^2}\\
+    \frac{-4u}{(1+u^2+v^2)^2}
+\end{pmatrix}\]
+\[\frac{\partial\alpha}{\partial v}=\begin{pmatrix}
+    \frac{-4uv}{(1+u^2+v^2)^2}\\
+    \frac{2(1+u^2-v^2)}{(1+u^2+v^2)^2}\\
+    \frac{-4v}{(1+u^2+v^2)^2}
+\end{pmatrix}\]
+We note that these vectors are perpendicular (their dot product is 0) so to find the length of their cross product
+we need only find the product of their norms:
+\[\left|\frac{\partial\alpha}{\partial u}\right|=\left(\frac{1}{(1+u^2+v^2)^4}((2((1+v^2)-u^2))^2+16u^2v^2+16u^2)\right)^{1/2}\]
+\[=\frac{2}{1+u^2+v^2}\]
+\[\left|\frac{\partial\alpha}{\partial v}\right|=\left(\frac{1}{(1+u^2+v^2)^4}((2((1+u^2)-v^2))^2+16u^2v^2+16v^2)\right)^{1/2}\]
+\[=\frac{2}{1+u^2+v^2}\]
+\[\implies\left|\frac{\partial\alpha}{\partial u}\times\frac{\partial\alpha}{\partial v}\right|=\frac{4}{(1+u^2+v^2)^2}\]
+We solve this integral using a change of variables to polar coordinates:
+\[\iint_{\mathbb{R}^2}\frac{4}{(1+u^2+v^2)^2}\:dA=\int_0^{\infty}\int_0^{2\pi}\frac{4r}{(1+r^2)^2}\:d\theta\,dr=\int_0^{\infty}\frac{8\pi r}{(1+r^2)^2}\:dr\]
+\[=\frac{-4\pi}{1+r^2}\Big|_0^{\infty}=4\pi.\]
+
+(d) Compute the surface area of $S^2$ again, now using the parametrization $\beta:[0,2\pi)\times[0,\pi]\rightarrow\mathbb{R}^2$ given by
+\begin{equation*}
+\beta(\theta,\phi)=\big(\cos\theta\sin\phi,\:\sin\theta\sin\phi,\:\cos\phi\big).
+\end{equation*}
+
+\medskip \noindent We again calculate the partials.
+\[\frac{\partial\beta}{\partial\theta}=\begin{pmatrix}
+    -\sin\theta\sin\phi\\
+    \cos\theta\sin\phi\\
+    0
+\end{pmatrix}, \frac{\partial\beta}{\partial\phi}=\begin{pmatrix}
+    \cos\theta\cos\phi\\
+    \sin\theta\cos\phi\\
+    -\sin\phi
+\end{pmatrix}\]
+Since these vectors are once again orthogonal we multiply their norms to integrate the surface area:
+\[\left|\frac{\partial\beta}{\partial\theta}\times \frac{\partial\beta}{\partial\phi}\right|=\sqrt{(\sin^2\theta+\cos^2\theta)
+\sin^2\phi\cdot((\cos^2\theta+\sin^2\theta)\cos^2\phi+\sin^2\phi)}\]
+\[\int_0^{2\pi}\int_0^{\pi}\sin\phi\:d\phi\,d\theta=4\pi.\]
+
+\bigskip
+
+\subsection*{Exercise 3} (a) Compute the surface integral \[\iint_{S_r}F\cdot n\:dA,\] where $F$ is the vector field
+\begin{equation*}
+F(x,y,z)=\frac{\vec{r}}{|r|^3}=\bigg(\frac{x}{(x^2+y^2+z^2)^\frac{3}{2}},\frac{y}{(x^2+y^2+z^2)^\frac{3}{2}},\frac{z}{(x^2+y^2+z^2)^\frac{3}{2}}\bigg).
+\end{equation*}
+Here $S_r$ is the sphere of radius $r$ centered at the origin.
+
+\medskip \noindent We take the parametrization $\beta(\theta, \psi)=r(\cos\theta\sin\phi,\sin\theta\sin\phi,\cos\phi)$. Then we have
+\[\iint_{S^r}F\cdot n\:dA=\iint_{R}F(\beta(\theta,\phi))\cdot\left(\frac{\partial\beta}{\partial\theta}\times\frac{\partial\beta}{\partial\phi}\right)\:d\theta\,d\phi\]
+We take the induced orientation of this parametrization (inward). 
+\[\frac{\partial\beta}{\partial\theta}\times\frac{\partial\beta}{\partial\phi}=\begin{pmatrix}
+    -r^2\cos\theta\sin^2\phi\\
+    -r^2\sin\theta\sin^2\phi\\
+    -r^2\sin\phi\cos\phi
+\end{pmatrix}=-r(\sin\phi)\beta\]
+\[\implies \iint_{R}F(\beta(\theta,\phi))\cdot\left(\frac{\partial\beta}{\partial\theta}\times\frac{\partial\beta}{\partial\phi}\right)\:d\theta\,d\phi
+=\iint_R \frac{\beta}{r^3}\cdot-r(\sin\phi)\beta\:d\theta\,d\phi
+\]\[=\int_0^{\pi}\int_0^{2\pi} -\sin\phi \:d\theta\,d\phi=-4\pi\]
+
+\bigskip
+
+(b) Compute $\mathrm{div} F$ on $\mathbb{R}^3\setminus\{0\}$.
+
+\medskip \noindent \[\nabla\cdot F=\frac{-2x^2+y^2+z^2}{(x^2+y^2+z^2)^{\frac{5}{2}}}+
+    \frac{x^2-2y^2+z^2}{(x^2+y^2+z^2)^{\frac{5}{2}}}+
+    \frac{x^2+y^2-2z^2}{(x^2+y^2+z^2)^{\frac{5}{2}}}
+=0\]
+
+(c) Let $\Omega$ be some arbitrary bounded open set in $\R^3$ that contains the origin and has a smooth boundary. Compute
+\begin{equation*}
+\int_{\partial \Omega}F\cdot n \, \dd A.
+\end{equation*}
+
+\note This motivates us saying that $\mathrm{div}F=4\pi\delta$ (where $\delta$ is the ``Dirac delta").
+
+\medskip \noindent Since $\Omega$ is open and contains $(0,0,0)$, we separate $\Omega$ into $B_r(0)$
+and $\Omega\setminus B_r(0)$. By the divergence theorem we know that $\int_{B_r(0)}\mathrm{div} F\:dx=-4\pi$ and
+$\mathrm{div} F=0$ on $\mathbb{R}^3\setminus \{0\}$, implying
+\[\int_{\partial \Omega}F\cdot n \, \dd A=\int_{\Omega}\mathrm{div} F\:dx=\int_{B_r(0)}\mathrm{div} F\:dx=-4\pi.\]
+
+\bigskip
+
+\subsection*{Exercise 4} For a $C^2$ function $f:U\subset\mathbb{R}^2\rightarrow\mathbb{R}$, we define the Laplacian as
+\begin{equation*}
+\Delta f=\mathrm{div}(\nabla f).
+\end{equation*}
+
+\noindent Let $\Omega$ be any open set inside $U$ with a piecewise smooth boundary. We write $\partial\Omega$ to denote the boundary of $\Omega$ and $n$ is the unit normal vector pointing outwards. We write $\dd A$ to denote the differential of area on $\partial \Omega$ and $\partial_n u$ is the directional derivative in the direction $n$. Prove the following two identities.
+\begin{align*}
+\int_\Omega |\nabla u|^2 + u \Delta u \, \dd x &= \int_{\partial \Omega} u \partial_n u \, \dd A, \\
+\int_\Omega u \Delta v - v \Delta u \, \dd x &= \int_{\partial \Omega} u \partial_n v - v \partial_n u \, \dd A.
+\end{align*}
+
+\medskip \noindent We have $u\partial_n u = u\nabla u\cdot n$. Set up Green's Theorem:
+\[\int_{\partial\Omega}u\partial_n u\:ds=\int_{\partial\Omega}u\nabla u^{\perp}\cdot\tau\:ds\]
+where $\nabla u^{\perp}=(-u_y, u_x)$. We apply Green's Theorem:
+\[\int_{\Omega} u\frac{\partial^2u}{\partial x^2}+\left(\frac{\partial u}{\partial x}\right)^2+u\frac{\partial^2u}{\partial y^2}+\left(\frac{\partial u}{\partial y}\right)^2\:dA\]
+\[= \int_\Omega |\nabla u|^2 + u \Delta u \, \dd A\]
+
+\medskip \noindent Again we manipulate the second integrand: $u\partial_nv-v\partial_nu=u\nabla v\cdot n-v\nabla u\cdot n = (u\nabla v - v\nabla u)\cdot n$
+$=(u\nabla v^{\perp}-v\nabla u^{\perp})\cdot\tau$. Then $u\nabla v^{\perp}-v\nabla u^{\perp} = (-uv_y+vu_y, uv_x-vu_x)$ implies
+\[\int_{\partial \Omega} u \partial_n v - v \partial_n u \, \dd s = 
+\int_{\Omega}u\frac{\partial^2v}{\partial x^2}-v\frac{\partial^2u}{\partial x^2}+u\frac{\partial^2v}{\partial y^2}-v\frac{\partial^2u}{\partial y^2}\]
+\[=\int_{\Omega}u\Delta v-v\Delta u\: \dd A.\]
+
+\bigskip
+
+\subsection*{Exercise 5} Let $f:U\subset\mathbb{R}^2\rightarrow\mathbb{R}^2$ be a continuously differentiable function. Write $f$ as
+\begin{equation*}
+f(x,y)=u(x,y)e_1+v(x,y)e_2=\begin{pmatrix}u(x,y) \\ v(x,y)\end{pmatrix}.
+\end{equation*}
+
+\noindent Assume that for all $p\in U$ the derivative of $f$ at $p$ (which we write $Df_p$) is a scalar matrix (a multiple of the identity). In other words, we have
+\begin{equation*}
+Df_p= \lambda(p) \mathrm{I}
+\end{equation*}
+
+\noindent where $\lambda:U\rightarrow\mathbb{R}$ is some continuous strictly-positive function on $U$. Let $\gamma$ be a simple closed curve in $U$ which bounds a region entirely contained in $U$. Prove that
+\begin{equation*}
+\int_\gamma u\:dx+u\:dy=\int_\gamma-v\:dx+v\:dy.
+\end{equation*}
+
+\medskip \noindent Trivial by Green's Theorem. Take $\Omega$ as the region bounded by $\gamma$. Then
+\[\int_{\gamma} u\: dx+u\:dy=\int_{\Omega}\frac{\partial u}{\partial x}-\frac{\partial u}{\partial y}\:dx\,dy
+=\int_{\Omega}\frac{\partial v}{\partial y}\:dx\,dy\]
+\[=\int_{\Omega}\frac{\partial v}{\partial x}+\frac{\partial v}{\partial y}\:dy\,dx=\int_{\gamma}-v\:dx+v\:dy.\]
+
+\bigskip
+
+\subsection*{Exercise 6} Find an open set $\Omega \subset \R^2$ and a smooth vector field $F :\Omega \to \R^2$ such that the set
+\[ \left\{ \int_{C} F \cdot \tau \, \dd s : C \text{ is a closed loop contained in } \Omega \right\}\]
+is dense in $\R$.
+
+\medskip \noindent We take open set $\mathbb{R}^2$ and the smooth vector field $F(x,y)=(0,x)$. Then take
+$C$ as the rectangle with corners at $(1, 0), (1, r), (-1, r),$ and $(-1, 0)$ for each $r\in\mathbb{R}$. 
+
+\bigskip
+
+\subsection*{Exercise 7} This exercise is asking you to verify the uniqueness of solutions of an ODE without assuming that $F$ is Lipchitz, but assuming something else in exchange. 
+
+\medskip \noindent Let $F : \R^2 \to \R^2$ be a vector field so that for every closed curve $C$ in $\R^2$, we have
+\[ \int_C F^\perp \cdot \tau \, \dd s = 0.\]
+Assume further that $F(x,y) \neq 0$ for all $(x,y) \in \R^2$.
+
+\medskip \noindent Here $v^\perp$ denotes the ninety degree rotation of the vector $v$. Thus, $(x,y)^\perp := (-y,x)$.
+
+(1) If $F$ is $C^1$, prove that $\mathrm{div } F = 0$.
+
+\medskip \noindent Assume $\dv F\neq 0$ meaning $\dv F$ is continuous and nonzero at some point $p$. Since 
+$\dv F$ is continuous there exists an $r$-neighborhood around p such that $a>0$ for $a\in\dv F(B_r(p))$. Take
+the boundary of this neighborhood, which is a smooth simple closed curve: then by the divergence theorem for
+$\Omega=F(B_r(p))$
+\[\int_{\partial\Omega}F\cdot n\:\dd s =\int_{\Omega}\dv F\:\dd A > 0\] yields a contradiction.
+Thus $\dv F = 0$ on $\mathbb{R}^2$. 
+
+\bigskip
+
+(2) Without assuming that $F$ is $C^1$ (or even Lipchitz), prove that the ODE
+\[ x'(t) = F(x(t))\]
+has at most one solution on any time interval $t \in (-\delta,\delta)$.
+
+\note I know two different proofs of this fact. When I was reviewing them, I realized that in both there is an elegant idea to prove that if we have two solutions $x(t)$ and $y(t)$, they must parametrize the same curve on $\R^2$. However, we are then left with the nontrivial task of analyzing if they could potentially be two different parametrizations of the same curve.
+
+\medskip \noindent Let us keep it simple and focus on the first part only. That is, let us prove that any two solutions of the ODE give us the same curve on $\R^2$. That would get you full score.
+
+\hint Assuming that there are two solutions of the ODE that trace different curves on $\R^2$, these curves must split somewhere. If we look at their last point in common, we would have two solutions of the ODE going to different paths from there. It is easy to see that the two curves must be tangent at any contact point. Can you find something that goes wrong in the last intersection point, leading to a contradiction?
+
+\medskip \noindent Alternatively, you may construct a clever curve on $\R^2$ using some theorem that we learned earlier in this class and then verify that any solution to the ODE must stay within this curve.
+
+
+\medskip \noindent Take $G=F^{\perp}$ and assume a solution $x(t)$ exists. Then we take $g(x)=\int_C G \dd s$ with $C$ any curve from $0$ to $x$:
+any two curves from $0$ to $x$ must have equal integral since the union of the two curves is closed. Then
+\[\int_{t_1}^{t_2}x'^{\perp}(t)\cdot x'(t)\dd t=\int_{t_1}^{t_2}G(x(t))\cdot x'(t)\dd t=g(x(t_1))-g(x(t_2)).\]
+We have $x'^{\perp}(t)\cdot x'(t)=0$. This implies $g(x(t_1))=g(x(t_2))$ for any $t_1, t_2$. Thus
+\[x(\mathbb{R})=g^{-1}(g(x(t_1)))\].
+
+\medskip \noindent We know that $G$ is continuous if its components are continuous, and since $F$ is continuous therefore
+$G = \nabla g$ is continuous. Thus $g$ is $C^1$. We have $F, G\neq 0$, implying either $\frac{\partial g}{\partial x_1}$ or
+$\frac{\partial g}{\partial x_2}$ is nonzero at every point in $\mathbb{R}^2$ Then assume two solutions $x_1$ and $x_2$ diverge
+at a point $x$. Either $G_1$ or $G_2$ is nonzero (assume WLOG $G_2$) and we can take a neighborhood about $x$ where $x_2(t) = h(x_1(t))$. 
+This defines $(Dh)_x$ solely off of $g$ and therefore $x_1$ and $x_2$ cannot ever diverge.
+
+\bigskip
+
+\subsection*{Exercise 8} Find a differential form $\omega$ (of any degree and dimension) so that $\omega \wedge \omega \neq 0$.
+
+\medskip \noindent Take $\omega = \dd x \wedge \dd y + \dd z \wedge \dd w$. Then 
+\[\omega\wedge\omega=-\dd x\wedge\dd x\wedge\dd y\wedge\dd y + \dd x\wedge\dd y\wedge\dd z\wedge\dd w\]
+\[+\dd z\wedge\dd w\wedge\dd x\wedge\dd y -\dd z\wedge\dd z\wedge\dd w\wedge\dd w=2\dd x\wedge\dd y\wedge\dd z\wedge\dd w.
+\]
+
+\bigskip
+
+\subsection*{Exercise 9} In any dimension, a $1$-form is associated to a vector field $F$. In particular, in 3D it takes the form
+\[ \omega_F = F_1 \dd x + F_2 \dd y + F_3 \dd z.\]
+In 3D, $2$-forms are also associated to a vector field $F$ by the following identification
+\[ \omega^\ast_F = F_1 \dd y \dd z + F_2 \dd z \dd x + F_3 \dd x \dd y.\]
+We say that $G = \curl F$ if $\mathrm d \omega_F = \omega^\ast_G$.
+
+(a) Compute an explicit formula for $\curl F$ in terms of the components of $F$ and their partial derivatives.
+
+\medskip \noindent We take the exterior derivative of $\omega_F$. 
+\[\dd\omega_F=\dd F_1\wedge\dd x+\dd F_2\wedge\dd y+\dd F_3\wedge\dd z\]
+\[=\left(\frac{\partial F_1}{\partial x}\dd x+\frac{\partial F_1}{\partial y}\dd y+\frac{\partial F_1}{\partial z}\dd z\right)\wedge\dd x\]
+\[+\left(\frac{\partial F_2}{\partial x}\dd x+\frac{\partial F_2}{\partial y}\dd y+\frac{\partial F_2}{\partial z}\dd z\right)\wedge\dd y\]
+\[+\left(\frac{\partial F_3}{\partial x}\dd x+\frac{\partial F_3}{\partial y}\dd y+\frac{\partial F_3}{\partial z}\dd z\right)\wedge\dd z\]
+\[=\left(\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right)\dd x\wedge\dd y+\left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}\right)\dd y\wedge\dd z+\left(\frac{\partial F_3}{\partial x}-\frac{\partial F_1}{\partial z}\right)\dd x\wedge\dd z\]
+
+
+\bigskip
+
+(b) For any $C^1$ scalar function $p : \R^3 \to \R$, prove that $dp = \omega_{\nabla p}$.
+
+\medskip \noindent $\omega_{\nabla p}$ is as follows by definition: 
+\[\left(\frac{\partial p}{\partial x}\dd x+\frac{\partial p}{\partial y}\dd y+\frac{\partial p}{\partial z}\dd z\right)\] which is $\dd p$ by definition.
+
+(c) For any $C^1$ vector field $F : \R^3 \to \R^3$, prove that $d\omega^\ast_F = (\dv F) \dd V$. (here $\dd V$ is the usual differential of volume = $\dd x \dd y \dd z$)
+
+\medskip \noindent We evaluate $\dd \omega^*_F$:
+\[\dd F_1\wedge\dd y\wedge\dd z-\dd F_2\wedge\dd x\wedge\dd z+\dd F_3\wedge\dd x\wedge\dd y\]
+\[=\left(\frac{\partial F_1}{\partial x}\dd x+\frac{\partial F_1}{\partial y}\dd y+\frac{\partial F_1}{\partial z}\dd z\right)\wedge\dd y\wedge\dd z\]
+\[-\left(\frac{\partial F_2}{\partial x}\dd x+\frac{\partial F_2}{\partial y}\dd y+\frac{\partial F_2}{\partial z}\dd z\right)\wedge\dd x\wedge\dd z\]
+\[+\left(\frac{\partial F_3}{\partial x}\dd x+\frac{\partial F_3}{\partial y}\dd y+\frac{\partial F_3}{\partial z}\dd z\right)\wedge\dd x\wedge\dd y\]
+\[=\left(\frac{\partial F_1}{\partial x}+\frac{\partial F_2}{\partial y}+\frac{\partial F_3}{\partial z}\right)\dd x\wedge\dd y\wedge\dd z=(\dv F)\dd x\wedge\dd y\wedge\dd z.\]
+
+
+(d) For any $C^2$ scalar function $p : \R^3 \to \R$, prove that $\curl \nabla f = 0$.
+
+\medskip \noindent By (b) $\omega_{\nabla p}=\dd p$ and we take $G=\curl\nabla p$. 
+Then $\omega^*_G=\dd\omega_{\nabla p}=\dd\dd p = 0$. Thus $G_1, G_2, G_3=0\implies G=0$. 
+
+\bigskip
+
+(e) For any $C^2$ vector field $F : \R^3 \to \R^3$, prove that $\dv (\curl F) = 0$.
+
+\medskip \noindent Take $G = \curl F$. Then $\omega^*_G = \dd\omega_F$ and by (c)
+we have $\dd\omega_G^*=(\dv G)\dd x\wedge\dd y\wedge\dd z$. Then 
+$(\dv\curl F)\dd x\wedge\dd y\wedge\dd z = \dd\dd\omega_F=0$ and $\dv\curl F=0$.
+
+\bigskip
+
+\subsection*{Exercise 10} Find (hopefully not too many) typos in the problems above {\em \smiley}.
+
+\medskip \noindent The differentials in the statement of Green's theorem should be partials. 
+
+\medskip \noindent In Exercise 4, the forms are flipped in the integrals — the 1-form is integrated over a
+2-region and the 2-form over a curve.
+
+\medskip \noindent Exercise 7 does not specify continuity (which is required) and also does not specify that the problem
+is an initial value problem since if the two solutions do not have the same initial value it is trivial
+to take a uniform vector field and then two parallel line solutions. 
+
+\end{document}

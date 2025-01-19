@@ -1,0 +1,41 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Notes 10/2}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\section{Continuity}
+
+\textbf{Definition:} We say a function $f$ is continuous at $x\in[a, b]$ if $\forall$ $\epsilon>0$ $\exists$ $\delta>0$ s.t. if
+$y\in[a,b]$ with $|x-y|<\delta$ $\Rightarrow$ $|f(x)-f(y)|<\epsilon$.
+
+
+\subsection*{Theorem} For $f: [a,b]\rightarrow \mathbb{R}$ continous, $f$ is bounded and it achieves its maximum value
+
+\subsection*{Proof} Bounded: $S = \{x\in [a,b]: f$ is bounded in $[a, x]\}$. Let $x_0\in\sup S$. For $\epsilon=1$, $\exists \delta$ s.t. 
+$|f(y)-f(x_0)|<1$ if $|x_0-y|<\delta$. 
+
+\noindent Achieves its maximum: Redefine $S= \{x\in[a,b]: \sup\{f(y): a\leq y\leq x\}< \sup\{f(y): a\leq y\leq b\}\}$.
+Let $x_0\in\sup S$. Claim $f(x_0)=\sup f$. If $f(x_0)<\sup f$, $\exists$ $\delta >0$ s.t. $f(x)<\sup f$, $x\in[x_0-\delta, x_0+\delta]$.
+However, then $x_0+\delta/2>x_0$ and is in the set $S$: contradiction. $f(x_0)\ngtr\sup f$ for obvious reasons.
+
+\subsection*{Theorem} If $f(a)<y<f(b)$, $\exists$ $x_0\in (a,b)$ s.t. $f(x_0)=y$. 
+
+\subsection*{Proof} Define set $S = \{x\in[a,b]:\text{ l.u.b. }f([a, x])\leq y\}$. Take $c=$ l.u.b $S$.
+
+\subsection*{Cauchy-Schwarz Inequality} $\langle x, y\rangle<|x||y|$ $\forall$ $x, y\in\mathbb{R}^n$.
+
+\subsection*{Proof:} Consider $\langle w, w\rangle$ for $w = x+ty$ for some vectors $x,y$ and $t\in\mathbb{R}$. $\langle w, w\rangle=
+\langle x,x\rangle + 2t\langle x, y\rangle + t^2\langle y, y\rangle$. Since $\langle w, w\rangle$ is positive we have $4\langle x,y\rangle
+<4\langle x,x\rangle \langle y, y\rangle$ by the property of the discriminant.
+
+
+\end{document}
+
+

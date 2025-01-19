@@ -1,0 +1,373 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+
+\title{Problem Set 4}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\textbf{Problems}: 3.11, 3.17, 3.19, 3.36, 3.37, 3.45, 3.46, 3.57, 3.60, 3.67
+
+\subsection*{Problem 11} Let $f:(a, b)\rightarrow R$ be given.
+
+\medskip \noindent 
+
+(a) If $f''(x)$ exists, prove that
+\[\lim_{h\rightarrow 0}\frac{f(x-h)-2f(x)+f(x+h)}{h^2} =f''(x)\]
+
+\medskip \noindent Take the first-order Taylor polynomial of $f(x+h)$: 
+\[f(x+h)=f(x)+f'(x)h+\frac{f''(c)}{2}h^2\]
+and of $f(x-h)$:
+\[f(x-h)=f(x)-f'(x)h+\frac{f''(c)}{2}h^2\]
+
+Since $c\in [x, x+h]$ we have if $h\rightarrow 0$ then $c\rightarrow x$. This yields 
+$f''(x)= \lim_{h\rightarrow 0}\frac{f(x-h)-2f(x)+f(x+h)}{h^2} =f''(x)$ as desired.
+\bigskip
+
+(b) Find an example that this limit can exist even when $f''(x)$ fails to exist.
+
+\medskip \noindent Example: $f(x) = x^{4/3}$. On $\mathbb{R}$ the second derivative of this function
+is undefined at $x=0$, but the limit for $x=0$ is $0$ at this point since the function is odd.
+
+\newpage
+
+\subsection*{Problem 17} Define $e: \mathbb{R}\rightarrow\mathbb{R}$ by
+\[e(x) = \begin{cases}
+		e^{-1/x} & \text{if } x>0\\
+		0 & \text{if } x\leq 0.
+\end{cases}\]
+
+(a) Prove that $e$ is smooth; that is, $e$ has derivatives of all orders at
+all points $x$.[Hint: L'H\^{o}pital and induction. Feel free to use the standard differentiation
+formulas about $e^x$ from calculus.]
+
+\medskip \noindent Claim: Every derivative of $e$ is of the form \[\begin{cases}
+	\frac{p(x)e^{-1/x}}{x^n} & \text{if } x>0\\
+	0 & \text{if } x\leq 0.
+\end{cases}\]
+where $p(x)$ is a polynomial in $\mathbb{R}$ and $n\in\mathbb{N}$.
+
+\medskip \noindent Base case: $f^{(0)}$ obvious.
+
+\medskip \noindent Inductive case: We have 
+\[\Bigg{(}\frac{p(x)e^{-1/x}}{x^n}\Bigg{)}' = \frac{(x^2p'(x)+p(x)-nxp(x))e^{-1/x}}{x^{n+2}}\]
+$x^2p'(x)+p(x)-nxp(x))$ is a polynomial and $n+2\in \mathbb{N}$. We prove that $\lim\limits_{x\rightarrow 0^+} \frac{p(x)e^{-1/x}}{x^n}=0$. 
+We note that $p(x)$ converges, so \[\lim_{x\rightarrow 0^+} \frac{p(x)e^{-1/x}}{x^n}=\lim_{x\rightarrow 0^+}p(x)\lim_{x\rightarrow 0^+}\frac{e^{-1/x}}{x^n}\] if $\lim_{x\rightarrow 0^+}\frac{e^{-1/x}}{x^n}$ exists.
+We take $y= 1/x$. For $\delta>0$, we have $\delta<y$ for some $y$ implies
+$0<x<\frac{1}{\delta}$. Thus if we prove $\lim\limits_{y\rightarrow\infty}\frac{e^{-y}}{y^{-n}}=0$ we have
+$\lim\limits_{x\rightarrow 0^+}\frac{e^{-1/x}}{x^n}=0$, since we can apply any $\epsilon$ needed to prove the second
+limit to the first. We prove this using L'Hopital's rule:
+\[\lim_{y\rightarrow\infty}\frac{e^{-y}}{y^{-n}}=\lim_{y\rightarrow\infty}\frac{y^n}{e^y}=\lim_{y\rightarrow\infty}\frac{(y^n)^{(n)}}{(e^y)^{(n)}}\]
+\[=\lim_{y\rightarrow\infty}\frac{n!}{e^y}.\] Then for any $\epsilon>0$ we have $\delta =\log(\frac{n!}{\epsilon})$. For $y>\delta$ we have $y=\delta+a$ for
+positive $a$ such that $y=\log(\frac{n!e^a}{\epsilon})$: this yields us $\frac{n!}{e^y}=\frac{\epsilon}{e^a}<\epsilon$ since $e^a>1$. Thus \[\lim_{y\rightarrow\infty}\frac{n!}{e^y}=0\]
+\[\implies \lim_{x\rightarrow 0^+}\frac{p(x)e^{-1/x}}{x^n}=0.\]
+
+\medskip \noindent Thus $f^{(k)}$ is continuous since $\lim_{x\rightarrow 0^-}0 =0$ and differentiable since
+$\lim_{x\rightarrow 0^-} (0)'=0$ and $\lim_{x\rightarrow 0^+} f^{(k+1)}=0$ and $p(x), e^{-1/x},$ and $\frac{1}{x^n}$
+are all continuous on $(0, \infty)$, and $0$ on $(-\infty, 0)$. Thus $e$ is smooth.
+
+
+\bigskip
+
+(b) Is $e$ analytic?
+
+\medskip \noindent $e$ cannot be analytic. We prove if a power series $\sum a_nh^n$ converges pointwise to $f(x+h)$ then the power series
+must be identically $0$, a contradiction since $e$ is nonzero at $x>0$. (Shitty proof:) A nonzero power series has at most countably many zeros by the Fundamental Theorem of Algebra. $e$ has uncountably many. Contradiction. 
+
+\medskip \noindent (Better proof that I'm not sure I'm allowed to use): if $\exists$ a power series $p(x)=\sum a_nh^n$ then at $0$
+its $n^{\text{th}}$ derivative must match that of $e$. However at $0$, each derivative must be $0$, and $p^{(k)}(0)= a_k k!\implies a_k=0$
+for each $k$. This is an identically $0$ power series that clearly cannot converge to any point $e(x)$ at $x>0$ since it never
+comes within $e(x)$ of $e(x)$. 
+
+(c) Show that the \textbf{bump function}
+\[\beta(x) = e^2e(1 - x) \cdot e(x + 1)\]
+is smooth, identically zero outside the interval $(-1, 1)$, positive inside the interval $(-1,1)$,
+and takes value $1$ at $x=0$. ($e^2$ is the square of the base of the natural logarithms, while 
+$e(x)$ is the function just defined. Apologies to the abused notation.)
+
+\medskip \noindent We separate out the constant $e^2$. From here we know that since $e(x)$ is smooth and
+$1-x$ and $x+1$ are smooth (with constant derivative), we can use
+the chain rule and product rule repeatedly with a constant derivative for $1-x$ and $x+1$ to get continuous derivatives of order $n$,
+since sums and products of continuous functions are continuous. Thus $\beta(x)$ is smooth.
+
+
+\medskip \noindent $x\geq1$ implies $e(1-x)=0$ and $x\leq -1$ implies $e(x+1)=0$, so the function is identically
+$0$ for $|x|\geq 1$. For $|x|<1$ both $x+1$ and $1-x$ are positive, and $e(1-x), e(1+x)$ are also positive. Thus 
+$\beta(x)$ is positive. For $x=0\in(-1, 1)$ we have $\beta(x)=e^2(e(1))^2=e^2(\frac{1}{e^2})=1$.
+
+\bigskip
+
+(d) For $|x| < 1$ show that
+\[\beta(x)=e^{2x^2/(x^2-1)}\]
+Bump functions have wide use in smooth function theory and differential topology. The graph of
+$\beta$ looks like a bump. See Figure 86.
+
+\medskip \noindent $|x|<1\implies 1>x$ and $x>-1$. Then \[e^2e(1-x)\cdot e(x+1)=e^{(2-\frac{1}{1-x}-\frac{1}{1+x})}\]
+\[=e^{\frac{-2x^2}{1-x^2}}.\] for $x\in (-1,1)$. 
+
+
+\newpage
+
+\subsection*{Problem 19} Recall that the oscillation of an arbitrary function $f : [a, b] 
+\rightarrow R$ at $x$ is 
+\[\text{osc}_x f = \limsup_{t\rightarrow x} f(t)- \liminf_{t\rightarrow x}f(t) \]
+In the proof of the Riemann-Lebesgue Theorem $D_k$ refers to the set of points with oscillation
+$\geq 1/k$.
+
+(a) Prove that $D_k$ is closed.
+
+\medskip \noindent We take an infinite convergent sequence in $D_k$ $(d_n)$ and take $\lim_{n\rightarrow \infty}d_n=d$. Take sequences
+\[L_n=\liminf_{t\rightarrow d_n}f(t), \,U_n = \limsup_{t\rightarrow d_n}f(t),\]
+\[L=\liminf_{t\rightarrow d}f(t), \,U=\limsup_{t\rightarrow d}f(t).\]
+	
+\medskip \noindent Take $\epsilon>0$. $\exists\delta$ such that for $|d-t|<\delta$ we have $L-\inf f(B_{\delta}(d))<\epsilon$. (Note
+that for $A\subset B_{\delta}(d)$, $\inf f(A)\geq \inf f(B_{\delta}(d))$. Additionally note that $L\geq\inf f(B_{\delta}
+(d))$ since if $L$ is less than it by $\epsilon'$ for some $\delta$, then nesting of the balls implies that each $\delta_1<\delta$ is further
+than $\epsilon$ away from $L$.) Take some $d_n\in B_{\delta}(d)$, which 
+we know exists by convergence. Then since $B_{\delta}(d)$ is an open set $\exists$ a neighborhood $B_{\delta_n}(d_n)\subset B_{\delta}(d)$.
+We have \[L-\epsilon< \inf f(B_{\delta}(d))\leq\inf f(B_{\delta_n}(d_n))\leq L_n,\] implying $L\leq L_n$ by $\epsilon$-principle.
+
+\medskip \noindent By similar inequalities (existence of $\delta_2$ such that $\sup f(B_{\delta_2}(d))-U<\epsilon$, existence)
+we achieve the analogous inequality \[U+\epsilon>\sup f(B_{\delta_2}(d))\geq\sup f(B_{\delta_{2n}})\geq U_n\implies U\geq U_n.\]
+
+\medskip \noindent Then by combining the two inequalities we have $\text{osc}_df = U-L\geq U_n-L_n\geq 1/k$. Thus $D_k$ is closed.
+
+\bigskip
+
+(b) Infer that the discontinuity set of f is a countable union of closed sets.
+(This is called an \textbf{$\mathbf{F}_{\boldsymbol{\sigma}}$-set}.)
+
+\medskip \noindent Since $k\in\mathbb{N}$ we have \[\bigcup_{k=1}^{\infty}D_k = D\] is a countable union by definition (If $\text{osc}_xf>0$ then
+$k>\frac{1}{\text{osc}_xf}\implies 1/k<\text{osc}_xf$ and $x\in D_k$: thus every point of discontinuity is in this set).
+
+\bigskip
+
+(c) Infer from (b) that the set of continuity points is a countable intersection
+of open sets. (This is called a \textbf{$\mathbf{G}_{\boldsymbol{\delta}}$-set}).
+
+\medskip \noindent The set of continuity points is the complement of the set of discontinuity points. We have
+\[(\bigcup_{k=1}^{\infty}D_k)^C = \bigcap_{k=1}^{\infty}D_k^C\] and each $D_k^C$ is the complement of a closed 
+set and therefore open. Thus the set of continuity points is a countable intersection of open sets.	
+
+\newpage
+
+\subsection*{Problem 36} Generalizing Exercise 1.31, we say that $f: (a,b)\rightarrow \mathbb{R}$
+has a \textbf{jump discontinuity} (or a discontinuity of the \textbf{first kind}) at $c\in(a,b)$
+if \[f(c^{-}) = \lim_{x\rightarrow c^-}f(x) \text{ and } f(c^+)=\lim_{x\rightarrow c^+}f(x)\] exist, but
+are either unequal or are unequal to $f(c)$. (The three quantities exist and are equal if and only if $f$ is continuous at $c$.) An \textbf{oscillating discontinuity} (or a discontinuity of 
+the \textbf{second kind}) is any nonjump discontinuity. 
+
+(a) Show that $f: \mathbb{R} \rightarrow \mathbb{R}$ has at most countably many jump 
+discontinuities.
+
+\medskip \noindent We start by separating the set $J$ of jump discontinuities into the union 
+\[\bigcup_{k=1}^{\infty}J_k\] of jump discontinuities where $|f(c^+)-f(c^-)|>1/k$. We prove $J_k$
+is a set of isolated points. For some $c\in J_k$ assume there exists an element $c_r$ of $J_k$ in every
+neighborhood $B_r(c)$. Assume WLOG that $f(c_r^+)>f(c_r^-)$. Then for $\epsilon>0$ we have 
+$c_{r1}, c_{r2}$ such that $|f(c_{r1})-f(c_r^+)|<\epsilon/2$ and $|f(c_{r2})-f(c_r^-)|<\epsilon/2$.
+Then $c_{r1}, c_{r2}$ are at least $f(c_r^+)-f(c_r^-)-\epsilon$ away from each other. 
+
+\medskip \noindent Since $f(c_r^+)-f(c_r^-)>1/k$
+$\exists$ an $\epsilon$ where $f(c_r^+)-f(c_r^-)-\epsilon>1/k$ and thus if we select $2\epsilon'<1/k$ there exists no
+neighborhood of $c$ where all elements of the image of the neighborhood are within $2\epsilon$ of each other, 
+and therefore no neighborhood where all elements of its image are within $\epsilon$ of either $f(c^+)$ or $f(c^-)$.
+This violates the limit definition and we conclude that $J_k$ is isolated. 
+
+\medskip \noindent We now prove that isolated points are countable. Start with an arbitrary point in $J_k$ $j$. Then there
+exists a neighborhood $B_{r_j}(j)$around $j$ without any other element of $J_k$ that contains a rational number $q$ greater than $j$. 
+We prove this rational number is unique to $j$. If $q$ is in $B_{r_j}(j)$ and $B_{r_j2}(j_2)$ then WLOG assume $j<j_2$. Then 
+$j_2>j+r_j>q$ is a contradiction. Then since there is a rational number for each element of $J_k$ we conclude $J_k$ is countable,
+and since $J$ is a countable union of countable sets it must also be countable.
+
+\bigskip
+
+(b) What about the function \[f(x) = \begin{cases}
+	\sin\frac{1}{x} & \text{if } x>0\\
+	0 & \text{if } x\leq 0?
+\end{cases}\]
+
+\medskip \noindent This function is continuous everywhere except $0$, where the left and right limits do not
+exist since the $\limsup$ does not equal the $\liminf$. Thus it has no jump discontinuities.
+
+\bigskip
+
+(c) What about the characteristic function of the rationals? 
+
+\medskip\noindent This function has no jump discontinuities since
+it has no limit anywhere: the $\limsup$ is different from the $\liminf$ at every point since the rationals
+and the irrationals are both dense in $\mathbb{R}$. 
+
+\medskip \noindent
+
+\newpage
+
+\subsection*{Problem 37} Suppose that $f: \mathbb{R}\rightarrow[-M, M]$ has no jump discontinuities.
+Does $f$ have the intermediate value property? (Proof or counterexample.)
+
+\medskip \noindent Take \[f(x) =\begin{cases}
+	M/3(\sin(1/x))+2M/3 & \text{if } x<0\\
+	0 & \text{if }x=0 \\
+	M/3(\sin(1/x))-2M/3 & \text{if } x>0.
+\end{cases} \]
+Then $f(x)$ does not cross $M/6$ despite this number being an intermediate value. However,
+the function has no jump discontinuities since $\lim\limits_{x\rightarrow 0^+}f(x)$ and $\lim\limits_{x\rightarrow 0^-}f(x)$
+do not exist.
+
+\newpage
+
+\subsection*{Problem 45}
+
+(a) Define the oscillation for a function from one metric space to
+another, $f: M\rightarrow N$. 
+
+\medskip \noindent \[\text{osc}_xf:=\limsup_{r\rightarrow 0} \,\text{diam }f(B_r(x))\] for $f: M\rightarrow N$.
+
+(b) Is it true that $f$ is continuous at a point if and only if its oscillation is zero there? 
+Prove or disprove.
+
+\medskip \noindent Assume the oscillation is $a>0$. Then for $r_k= 1/k$ we take the points $x_{k1}
+, x_{k2}\in B_{r_k}(x)$ where $d(f(x_{k1}), f(x_{k2}))\geq a$. Consider the convergent sequence 
+$x_{11}, x_{12}, x_{21}, x_{22},\dots$. No matter how high a $k$ we choose, $d(f(x_{k1}),f(x_{k2}))$
+will always be greater than or equal to $a$, so the sequence $(f(x_{k1}), f(x_{k2})$ is not Cauchy 
+and therefore not convergent. By definition this makes $f$ not continuous at $x$. 
+
+\bigskip
+
+(c) Is the set of points at which the oscillation of $f$ is $\geq 1/k$ closed in $M$? Prove or
+disprove.
+
+\medskip \noindent Take a sequence $(x_n)$ in $M$ that converges to $x$. Consider $\text{osc}_xf$.
+For any $r>0$ we have $x_k\in B_r(x)$ and $B_{r_k}(x_k)\subset B_r(x)$. For sets $A, B$ with $A\subset B$
+we have $\text{diam } A\leq \text{diam } B$ since every point in $A$ is in $B$ and therefore the pairwise
+supremum of distances of $B$ is an upper bound for distances of $A$: then $\text{diam }f(B_a(x_r))\leq\text{diam }f(B_b(x_r))$
+for $a\leq b$. We posit that $\text{osc}_{x_n}f\leq\text{diam }f(B_{r_k}(x_k))$ since if otherwise 
+for $a<r_k$, \[\text{osc}_{x_n}f-\text{diam }f(B_a(x_k))\geq \text{osc}_{x_n}f-\text{diam }f(B_{r_k}(x_k))=\epsilon>0.\]
+
+\medskip \noindent Then \[1/k<\text{osc}_{x_n}f\leq\text{diam }f(B_{r_k}(x_k))\leq \text{diam }f(B_r(x))\leq\sup\{\text{diam }f(B_a(x)):a\leq r\}.\]
+From here we note that for any $\epsilon$ we can pick an $r$ where $\sup\{\text{diam }f(B_a(x)):a\leq r\}-\text{osc}_xf<\epsilon$.
+This yields $\text{osc}_xf+\epsilon>1/k$ and by $\epsilon$-principle $x$ is in the set and we are done.
+
+\newpage
+
+\subsection*{Problem 46} 
+
+(a) Prove that the integral of the Zeno's staircase function defined on
+page 174 is $2/3$. 
+
+\medskip \noindent Take partition $P_k = P_{k-1} \cup \{1/2^k\}$ with $P_1 = \{1/2\}$. 
+\[L_{P_k}(f)=(1/2^k)(1-1/2^{k+1})+\sum_{n=1}^k\frac{2^n-1}{2^{2n}}\]
+The first term approaches $0$ as $k\rightarrow \infty$. We separate the second into 
+\[\sum_{n=1}^k\frac{1}{2^n}-\sum_{n=1}^k\frac{1}{2^{2n}}=\frac{\frac{1}{2}(1-(\frac{1}{2})^k)}{\frac{1}{2}}-\frac{\frac{1}{4}(1-(\frac{1}{4})^k)}{\frac{3}{4}}\]
+As $k$ approaches $\infty$ this approaches $1-1/3=2/3$.
+
+On the other side, \[U_{P_k}(f)=(1/2^k)+\sum_{n=1}^k\frac{2^n-1}{2^{2n}}\] which approaches $2/3$ by the same argument.
+As a result, $\sup L_P(f)=\inf U_P(f) = 2/3$ since all upper sums must be greater than all lower sums so $2/3$ is
+an upper bound for lower sums and a lower bound for upper sums.
+
+\bigskip
+
+(b) What about the Devil's staircase?
+
+\medskip \noindent For $x\in [0,1]$ with base-3 expansion $.\omega_1\omega_2\omega_3\dots$ we have that
+the base-3 expansion of $1-x$ is $.(2-\omega_1)(2-\omega_2)(2-\omega_3)\dots$ since $\sum 2/3^k$ converges to $1$.
+We aim to prove that $H(1-x) = 1-H(x)$.
+
+\[H(1-x)=\sum_{i=1}^{\infty}\frac{(2-\omega_i)/2}{2^i}=\sum_{i=1}^{\infty}\frac{1}{2^i}-\sum_{j=1}^{\infty}\frac{\omega_j/2}{2^j}=1-H(x)\]
+
+For any partition $P$ of $G(x)=H(1-x)$ we have $P' = \{a: 1-a\in P\}$ a partition of $H$. For 
+$a, b\in P'$ we have $|a-b| = |(1-a)-(1-b)|$ and so the upper and lower sums are the same for $P$ on $G$. 
+as they are for $P'$ on $H$. Thus $\int_{[0,1]}H(1-x)=\int_{[0,1]}H(x)$. This yields \[\int_{[0,1]}H(x)= 1- \int_{[0,1]}H(x)\implies \int_{[0,1]}H(x)=1/2.\]
+
+\newpage
+
+\subsection*{Problem 57} Construct a function $f: [-1, 1]\rightarrow \mathbb{R}$ such that 
+\[\lim_{r\rightarrow 0} \Big{(}\int_{-1}^{-r}f(x)\,dx+\int_r^1f(x)\,dx\Big{)}\] exists (and
+is a finite real number) but the improper integral $\int_{-1}^1 f(x)$ $dx$ does not exist. 
+Do the same for a function $g: \mathbb{R}\rightarrow \mathbb{R}$ such that 
+\[\lim_{R\rightarrow\infty}\int_{-R}^{R} g(x)\,dx\] exists but the improper integral 
+$\int_{-\infty}^{\infty}g(x)$ $dx$ fails to exist. [Hint: The functions are not symmetric across 0.]
+
+\medskip \noindent For the first function we take $f(x)=1/x$ with $f(0)=0$. Since $f(-x)= -f(x)$, $\int_{-1}^{-r}f(x)\,dx+\int_r^1f(x)\,dx=0$
+for all $r$ and the limit is also $0$. The improper integral does not exist since
+no integral on an interval containing $0$ converges: WLOG take the interval $[0, a]$ and choose $k$ such that $1/2^k<a$. Then
+partition the interval into \[\bigcup_{i=k}^n\{1/2^i\}.\] For each interval $[1/2^i, 1/2^{i+1}]$ the lower-bound area is
+$1/2$. Thus for each partition $P_n$ we have  \[L_{P_n}(f) = (n-k)(1/2) + (a-1/2^k)\cdot1/a + 1\] which diverges as $n$ increases.
+
+\medskip \noindent For the second function we take $g(x)=x$.
+
+\medskip \noindent Since once again $g(-x) = -g(x)$ we have \[\int_{-R}^{R} g(x)\,dx=\int_{0}^{R} g(x)\,dx+\int_{-R}^{0} g(x)\,dx=\int_{0}^{R} g(x)\,dx+\int_{0}^{R} -g(x)\,dx=0\]
+The improper integral here is \[\lim_{a\rightarrow-\infty}\lim_{b\rightarrow\infty}\int_{a}^{b} g(x)\,dx=\lim_{a\rightarrow-\infty}\lim_{b\rightarrow\infty} b^2-a^2\] 
+by the Fundamental Theorem of Calculus, but since the first limit diverges the entire integral must diverge.
+
+
+\newpage
+
+\subsection*{Problem 60} 
+
+(a) If $\sum a_n$ converges and $(b_n)$ is monotonic and bounded, prove that $\sum a_n b_n$ converges.
+
+\medskip \noindent WLOG assume $(b_n)$ is increasing. Since $(b_n)$ is increasing and bounded it has a least upper bound $b$
+which is the limit of its sequence (if $\exists$ an $\epsilon$ where there is no $N$ where
+$b_n$ is within $\epsilon$ of $b$ for $n>N$, then there exists no $N$ where $b-b_N<\epsilon$ and
+we can set $b-\epsilon$ as another upper bound.) Thus we can define $b_n-b=c_n$, a sequence that converges
+to $0$ and is monotonic. If $\sum a_nc_n$ converges then $b\sum a_n + \sum a_nc_n=\sum a_nb_n$ converges.
+
+\medskip \noindent Take the convergent sequence $(A_n)$ with $A_n = \sum_{i=0}^n a_i$. Then $a_n=A_n-A_{n-1}$ ($A_0=0$).
+We have \[\sum_{i=1}^{n} a_ic_i = \sum_{i=1}^{n} (A_ic_i-A_{i-1}c_i)=\sum_{i=1}^{n} A_ic_i-\sum_{i=1}^{n} A_ic_{i+1}=\sum_{i=1}^{n} A_i(c_i-c_{i+1})\]
+We note that $c_i-c_{i+1}$ is always negative, so if it converges it is absolutely convergent: $\sum_{i=1}^{\infty}=c_i$. 
+
+\medskip\noindent Since $A_i$ converges it is bounded: $|A_i|<M_A$. Then since for $d_i= (c_i-c_{i+1})$
+$\sum |d_i| = M_d$ we have  $\sum |A_id_i| \leq \sum |d_iM_A| = M_AM_d$. Since $\sum |A_id_i|$ is 
+an increasing bounded sequence it converges to a least upper bound $L$, and thus $\sum a_ic_i = \sum A_id_i$ is absolutely convergent. 
+
+
+\bigskip
+
+(b) If the monotonicity condition is dropped, or replaced by the assumption that 
+$\lim_{n\rightarrow\infty}b_n = 0$, find a counterexample to convergence of $\sum a_n b_n$.
+
+\medskip \noindent For dropped monotonicity, we take $\sum a_n$ the alternating harmonic series and $(b_n)=(-1)^n$. Then
+$\sum a_nb_n$ becomes the single-sign harmonic series which diverges.
+
+\medskip \noindent Consider $\sum a_n=\sum\frac{(-1)^n}{n^{1/2}}$ and $(b_n) =\frac{(-1)^n}{n^{1/2}}$.
+Then $\sum a_nb_n$ is the single-sign harmonic series again. $\sum a_n$ converges by the alternating
+series test.
+
+\newpage
+
+\subsection*{Problem 67} An \textbf{infinite product} is an expression $\prod c_k$ where 
+$c_k>0$. The $n^{th}$ \textbf{partial product} is $C_n = c_1\dots c_n$. If $C_n$ converges to a 
+limit $C\neq0$ then the product converges to C. Write $c_k = 1+a_k$. If each $a_k\geq0$ or each 
+$a_k\leq 0$ prove that $\sum a_k$ converges if and only if $\prod c_k$ converges. 
+[Hint: Take logarithms.]
+
+\medskip \noindent Assume $\sum a_k$ converges absolutely (as stated in the problem). (I'm out of time so I'm only going
+to prove forward case for positive $a_k$ and backward case for negative $a_k$.) Assume $a_k$ positive. Then for some
+partial product $C_n=\prod_{k=1}^n c_k$ we have \[\log C_n = \sum_{k=1}^n\log(a_k+1)\]
+
+We prove $\log(x+1)\leq x$ for all $x\in\mathbb{R}$. Take the function $f(x)=x-\log(x+1)$. We have 
+$f'(x)=\frac{x}{x+1}$. $f(x)$ is defined from $(-1, \infty)$, so we have $f'(x)$ negative on $(-1, 0)$ and positive on
+$(0, \infty)$ with global minimum at $0$, since anything lower implies positive derivative for $x'<0$ or negative derivative
+for $x'>0$ by mean value theorem, which is impossible. $f(0)=0$, so $f(x)\geq 0$ and $\log(x+1)\leq x$. Then for positive
+$a_k$ we have $\log(a_k+1)\leq a_k$, meaning $\log C_k$ is bounded above by $A$ the limit of $\sum a_k$. Since $a_k$ is positive
+$\log(a_k+1)$ is also positive, meaning $(\log C_k)$ is an increasing bounded sequence with a supremum that it must converge to.
+
+Since $e^x$ is a continuous function we have that if $\log C_k$ converges to $\log C$ then $C_k$ converges to $C$. 
+
+Take $a_k$ negative and assume $\prod c_k$ converges. Then $a_k+1<1$ and $\log(c_k)$ is also negative. If $\sum -a_k$ converges then $a_k$ is absolutely
+convergent. We have that $C_n$ converges to a nonzero $C$ so $\log C_n$ converges to $\log C$.
+Again $\log C_n = \sum_{k=1}^n \log(a_k+1)$, so \[-\log C_n = \sum_{k=1}^n-\log (a_k+1)\geq\sum_{k=1}^n -a_k\]. Then since $-x$ is continuous $-\log C_n$
+converges to $\log C$ which is an upper bound for $\sum -a_k$ which must increase since $a_k$ are negative. Again $\sum -a_k$ must converge to $-A$ by
+the least upper bound property etc. and since $-x$ is continuous $\sum a_k$ converges to $A$. 
+
+\newpage
+
+
+
+\end{document}
+

@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath,amsthm,amssymb,wasysym}
+\usepackage[margin=1in]{geometry}
+
+\newtheorem{q}{Exercise}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\dv}{div}
+\newcommand{\note}{\noindent \textbf{Note. }}
+\newcommand{\hint}{\noindent \textbf{Hint. }}
+
+\begin{document}
+
+\section{Introduction}
+
+Let us first recall some of the formulas we saw in class.
+
+A curve $C$ in $\R^n$ is represented by a parametrization $\gamma : [a,b] \to \R^n$.
+
+Given a vector field $F$ in $\R^n$, we compute the line integral as
+\begin{align*}
+\int_C F \cdot \tau \, \dd s &= \int F_1 \dd x_1 + \dots + F_n \dd x_n \\
+&= \int_a^b F(\gamma(t)) \cdot \gamma'(t) \dd t.
+\end{align*}
+
+A surface of dimension $(n-1)$ in $\R^n$ is also represented by some parametrization (an $(n-1)$-cell) $\varphi : Q \to \R^n$, where $Q$ is a rectangle in $\R^{n-1}$. We write
+\begin{align*} 
+\int_\varphi F \cdot n \, \dd A &= \int_\varphi F_1 \dd x_2 \dots \dd x_n + \dots + (-1)^{n-1} F_n \dd x_1 \dots \dd x_{n-1} \\
+&= \int_Q \det \begin{pmatrix} F(\varphi(u)) ; \frac{\partial \varphi}{\partial u_1} ; \dots ; \frac{\partial \varphi}{\partial u_{n-1}} \end{pmatrix} \dd u
+\end{align*}
+
+Sometimes a surface $S$ is made by glueing together several parametrizations. In that case, the integral over $S$ is obtained adding the ones for each piece.
+
+
+Green's theorem says that if $\Omega \subset \R^2$ is a bounded open set with a $C^1$ boundary, and $F = (P,Q)$ is a $C^1$ vector field, then
+\[ \int_{\partial \Omega} F \cdot \tau \dd s = \int_{\partial \Omega} P \dd x + Q \dd y =  \int_\Omega \frac{\partial Q}{\dd x} - \frac{\partial P}{\dd y} \, \dd x \dd y.\]
+Here, ${\partial \Omega}$ is the boundary of $\Omega$ oriented counterclockwise, which is a $C^1$ curve. The theorem applies also to piece-wise $C^1$ boundaries.
+
+The divergence theorem says that if $\Omega \subset \R^n$ is bounded and with a $C^1$ boundary, then
+\[ \int_{\partial \Omega} F \cdot n \, \dd A = \int_\Omega \dv F \, \dd x.\]
+Here $\dv F$ denotes the divergence of $F$, $n$ is the unit normal pointing outwards from $\Omega$, $\dd A$ is the differential of area of $\partial \Omega$ and $\dd x$ is the usual differential of volume in $\R^n$.
+
+\section{Exercises}
+
+
+\begin{q}
+Let $R_t=(t,t+2\pi)\times(-\frac{1}{2},\frac{1}{2})\subset\mathbb{R}^2$. For each $t$, parametrize the M\"obius band by $\alpha_t:R_t\rightarrow\mathbb{R}^3$ as
+\begin{equation*}
+\alpha_t(\theta,r)=\begin{pmatrix}(1+r\sin(\theta/2))\cos\theta \\ (1+r\sin(\theta/2))\sin\theta \\ r\cos(\theta/2)\end{pmatrix}.
+\end{equation*}
+
+\noindent Show that the surface integral
+\begin{equation*}
+\iint_{R_t}F\cdot\bigg(\frac{\partial\alpha_t}{\partial\theta}\times\frac{\partial\alpha_t}{\partial r}\bigg)\:d\theta dr
+\end{equation*}
+
+\noindent for the constant vector field $F=\begin{pmatrix}1 \\ 1 \\ 1\end{pmatrix}$ will depend on $t$. Evaluate the surface integral for $t\in\{0,\frac{\pi}{2},\pi,\frac{3\pi}{2},2\pi\}$. Why are the values for $t=0$ and $t=2\pi$ related?
+\end{q}
+
+\begin{q}
+Let $\alpha:\mathbb{R}^2\rightarrow\mathbb{R}^3$ given by
+\begin{equation*}
+\alpha(u,v)=\bigg(\frac{2u}{1+u^2+v^2},\:\frac{2v}{1+u^2+v^2},\:\frac{-1+u^2+v^2}{1+u^2+v^2}\bigg)
+\end{equation*}
+
+\noindent be a parametrization for a surface $\Sigma\subset\mathbb{R}^3$
+
+\begin{itemize}
+\item[(a)] Show that $\Sigma\subset S^2$.
+\item[(b)] Show that $\alpha$ is a bijection from $\mathbb{R}^2$ to $S^2\setminus(0,0,1)$. The parametrization $\alpha$ is known as stereographic projection, and can be viewed geometrically as follows: take a line $L$ in $\mathbb{R}^3$ that connects the north pole $(0,0,1)$ and a point $(u,v,0)$. Then $\alpha(u,v)$ is the point of intersection of $L$ and $S^2\setminus(0,0,1)$.
+\item[(c)] Using the parametrization $\alpha$, compute the surface area of $S^2$.
+\item[(d)] Compute the surface area of $S^2$ again, now using the parametrization $\beta:[0,2\pi)\times[0,\pi]\rightarrow\mathbb{R}^2$ given by
+\begin{equation*}
+\beta(\theta,\phi)=\big(\cos\theta\sin\phi,\:\sin\theta\sin\phi,\:\cos\phi\big).
+\end{equation*}
+\end{itemize}
+\end{q}
+
+
+\begin{q} \hfill \\
+\begin{itemize}
+\item[(a)] Compute the surface integral \[\iint_{S_r}F\cdot n\:dA,\] where $F$ is the vector field
+\begin{equation*}
+F(x,y,z)=\frac{\vec{r}}{|r|^3}=\bigg(\frac{x}{(x^2+y^2+z^2)^\frac{3}{2}},\frac{y}{(x^2+y^2+z^2)^\frac{3}{2}},\frac{z}{(x^2+y^2+z^2)^\frac{3}{2}}\bigg).
+\end{equation*}
+Here $S_r$ is the sphere of radius $r$ centered at the origin.
+\item[(b)] Compute $\mathrm{div} F$ on $\mathbb{R}^3\setminus\{0\}$.
+\item[(c)] Let $\Omega$ be some arbitrary bounded open set in $\R^3$ that contains the origin and has a smooth boundary. Compute
+\begin{equation*}
+\int_{\partial \Omega}F\cdot n \, \dd A.
+\end{equation*}
+\end{itemize}
+\end{q}
+\note This motivates us saying that $\mathrm{div}F=4\pi\delta$ (where $\delta$ is the ``Dirac delta").
+
+\begin{q}
+For a $C^2$ function $f:U\subset\mathbb{R}^2\rightarrow\mathbb{R}$, we define the Laplacian as
+\begin{equation*}
+\Delta f=\mathrm{div}(\nabla f).
+\end{equation*}
+
+Let $\Omega$ be any open set inside $U$ with a piecewise smooth boundary. We write $\partial\Omega$ to denote the boundary of $\Omega$ and $n$ is the unit normal vector pointing outwards. We write $\dd A$ to denote the differential of area on $\partial \Omega$ and $\partial_n u$ is the directional derivative in the direction $n$. Prove the following two identities.
+\begin{align*}
+\int_\Omega |\nabla u|^2 + u \Delta u \, \dd x &= \int_{\partial \Omega} u \partial_n u \, \dd A, \\
+\int_\Omega u \Delta v - v \Delta u \, \dd x &= \int_{\partial \Omega} u \partial_n v - v \partial_n u \, \dd A.
+\end{align*}
+
+\end{q}
+
+
+\begin{q}
+Let $f:U\subset\mathbb{R}^2\rightarrow\mathbb{R}^2$ be a continuously differentiable function. Write $f$ as
+\begin{equation*}
+f(x,y)=u(x,y)e_1+v(x,y)e_2=\begin{pmatrix}u(x,y) \\ v(x,y)\end{pmatrix}.
+\end{equation*}
+
+\noindent Assume that for all $p\in U$ the derivative of $f$ at $p$ (which we write $Df_p$) is a scalar matrix (a multiple of the identity). In other words, we have
+\begin{equation*}
+Df_p= \lambda(p) \mathrm{I}
+\end{equation*}
+
+\noindent where $\lambda:U\rightarrow\mathbb{R}$ is some continuous strictly-positive function on $U$. Let $\gamma$ be a simple closed curve in $U$ which bounds a region entirely contained in $U$. Prove that
+\begin{equation*}
+\int_\gamma u\:dx+u\:dy=\int_\gamma-v\:dx+v\:dy.
+\end{equation*}
+\end{q}
+
+\begin{q}
+Find an open set $\Omega \subset \R^2$ and a smooth vector field $F :\Omega \to \R^2$ such that the set
+\[ \left\{ \int_{C} F \cdot \tau \, \dd s : C \text{ is a closed loop contained in } \Omega \right\}\]
+is dense in $\R$.
+\end{q}
+
+\begin{q}{\em($\ast$)}
+This exercise is asking you to verify the uniqueness of solutions of an ODE without assuming that $F$ is Lipchitz, but assuming something else in exchange. 
+
+Let $F : \R^2 \to \R^2$ be a vector field so that for every closed curve $C$ in $\R^2$, we have
+\[ \int_C F^\perp \cdot \tau \, \dd s = 0.\]
+Assume further that $F(x,y) \neq 0$ for all $(x,y) \in \R^2$.
+
+Here $v^\perp$ denotes the ninety degree rotation of the vector $v$. Thus, $(x,y)^\perp := (-y,x)$.
+
+\begin{enumerate}
+	\item If $F$ is $C^1$, prove that $\mathrm{div } F = 0$.
+	\item Without assuming that $F$ is $C^1$ (or even Lipchitz), prove that the ODE
+	\[ x'(t) = F(x(t))\]
+	has at most one solution on any time interval $t \in (-\delta,\delta)$.
+\end{enumerate}
+\end{q}
+\note I know two different proofs of this fact. When I was reviewing them, I realized that in both there is an elegant idea to prove that if we have two solutions $x(t)$ and $y(t)$, they must parametrize the same curve on $\R^2$. However, we are then left with the nontrivial task of analyzing if they could potentially be two different parametrizations of the same curve.
+
+Let us keep it simple and focus on the first part only. That is, let us prove that any two solutions of the ODE give us the same curve on $\R^2$. That would get you full score.
+
+\hint Assuming that there are two solutions of the ODE that trace different curves on $\R^2$, these curves must split somewhere. If we look at their last point in common, we would have two solutions of the ODE going to different paths from there. It is easy to see that the two curves must be tangent at any contact point. Can you find something that goes wrong in the last intersection point, leading to a contradiction?
+
+Alternatively, you may construct a clever curve on $\R^2$ using some theorem that we learned earlier in this class and then verify that any solution to the ODE must stay within this curve.
+
+\begin{q}
+Find a differential form $\omega$ (of any degree and dimension) so that $\omega \wedge \omega \neq 0$.
+\end{q}
+
+\begin{q}
+In any dimension, a $1$-form is associated to a vector field $F$. In particular, in 3D it takes the form
+\[ \omega_F = F_1 \dd x + F_2 \dd y + F_3 \dd z.\]
+In 3D, $2$-forms are also associated to a vector field $F$ by the following identification
+\[ \omega^\ast_F = F_1 \dd y \dd z + F_2 \dd z \dd x + F_3 \dd x \dd y.\]
+We say that $G = \curl F$ if $\mathrm d \omega_F = \omega^\ast_G$.
+\begin{itemize}
+	\item[(a)] Compute an explicit formula for $\curl F$ in terms of the components of $F$ and their partial derivatives.
+	\item[(b)] For any $C^1$ scalar function $p : \R^3 \to \R$, prove that $dp = \omega_{\nabla p}$.
+	\item[(c)] For any $C^1$ vector field $F : \R^3 \to \R^3$, prove that $d\omega^\ast_F = (\dv F) \dd V$. (here $\dd V$ is the usual differential of volume = $\dd x \dd y \dd z$)
+	\item[(d)] For any $C^2$ scalar function $p : \R^3 \to \R$, prove that $\curl \nabla f = 0$.
+	\item[(e)] For any $C^2$ vector field $F : \R^3 \to \R^3$, prove that $\dv (\curl F) = 0$.
+\end{itemize}
+\end{q}
+
+\begin{q}
+Find (hopefully not too many) typos in the problems above {\em \smiley}.
+\end{q}
+
+
+\end{document}
+
+

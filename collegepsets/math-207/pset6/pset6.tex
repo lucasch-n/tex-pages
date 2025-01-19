@@ -1,0 +1,262 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 6}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Problems: 4.27, 4.29, 4.41, 5.1, 5.2, 5.7, 5.8, 5.17, 5.20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection*{Problem 4.27} Suppose that \( f : M \rightarrow M \) and for all 
+\( x, y \in M \), if \( x \neq y \) then \( d(fx, fy) < d(x, y) \). Such an \( f \) is a weak contraction.
+
+(a) Is a weak contraction a contraction? (Proof or counterexample.)
+
+\medskip \noindent No. Consider $f(x)=-\arctan{x} + x$. The derivative of this function
+is $\frac{x^2}{1+x^2}$ which is bounded between $0$ and $1$. Thus the function is a weak contraction
+by mean value theorem. However, the function is not a contraction 
+
+\bigskip
+
+(b) If \( M \) is compact, is a weak contraction a contraction? (Proof or counterexample.)
+
+\medskip \noindent No. Note $f(x) = x^2$ on $[0, 1]$. Consider $d(a, 1)$ and $d(f(a), f(1))$: 
+
+(c) If \( M \) is compact, prove that a weak contraction has a unique fixed-point.
+
+\medskip \noindent We prove there is a fixed point. Take $d$ the infinum of $d(x, f(x))$ for each $x\in M$. Then $\exists$
+a sequence $(x_n)$ such that $d(x_n, f(x_n))-d<1/n$. Since $M$ is compact we take a convergent
+subsequence $(x_{n_k})$ with limit $x$. We know $\exists$ $N$ such that $d(x_m, f(x_m)) < d+\epsilon/3$ for each
+$m>N$ and we can take $M$ such that $d(f(x_{n_k}), f(x))\leq d(x_{n_k}, x)<\epsilon/3$ for $k>M$. 
+Then pick $n_k>k>\max(N, M)$. Then $d(x, f(x))\leq d(f(x_{n_k}), f(x))+ d(f(x_{n_k}), x_{n_k})+d(x_{n_k}, x)<\epsilon+d$
+for each $\epsilon$: by $\epsilon$-principle we have $d(f(x), x)\leq d$ and $d(f(x), x)=d$ by definition.
+If $d>0$, $f(x)\neq x$ implies $d(f(f(x)), f(x))<d(f(x), x)=d$ which is a contradiction. Thus $d=0$ and $x$
+is the fixed point.
+
+\newpage
+
+\subsection*{Problem 4.29} Give an example to show that the fixed-point in Brouwer's Theorem need not be unique.
+
+\medskip \noindent $f(x)=x$ on $[-1, 1]$ is a function on $B^1$ and each point in the graph of the function
+is a fixed-point.
+
+\newpage
+
+\subsection*{Problem 4.41} (a) Give an example of a function 
+\( f : [0,1] \times [0,1] \rightarrow \mathbb{R} \) such that for each fixed 
+\( x \), the function \( y \mapsto f(x,y) \) is a continuous function of \( y \), 
+and for each fixed \( y \), the function \( x \mapsto f(x,y) \) is a continuous function 
+of \( x \), but \( f \) is not continuous.
+
+\medskip \noindent $f(x)= \frac{xy}{x^2+y^2}$. 
+
+\bigskip
+
+(b) Suppose in addition that the set of functions
+\[
+\mathcal{E} = \{ x \mapsto f(x,y) : y \in [0,1] \}
+\]
+is equicontinuous. Prove that \( f \) is continuous.
+
+\medskip \noindent Take some $x_1, y_1\in[0,1]$. We prove that for each $\epsilon$ $\exists$
+a $\delta$ such that $d((x,y), (x_1, y_1))<\delta\implies d(f(x,y), f(x_1, y_1))<\epsilon$. 
+For a given $\epsilon$ take $\delta_y$ such that $d(y, y_1)<\delta_y$ implies $d(f(x_1, y), f(x_1, y_1))<\epsilon/2$.
+Then take $\delta_x$ such that $d(x, x_1)<\delta_x$ implies $d(f(x, y), f(x_1, y))<\epsilon/2$ for all $y$: this exists
+due to the equicontinuity condition. Then take $\delta = \min(\delta_x, \delta_y)$. We have if
+$d((x_1, y_1), (x, y))<\delta$ then $d(x_1, x), d(y_1, y)<\delta$ (using Euclidean, taxicab, and maximum metrics) and 
+$d(f(x_1, y_1), f(x, y))\leq d(f(x, y), f(x_1, y))+d(f(x_1, y), f(x_1, y_1))<\epsilon$ by triangle
+inequality. Thus continuity holds.
+
+\newpage
+
+\subsection*{Problem 5.1} Let \( T : V \rightarrow W \) be a linear transformation, 
+and let \( p \in V \) be given. Prove that the following are equivalent.
+
+(a) \( T \) is continuous at the origin.
+
+(b) \( T \) is continuous at \( p \).
+
+(c) \( T \) is continuous at at least one point of \( V \).
+
+\medskip \noindent We prove (a) implies (b) first. Given $\epsilon$ we pick $\delta$ such that $||v-0||=||v||<\delta$ implies $||Tv-T(0)||=||Tv||<\epsilon$. Then
+consider $x_1$ such that $d(p, x_1)<\delta$: since $V$ is a vector space we have 
+$d(p, x_1)=||p-x_1||=||(p-x_1)-0||=d(p-x_1, 0)$. Then $||T(p-x_1)||=||T(p)-T(x_1)||<\epsilon$.
+
+\medskip \noindent (b)$\implies$(c) is obvious since $p\in V$.
+
+\medskip \noindent We prove (c) implies (a). Take this point $x$. Then given $\epsilon$ we have $\delta$ where
+$||x-x_1||<\delta$ implies $||T(x_1)-T(x)||<\epsilon$. Take $||v||<\delta$. Then $||x-(x-v)||=||v||<\delta$
+implies $||T(x)-T(x-v)||=||T(x)-T(x)+T(v)||=||T(v)||<\epsilon$, implying continuity at the origin.
+
+\newpage
+
+\subsection*{Problem 5.2} Let \( \mathcal{L} \) be the vector space of continuous 
+linear transformations from a normed space \( V \) to a normed space \( W \). Show that 
+the operator norm makes \( \mathcal{L} \) a normed space.
+
+\medskip \noindent We prove the three properties. Take $T, T_1, T_2\in\mathcal{L}$ and the operator norm
+$||\cdot||$. Since $|Tv|_W$ and $|v|_V$ are nonnegative so is $||T||$. If $||T||$ is $0$ then 
+\[\frac{|Tv|_W}{|v|_V}\leq 0\implies |T_v|_W=T_v=0\] for all $v$, so $T=0$. If $T=0$ then clearly 
+$\frac{|Tv|_W}{|v|_V}=0$ for all $v\neq 0$: then $||T||=0$. 
+
+\medskip \noindent We now prove the triangle inequality. We have 
+\[||T_1||\geq\frac{|T_1v|_W}{|v|_V}, ||T_2||\geq\frac{|T_2v|_W}{|v|_V}\] for each $v\neq 0$ in $V$.
+Then \[||T_1||+||T_2||\geq\frac{|T_1v|_W+|T_2v|_W}{|v|_V}\geq\frac{|(T_1+T_2)v|_W}{|v|_V}.\]
+Since $||T_1+T_2||=\sup\{\frac{|(T_1+T_2)v|_W}{|v|_V}\}$ we have $||T_1||+||T_2||\geq||T_1+T_2||$.
+
+\medskip \noindent We prove the third property. Assume $\lambda$ a positive scalar.
+Then $||\lambda T||$ = $\sup\{\frac{\lambda|T|_W}{|v|_V}\}$ We claim $||\lambda T||=\lambda||T||$:
+$||T||\geq\frac{|T|_W}{|v|_V}$ implies $\lambda||T||\geq\frac{\lambda|T|_W}{|v|_V}$, and if $\exists s$ where $s\geq\frac{\lambda|T|_W}{|v|_V}$
+with $s<\lambda||T||$ then $s/\lambda\geq\frac{|T|_W}{|v|_V}$ implies $s/\lambda$ is an lower upper bound for $\frac{|T|_W}{|v|_V}$ which is impossible.
+
+\newpage
+
+\subsection*{Problem 5.7} Two norms \( \| \cdot \|_1 \) and \( \| \cdot \|_2 \) on a vector 
+space are comparable if there are positive constants \( c \) and \( C \) such that for all 
+nonzero vectors in \( V \) we have
+\[
+c \leq \frac{\| v \|_1}{\| v \|_2} \leq C.
+\]
+
+(a) Prove that comparability is an equivalence relation on norms.
+
+\medskip \noindent Reflexivity: $\frac{||v||_1}{||v||_1}=1$ which is between $1/2$ and $3/2$.
+
+\medskip \noindent Symmetry:  $\frac{\| v \|_1}{\| v \|_2} \leq C\implies\frac{\| v \|_2}{\| v \|_1} \geq 1/C$, 
+$\frac{\| v \|_1}{\| v \|_2} \geq c\implies\frac{\| v \|_2}{\| v \|_1} \leq 1/c$ and since $c, C>0$, we know $1/c, 1/C>0$.
+
+\medskip \noindent Transitivity: $c_1 \leq \frac{\| v \|_1}{\| v \|_2} \leq C_2$ and $c_2 \leq \frac{\| v \|_2}{\| v \|_3} \leq C_2$
+implies $c_1c_2 \leq \frac{\| v \|_1}{\| v \|_3} \leq C_1C_2$ which are both greater than $0$ since each of the factors are.
+
+\bigskip
+
+(b) Prove that any two norms on a finite-dimensional vector space are comparable. [Hint: Use Theorem 3.]
+
+\medskip \noindent Let $V$ be of dimension $n$ and take norms $|\cdot|_1$ and $|\cdot|_2$. Take $T$ an isomorphism (bijective operator) from
+$\mathbb{R}^n$ to $V$: $T$ is a homeomorphism by theorem 3. For any $x$ in $\mathbb{R}^n$, we have 
+$c_1, c_2$ where $\frac{|Tx|_1}{c_1}\leq |x|\leq c_1|Tx|_1$, and $\frac{|Tx|_2}{c_2}\leq |x|\leq c_2|Tx|_2$. Then 
+$\frac{1}{c_1c_2}\leq \frac{|T|_1}{|T|_2}\leq c_1c_2$ and we have the two norms comparable.
+
+(c) Consider the norms
+\[
+\| f \|_{L_1} = \int_0^1 | f(t) | \, dt \quad \text{and} \quad \| f \|_{C^0} = \max \{ | f(t) | : t \in [0,1] \},
+\]
+defined on the infinite-dimensional vector space \( C^0 \) of continuous functions 
+\( f : [0,1] \rightarrow \mathbb{R} \). Show that the norms are not comparable by 
+finding functions \( f \in C^0 \) whose integral norm is small but whose \( C^0 \) norm is 1.
+
+
+\medskip \noindent Take the set $\{f_n=t^n: n\in\mathbb{N}\}$ on $[0,1]$. We have
+$||f_n||_{L_1}=1/(n+1)$ and $||f_n||_{C^0}=1$. Then the infinum of $\frac{||f_n||_{L_1}}{||f_n||_{C^0}}$ is
+$0$ and the norms are not comparable.
+
+\newpage
+
+\subsection*{Problem 5.8} Let \( \| \cdot \| = \| \cdot \|_{C^0} \) be the supremum norm on 
+\( C^0 \) as in the previous exercise. Define an integral transformation \( T : C^0 \rightarrow C^0 \) by
+\[
+T : f \mapsto \int_0^x f(t) \, dt.
+\]
+
+(a) Show that \( T \) is linear, continuous, and find its norm.
+
+\medskip \noindent $T(\lambda f) = \int_0^x \lambda f(t)\,dt=\lambda\int_0^xf(t)\,dt=\lambda Tf$
+and $T(f_1+f_2)=\int_0^xf_1+f_2\,dt=\int_0^xf_1\,dt+\int_0^xf_2\,dt=Tf_1+Tf_2$. Thus $T$ is linear.
+
+\medskip \noindent $T$ is continuous since it is a constant away from the indefinite integral of $f(x)$
+and the uniform convergence (convergence under sup norm) of $f$s yields the uniform convergence of indefinite
+integrals of $f$ and therefore the uniform convergence of $T$ (since the indefinite integrals of $f$ at $0$ 
+must also converge by uniform convergence; the sum of convergent sequences is convergent).
+
+\bigskip
+
+(b) Let \( f_n(t) = \cos(nt) \), \( n = 1, 2, \dots \). What is \( T(f_n) \)?
+
+\medskip \noindent $\sin(nx)/n$. 
+
+(c) Is the set of functions \( K = \{ f_n : n \in \mathbb{N} \} \) closed? Bounded? Compact?
+
+\medskip \noindent It's bounded for obvious reasons. It is closed but not compact. (Out of time to justify closed, but 
+it's not equicontinuous and so isn't compact.)
+
+(d) Is \( T(K) \) compact? How about its closure?
+
+\medskip \noindent $T(K)$ is not compact, since its uniform limit converges to 0, which is not in the set.
+Its closure is compact, however, since the set $\sin(nx)/n$ is equicontinuous (its derivative is bounded between
+-1 and 1) and so the closure is closed, equicontinuous, and trivially bounded.
+
+\newpage
+
+\subsection*{Problem 5.17} Let \( f : U \rightarrow \mathbb{R}^m \) be differentiable, 
+\( [p,q] \subset U \subset \mathbb{R}^n \), and ask whether the direct analog of the 
+one-dimensional Mean Value Theorem is true: Does there exist a point \( \theta \in [p,q] \) such that
+\[
+f(q) - f(p) = (Df)_{\theta}(q - p)?
+\]
+
+(a) Take \( n = 1 \), \( m = 2 \), and examine the function
+\[
+f(t) = (\cos t, \sin t)
+\]
+for \( \pi \leq t \leq 2\pi \). Take \( p = \pi \) and \( q = 2\pi \). Show that 
+there is no \( \theta \in [p,q] \) which satisfies (28).
+
+\medskip \noindent We have $f(q)-f(p)=(2,0)$, $Df=(-\sin t, \cos t)$, and $q-p=\pi$.
+If $\cos t\neq 0$ then $\theta=0$ leads to a contradiction, and if $\cos t=0$ we have 
+$-\sin t = 1$ does not satisfy (28).
+
+(b) Assume that the set of derivatives
+\[
+\{ (Df)_x \in \mathcal{L}(\mathbb{R}^n, \mathbb{R}^m) : x \in [p,q] \}
+\]
+is convex. Prove there exists \( \theta \in [p,q] \) which satisfies (28). 
+[Hint: Google "support plane."]
+
+(c) How does (b) imply the one-dimensional Mean Value Theorem?
+
+\medskip \noindent We have in $\mathbb{R}$ that each interval is connected and each connected
+set is convex, so we must prove that the set of derivatives $\{f'(x): x\in[p,q]\}$ is an interval. 
+The MVT requres that $f$ is $C^1$, so we have $f'$ continuous: since $[p,q]$ is connected and compact
+(an interval), $f'([p,q])$ is connected and compact and therefore an interval.
+
+\newpage
+
+\subsection*{Problem 5.20} Assume that \( U \) is a connected open subset 
+of \( \mathbb{R}^n \) and \( f : U \rightarrow \mathbb{R}^m \) is differentiable 
+everywhere on \( U \). If \( (Df)_p = 0 \) for all \( p \in U \), show that \( f \) is constant.
+
+\medskip \noindent By the Mean Value Theorem (Theorem 11 of Chapter 5), $|f(q)-f(p)|\leq 0|q-p|$ for
+all $q, p$ with the segment between them in $U$. Since $U$ is a connected open subset of $\mathbb{R}^n$
+it is path connected and therefore any two points $x_1$ and $x_2$ of $U$ can be connected via segments 
+(take a finite closed neighborhood of a point on the path and select a further point on the sphere, on the path between $x_1$ and $x_2$,
+since the path is compact these neighborhoods cannot converge to a point along the middle of the path)
+and
+the function must be constant. 
+
+\newpage
+
+
+\end{document}
+

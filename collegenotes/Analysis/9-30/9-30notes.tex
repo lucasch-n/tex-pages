@@ -1,0 +1,26 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Typed-up (Important) Notes 9/30}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+\section{Cauchy Sequences Proof via inf = sup}
+
+\textbf{Definition:} A Cauchy sequence is a sequence $\{x_n\}, x_n\in\mathbb{R}, n\in\mathbb{N}$ s.t. $\forall\epsilon$, $\exists a\in\mathbb{N}$ s.t. $|x_m-x_n|\leq \epsilon$, $\forall m, n \geq a$
+
+Then, given any sequence $\{y_n\}$ we define $\limsup\limits_{n\rightarrow\infty} x_n= \inf\{\sup\{x_m:m\geq n\}n\in\mathbb{N}\}$
+
+We define $\liminf$ similarly with the $\inf$, $\sup$ reversed.
+
+If $\liminf\limits_{n\rightarrow\infty} x_n =\limsup\limits_{n\rightarrow\infty} x_n$ then the $\lim$ exists and the sequence is convergent, as established by the conditions below:
+
+We prove that Cauchy sequences satisfy $\liminf = \limsup$.
+
+\end{document}
+

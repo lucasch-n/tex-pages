@@ -1,0 +1,109 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 1}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Problems: Rudin Chapter 6, 1-9, 15-17
+
+\section*{Solutions}
+
+\subsection*{Problem 1}
+Since $f$ is constant outside of $x_0$ it is only discontinuous at $x_0$, and since $\alpha$ is continuous at $x_0$ it is continuous at each of $f$'s (finitely many) discontinuities and $f$ is Stieltjes integrable.
+
+\medskip \noindent To prove the integral is $0$, for $\epsilon>0$ we take $\delta$ for which $d(x, x_0)<\delta$ implies $d(\alpha(x), \alpha(x_0))<\epsilon/2$. Then take the partition $x_0-\delta, x_0+\delta$ and we have $\alpha(x_0+\delta)-\alpha(x_0-\delta)<\epsilon$, implying that the upper sum of the partition is less than $\epsilon$. Since the lower sum of all partitions is $0$, this implies that $\int_a^b f\, d\alpha=0$. 
+
+\subsection*{Problem 2}
+Take $f(x_0)\neq 0$ for some $x_0\in [a,b]$, and WLOG assume $f(x_0)>0$. Since $f$ is continuous $\exists$ $\delta$ where $d(x, x_0)<\delta$ implies $d(f(x_0), f(x))<f(x_0)/2$. Then $f([x_0-\delta, x_0+\delta])$ is bounded below by $f(x_0)/2$ and the lower sum is bounded below by $f(x_0)\delta>0$, leading to a contradiction. 
+
+\subsection*{Problem 3}
+
+\medskip \noindent (a) Assume first that $f(0+)=f(0)$. Take the set of partitions $(\{0,a\}), a>0$. Then for $\epsilon>0$ take the $\delta$ such that $d(f(0), f(x))<\epsilon/3$ for $x\in (0, \delta)$, and the partition $P_{\epsilon}=\{0, \delta\}$. Then $L(f, P_{\epsilon}, \beta_1)=\inf(f)_{[0,\delta]}\geq f(0)-\epsilon/3$ and $U(f,P_{\epsilon},\beta_1)=\sup(f)_{[0,\delta]}\leq f(0)+\epsilon/3$. This yields $U(f,P_{\epsilon},\beta_1)-L(f,P_{\epsilon},\beta_1)\leq 2\epsilon/3<\epsilon$, implying $f$ is Stieltjes integrable and $\int f\, d\beta_1= f(0)$.
+
+\medskip \noindent Now assume $f(0+)\neq f(0)$. If this is the case, then we know that $f(0)$,
+$\limsup_{x\to 0+} f$, and $\liminf_{x\to0+}f$ are not all equal. WLOG assume $f(0)\neq\limsup_{x\to0+}f$. We note that for any $\delta$ and the interval $(0, \delta)$, for any $\epsilon$ there exists an $x\in(0, \delta)$ where $d(\limsup_{x\to0+}f, f(x))<\epsilon$. Take $\epsilon< \frac{|f(0)-\limsup_{x\to0+}f|}{2}$. Then for any interval $(0,\delta)$ there exists $x$ where $d(f(0), f(x))>\frac{|f(0)-\limsup_{x\to0+}f|}{2}$. For any partition $P$ we know there exists an interval that contains $0$ and a number greater than $0$: if the partition divides at 0 then we use the interval to the right of $0$. Then on this interval the infinum and supremum are separated by $f(0)$ and $f(x)$ with $x$ chosen above, and the upper and lower sums cannot converge to one another.
+
+\bigskip \noindent (b) We replace the condition above with $f(0-)=f(0)$. The proof is exactly the same except we consider the left-hand limits rather than the right-hand ones and take a closed interval containing $0$ and some negative number.
+
+\bigskip \noindent (c) Assume $f$ is discontinuous at $0$. Then we know either $f(0+)$ or $f(0-)\neq f(0)$. We take the same argument as (a) for intervals that contain $0$ and values on both sides, where the sums are separated by $\frac{|f(0)-\limsup_{x\to0}f|}{2}$. For partitions that contain $0$ we can divide the Riemann sums to the left and right of $0$. The left sums are separated by $\frac{f(0)-\limsup_{x\to0-}f|}{4}$ and the right sums are separated by $\frac{|f(0)-\limsup_{x\to0+}f|}{4}$ (replace the $\limsup$ with $\liminf$ if $\liminf$ is different from $f(0)$). Since these sums are not the same the function is not Riemann integrable.
+
+\medskip \noindent Now assume $f$ is continuous at $0$. Then for $\epsilon>0$ take $\delta$ where $d(f(0), f(x))<\epsilon/3$ once again, and the partition $P_{\epsilon}=\{-\delta, \delta\}$. Then once again $U(f,P_{\epsilon},\beta_3)-L(f,P_{\epsilon},\beta_3)\leq 2\epsilon/3$ and $L(f,P_\epsilon,\beta_3)\geq f(0)-\epsilon/3$, $U(f,P_\epsilon,\beta_3)\leq f(0)+\epsilon/3$ implies $\int f\,d\beta_3=f(0)$.
+
+\bigskip \noindent (d) Continuity satisfies the conditions of (a), (b), (c). Proof is trivial.
+
+\subsection*{Problem 4}
+Since the rationals are dense the upper sum will always be equal to $b-a$ and the lower sum will always be equal to $0$ for any partition and the function is not Stieltjes integrable.
+
+\subsection*{Problem 5}
+Does not follow. Consider the function $f$ where $f(x)=1$ for all rationals and $f(x)=-1$ for all irrationals. However, since we know $f$ is a bounded real function on $[a.b]$ we have $f=\sqrt[3]{f^3}$ and since $\sqrt[3]{x}$ is a continuous real function we have that $f$ is Stieltjes integrable.
+
+\subsection*{Problem 6}
+Take $\epsilon>0$. Take the total bounds of the function $m<f(x)<M$. Now consider the smallest $n$ where $(M-m)(\frac{2}{3})^n<\epsilon/3$. Consider the $n$th iteration of the intermediate Cantor set, which has combined horizontal length $(\frac{2}{3})^n$. 
+
+\medskip \noindent Take an open cover enclosing this partial Cantor set, and extending beyond it with less than $\epsilon/3(M-m)$ total measure (we cannot place the partition points at the exact bounds of the Cantor set because $f$ is not guaranteed to be continuous there.) Now if we remove this cover of the partial Cantor set, we are left with a compact set which $f$ is continuous over, meaning $f$ is Stieltjes integrable over this compact set. Then there is a further partition of this compact set whose lower and upper sums differ by less than $\epsilon/3$.
+
+\medskip \noindent We combine this partition with the points that bound our open cover, whose lower and upper sums must differ by a maximum of $2\epsilon/3$ since their total horizontal length is less than $2\epsilon/3(M-m)$. Thus the difference between the upper and lower sums of the whole combined partition must be less than $\epsilon$, and we conclude that $f$ is Stieltjes integrable over $[0,1]$. 
+
+\subsection*{Problem 7}
+(a) Take $\epsilon>0$. Since $f$ is Stieltjes integrable we know it is bounded over $(0, 1]$ and we can extend the bounds to include $f(0)$: call the bounds $M>f(x)>m$. Then take $c<\min(\epsilon/4(M-m),|\epsilon/4M|,|\epsilon/4m|)$: we have that since $f$ is Stieltjes integrable over $[c,1]$ $\exists$ a partition $P$ where $U(f,P)-L(f,P)<\epsilon/4$. Then extending the partition $P$ to $[0,1]$ we add just the break point at $0$, yielding the partition $P'$: we have \[U(f,P')-L(f,P')<(U(f,P)+Mc)-(L(f,P)+mc)<\epsilon/2\]
+Then since $L(f,P')\leq\int_0^1f\,dx\leq U(f,P')$ and $L(f,P)\leq\int_c^1f\,dx\leq U(f,P)$ we have $d(\int_c^1f\,dx, L(f,P))<\epsilon/4$, $d(L(f,P), L(f,P'))=|mc|<\epsilon/4$, and $d(\int_0^1f\, dx, L(f,P'))<\epsilon/2$. This implies $d(\int_c^1f\,dx,\int_0^1f\,dx)<\epsilon$ and we are done.
+
+\medskip \noindent (b) Take \[f(x)= \begin{cases}
+	0 & x=0 \\
+	\frac{(-2)^n}{n} & x\in\left(\frac{1}{2^n},\frac{1}{2^{n-1}}\right]
+\end{cases}\] Then the improper integral is the alternating harmonic series and the integral of the absolute value of the function is the normal harmonic series which is divergent.
+
+\subsection*{Problem 8}
+We have (if it exists) $\int_1^{\infty}f\,dx = \lim_{a\to\infty}\int_1^af\,dx = \lim_{a\to\infty}\sum_{n=1}^a \int_n^{n+1}f\,dx$. We note that for each $n$ the partition $\{n, n+1\}$ yields upper and lower sums $f(n+1)$ and $f(n)$ and thus $f(n)<\int_n^{n+1}f\,dx<f(n+1)$. Assume the improper integral converges (and f is monotonic and therefore positive). Then by series comparison $\sum_{n=0}^{\infty} f(n)$ converges. Now assume $\sum_{n=0}^{\infty}f(n)$ and therefore $\sum_{n=1}^{\infty}f(n)$ converges. Since $f$ is monotonically decreasing each of $f(n)$ must be nonnegative or it would not converge, and thus $f$ in general must be nonnegative. We know $\sum_{n=0}^{\infty}\int_n^{n+1}f\,dx$ converges via series comparison, and since $f$ is everywhere nonnegative $\int_1^nf\,dx\leq\int_1^af\,dx\leq\int_1^{n+1}f\,dx$ for $n\leq a\leq n+1$, meaning $\int_1^{\infty}f\,dx$ converges.
+
+\subsection*{Problem 9}
+(7) We take $F$, $G$ differentiable on $[c, 1]$ for each $c>0$, and $F'=f$, $G'=g$ Stieltjes integrable over these intervals. Then if $G$ is differentiable and $g$ Stieltjes integrable on $[0,1]$ we have \[\int_0^1Fg\,dx=\lim_{c\to0}\int_c^1Fg\,dx=F(1)G(1)-\lim_{c\to0}F(c)G(c)-\lim_{c\to0}\int_c^1fG\,dx\]
+
+\medskip \noindent \textbf{Proof}: This equation is achieved by taking the limit of both sides of a standard integration by parts equation, and then applying 7(a). Note that all terms are Stieltjes integrable since they are the products of Stieltjes integrable functions.
+
+\medskip \noindent We note that the expression $F(1)G(1)-F(0)G(0)-\int_0^1 fG\,dx$ is only equal here if $F$ is differentiable and $f$ Stieltjes integrable as in the conditions for both integration by parts and 7(a). 
+
+\medskip \noindent For the equation we have \[\int_0^{\infty}\frac{\cos x}{1+x}\,dx=\lim_{c\to\infty}\frac{\sin c}{1+c}-\frac{\sin 0}{1}-\int_0^{\infty}-\frac{\sin x}{(1+x)^2}\,dx=\int_0^{\infty}\frac{\sin x}{(1+x)^2}\,dx\]
+To prove $\int_0^\infty \frac{\sin x}{(1+x)^2}\,dx$ is absolutely convergent we note that $\left|\frac{\sin x}{(1+x)^2}\right|\leq \frac{1}{(1+x)^2}$ whose integral we know converges to $1$. 
+
+\medskip \noindent To show $\int_0^\infty\left|\frac{\cos x}{1+x}\right|\,dx$ is not absolutely convergent we consider the values of the integrand at $\frac{3\pi}{4}+\pi n$ for $n\in \mathbb{N}$. This yields us $\frac{\sqrt{2}}{2(3\pi/4+1+\pi n)}$i. The sum of this sequence over all $n$ diverges via a harmonic series argument (we can factor out a constant so the denominator increases by 1 for each $n$). We note that the integrand is always greater than this value over $[\frac{\pi}{4}+\pi n, \frac{3\pi}{4}+\pi n)$ and so multiplying the series by $\pi/2$ bounds the integral from below, meaning it diverges.
+
+
+\subsection*{Problem 15}
+We use integration by parts for the first part. \[1=\int_a^bf^2(x)\,dx=bf^2(b)-af^2(a)-\int_a^b2xf(x)f'(x)\,dx.\]
+\[\implies \int_a^bxf(x)f'(x)\,dx = -1/2.\]
+We take the inner product (as described in class) of $\int f_1f_2\,dx$. Then taking $f_1=xf(x)$ and $f_2=f'(x)$ we have by the Cauchy-Schwartz inequality: \[1/4=\left[\int_a^bxf(x)f'(x)\,dx\right]^2\leq \int_a^b\left(f'(x)\right)^2\,dx\int_a^bx^2f^2(x)\,dx\]
+
+To disprove equality we must prove that the solutions of $f'(x) = cxf(x)$ do not satisfy the conditions. If $a$, $b$ are both positive or negative then MVT leads to contradiction since there is a local maximum or minimum where $f(x)\neq 0$. If $0\in [a,b]$, we recursively take a derivative of $f(x)$: each derivative must be zero at the endpoints. Then by applying MVT and the derivative we find a dense set where all derivatives are zero, which is impossible because $f$ cannot be identically zero.
+
+\subsection*{Problem 16}
+(a) We separate the integral: \[s\int_1^{\infty}\frac{\lfloor x\rfloor}{x^{s+1}}\,dx=s\sum_{n=1}^{\infty}\int_n^{n+1}\frac{\lfloor x\rfloor}{x^{s+1}}\,dx = s\sum_{n=1}^{\infty}\int_n^{n+1}\frac{n}{x^{s+1}}\,dx \]
+\[= \sum_{n=1}^{\infty}\left(\frac{n}{n^s}-\frac{n}{(n+1)^s}\right)\ \sum_{n=1}^{\infty}\left(\frac{n}{n^s}-\frac{n+1}{(n+1)^s}+\frac{1}{(n+1)^s}\right)\]
+From here we cancel the adjacent terms in a telescoping series to achieve \[\sum_{n=1}^{\infty}\frac{1}{n^s}\]
+
+(b) \[\frac{s}{s-1}-s\int_1^\infty \frac{x-\lfloor x\rfloor}{x^{s+1}}\,dx=\frac{s}{s-1}-s\int_1^\infty\frac{1}{x^s}\,dx+\int_1^\infty\frac{\lfloor x \rfloor}{x^{s+1}}\,dx=\int_1^\infty\frac{\lfloor x \rfloor}{x^{s+1}}\,dx\]
+
+To prove convergence we bound the integral: $0\leq x-\lfloor x\rfloor\leq 1$, implying \[0\leq\frac{x-\lfloor x\rfloor}{x^{s+1}}\leq \frac{1}{x^{s+1}}\] for $x\geq 1$ and $s>0$. Then since $\int_1^\infty \frac{1}{x^{s+1}}$ converges our integral must also converge.
+
+\subsection*{Problem 17}
+As stated by the hint we may take the following lemma:
+
+\medskip \noindent \textbf{Lemma:} For each $P=\{x_0,\dots,x_n\}$ some partition of $[a,b]$ there exists $t_1,\dots t_n$ with $x_{j-1}<t_j<x_j$ where \[\sum_{i=1}^n\alpha(x_i)g(t_i)\Delta x_i=G(b)\alpha(b)-G(a)\alpha(a)-\sum_{i=1}^nG(x_{i-1})\Delta \alpha_i\]
+We take $t_i$ where $g(t_i)\Delta x_i = G(x_i)-G(x_{i-1})$ which exists via the Mean Value Theorem. From here \[\sum_{i=1}^n\alpha(x_i)g(t_i)\Delta x_i= \sum_{i=1}^n\alpha(x_i)G(t_i)- \sum_{i=1}^n\alpha(x_i)G(t_{i-1})\]
+\[= \sum_{i=1}^n\alpha(x_i)G(t_i)-  \sum_{i=1}^n\alpha(x_{i-1})G(t_{i-1})-\sum_{i=1}^n\alpha(x_i)G(t_{i-1})+ \sum_{i=1}^n\alpha(x_{i-1})G(t_{i-1})\]
+and then via telescoping series this evaluates to 
+\[G(b)\alpha(b)-G(a)\alpha(a)-\sum_{i=1}^nG(x_{i-1})\Delta \alpha_i.\]
+
+\medskip \noindent We note that if we take a fine enough partition the right side of this equation converges to the right side of our desired equation. As such, we aim to prove that for each $\epsilon>0$ there exists a partition such that $d(\sum_{i=1}^n\alpha(x_i)g(t_i)\Delta x_i,\sum_{i=1}^n\alpha(x_i)g(x_i)\Delta x_i) < \epsilon$. In this case the convergence of the second expression to the desired integral yields our final result.
+
+\medskip \noindent Since $\alpha$ is monotonically increasing it is bounded by $\alpha(b)$ and $\alpha(a)$: take $M=\max(|\alpha(b)|,|\alpha(a)|)$. Now take $\epsilon_0 = \frac{\epsilon}{(b-a)M}$. Since $g$ is uniformly continuous we select $\delta$ such that no two points closer together than $\delta$ are mapped further than $\epsilon_0$ away. Take $P$ such that the distance between two break points is less than $\delta$. Then:
+\[\left|\sum_{i=1}^n\alpha(x_i)g(t_i)\Delta x_i-\sum_{i=1}^n\alpha(x_i)g(x_i)\Delta x_i\right| = \left|\sum_{i=1}^n\alpha(x_i)(g(t_i)-g(x_i))\Delta x_i\right|\]\[\leq  \left|\sum_{i=1}^n\alpha(x_i)\epsilon_0\Delta x_i\right|\leq  \left|\sum_{i=1}^nM\epsilon_0\Delta x_i\right|=\epsilon\] by triangle inequality, and since decreasing $\delta$ brings the lower and upper sums within $\epsilon$ of each other, we are done.
+
+\end{document}
+

@@ -1,0 +1,217 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\title{Problem Set 3}
+\author{Lucas\ Chen}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\textbf{Problems:} 2.44, 2.53, 2.55, 2.56, 2.57, 3.2, 3.14
+
+\subsection*{Problem 44} Consider a function $f: M\rightarrow\mathbb{R}$. Its graph is the set $$\{(p,y)\in M\times\mathbb{R}:y=fp\}.$$
+
+(a) Prove that if $f$ is continuous then its graph is closed (as a subset of $M\times\mathbb{R}$.
+
+\medskip
+
+\noindent Take $f$ continuous. Then for some convergent sequence $(x_n)$ in the graph of $f$ we have a limit point $x$. We aim
+to prove that $x$ is also in the graph of $f$. For $x_n$ we take $p_n$ the component of $x_n$ in $M$. Since $(x_n)$ converges 
+$p_n$ must also converge: call the limit $p$. By the definition of continuity $f(p_n)$ converges to $f(p)$. 
+Then $x_n=(p_n, f(p_n))$ must converge to $(p, f(p))$ which is in the graph of $f$. Thus by definition the graph of $f$ is closed.
+
+\medskip
+
+(b) Prove that if $f$ is continuous and $M$ is compact then its graph is compact. 
+
+\medskip
+
+\noindent The image of $M$ by $f$ is compact since $M$ is compact. Then a sequence $(x_n)$ in the graph has component sequence $(p_n)$
+with a convergent subsequence $(p_{n_k})$ in $M$, with limit $p$. Then by continuity this subsequence is mapped to $f(p_{n_k})$ with 
+limit $f(p)$. Thus the subsequence $x_{n_k}$ must converge to $(p, f(p))$ in the graph of $f$ and the graph is compact.
+
+\medskip
+
+(c) Prove that if the graph of $f$ is compact then $f$ is continuous.
+
+\medskip
+
+\noindent Take some convergent sequence $(p_n)$ in $M$ with limit $p$. We aim to prove that $(f(p_n))$ converges to $f(p)$. 
+We know that $((p_n, f(p_n)))$ has a convergent subsequence since the graph of $f$ is compact. We call this sequence $(x_{n_k})$, and its limit $x$.  
+Since $(p_{n_k})$ is a subsequence of $(p_n)$ it converges to $p$. $x_{n_k}$ converges if both its component sequences converge to the components of 
+its limit: thus $p$ is the component of $x$ in $M$. Since $x$ is in the graph of $f$ this means $x=(p, f(p))$ and $(f(p_{n_k}))$ converges to
+$f(p)$. 
+
+\medskip
+
+\noindent Assume now that $f(p_n)$ does not converge. Then $\exists$ some $\epsilon$ where there are infinitely many $n\in\mathbb{N}$
+where $d(f(p_n), f(p))\geq\epsilon$. We take this as a subsequence $f(p_{n_j})$. Then $x_{n_j}$ is a sequence in the graph of $f$ and we can redo the 
+above proof to find a convergent subsequence of $f(p_{n_j})$, whose limit must be the image of its corresponding subsequence limit in $M$: $p_{n_j}$ is
+a subsequence of $p_n$ and must converge to $p$. Then $f(p_{n_j})$ must converge to $f(p)$ since $x_{n_j}$ converges: this is a contradiction and thus
+$f(p_n)$ must converge, and since $f(p_{n_k})$ converges to $p$ so too must $f(p_n)$; $f$ is thus continuous by definition.
+
+\medskip
+
+(d) What if the graph is merely closed? Give an example of a discontinuous function $f:\mathbb{R}\rightarrow\mathbb{R}$ whose graph is closed.
+
+\medskip
+
+\noindent The function $f: \mathbb{R}\rightarrow\mathbb{R}$ where $$f(x) = \begin{cases}
+    \frac{1}{x} & \text{if } x \neq 0,\\
+    0  & \text{otherwise}.
+    \end{cases}$$
+In this function the preimage of any open set containing $0$ contains the singleton set $\{0\}$ (no open neighborhood) and is therefore discontinuous.
+
+
+\newpage
+\subsection*{Problem 53} Suppose that $(K_n)$ is a nested sequence of compact nonempty sets, $K_1\supset K_2\supset\dots$ and $K=\bigcap K_n$. 
+If for some $\mu>0$, diam $K_n\geq \mu$ for all $n$, is it true that diam $K\geq\mu$?
+
+\medskip
+
+\noindent For each $K_n$ take $k_{n1}, k_{n2}$ so that $d(k_{n1}, k_{n2})>\mu$. These exist by the definition of diameter. Then we have sequences
+$(k_{n1}), (k_{n2})$. Since $K_1$ is compact we have convergent subsequences $(k_{n_p1}), (k_{n_p2})$ for each sequence with limits $k_1, k_2$. $k_1$, $k_2$
+are in $K_n$ for any finite $n$ since only finitely many elements of the subsequences can be excluded from $K_n$ and so by definition $k_1, k_2\in K$. 
+Given any $\epsilon$ we can find $p$ such that $d(k_{n_p1}, k_1) <\epsilon/2$ and $d(k_{n_p2}, k_2)<\epsilon/2$.
+
+\medskip
+
+\noindent From here, by twice applying the triangle inequality we find 
+$d(k_1, k_2) + \epsilon > d(k_{n_p1}, k_1) + d(k_1, k_2) + d(k_{n_p2}, k_2) \geq d(k_{n_p1}, k_{n_p2})\geq\mu$. By $\epsilon$-principle we have $d(k_1, k_2)\geq\mu$.
+Thus diam $K\geq\mu$.
+
+\medskip
+
+
+\newpage
+\subsection*{Problem 55} The \textbf{distance} from a point $p$ in a metric space $M$ to a nonempty subset $S \subset M$ is defined to be 
+dist$(p, S)$ = $\inf\{d(p, s) : s \in S\}$.
+
+(a) Show that $p$ is a limit of $S$ if and only if dist $(p,S) = 0$.
+
+\medskip
+
+\noindent If dist $(p,S)=0$ then $\nexists\epsilon$ where $d(p, s)\geq\epsilon$ for $s\in S$. Then for every $\epsilon>0$ there is a point
+$s\in S$ where $d(p,s)<\epsilon$. Take $\epsilon_n = \frac{1}{n}$: then take $s_n\in S$ with the prior condition for $\epsilon_n$. $s_n$ is 
+a sequence that converges to $p$ because for any $\epsilon$ we can take $n> 1/\epsilon$ so $d(s_m, p)<\epsilon$ for $m\geq n$. If $p$ is a 
+limit of $s$ then necessarily there $\nexists \epsilon$ where $d(p,s)>\epsilon$ for every $s\in S$: since distance satisfies positive definiteness,
+dist $(p, S)=0$.
+
+\medskip
+
+(b) Show that $p\mapsto \text{dist }(p,S)$ is a uniformly continuous function of $p \in M$. 
+
+\medskip
+
+\noindent Given two points $p, q\in M$ we have dist $(p, S)<d(p,s)$ for every $s\in S$. This gives used
+$$\text{dist }(p, S)<d(p,s)\leq d(p,q)+d(q,s)$$
+Since dist $(q, S)$ is the inf of $d(q, s)$ over $s\in S$ we have that $\exists s\in S$ for each $\epsilon>0$
+where dist $(q, S)+\epsilon\geq d(q, s)$: if not dist $(q, S)+\epsilon$ is a lower bound. Thus we can select $s$
+for each $\epsilon$ such that dist $(p, S)\leq d(p, q)+\text{dist }(q, S)+\epsilon$. Then by $\epsilon$-principle
+we have dist $(p, S)\leq d(p, q)+\text{dist }(q, S)$, implying dist $(p, S)-\text{dist }(q, S)\leq d(p,q)$.
+We can reverse the proof starting with dist $(q, S)$ to achieve $|\text{dist }(p, S)-\text{dist }(q, S)|\leq d(p, q)$.
+
+\medskip \noindent Then for any $\epsilon$ and $\delta = \epsilon$, $d(p,q)<\delta$ implies $|\text{dist }(p, S)-\text{dist }(q, S)|<\epsilon$
+and the function is uniformly continuous.
+
+
+
+\newpage
+\subsection*{Problem 56} Prove that the $2$-sphere is not homeomorphic to the plane.
+
+\medskip
+
+\noindent We solve the problem for the infinite plane $\mathbb{R}^2$ and a finite plane $A\times B$
+for closed intervals $A$, $B$. We prove first that the $2$-sphere is compact. The $2$-sphere is bounded
+by the $2$-ball around the origin in $3$-space. The complement of the $2$-sphere is the set
+$\{\mathbf{x}: d(\mathbf{x}, \vec{0})\neq 1\}= \{\mathbf{x}: d(\mathbf{x}, \vec{0})> 1\}\cup \{\mathbf{x}: d(\mathbf{x}, \vec{0}) < 1\}$. The 
+second set is the open $1$-ball and the first the complement of the closed $1$-ball (which is open). Thus the sphere is closed and compact.
+
+\medskip \noindent The $2$-sphere is compact and so cannot be homeomorphic to the infinite plane.
+For a finite plane, remove a line across the plane. This disconnects the plane. We note that the line cannot be
+mapped homeomorphically to any path across the sphere that meets itself (since removing a point from the line would 
+disconnect the line but not the path), so removal of the continuous image of the line onto the sphere cannot
+disconnect the sphere — as such, the sphere cannot be mapped homeomorphically to a finite plane.
+
+
+\newpage
+\subsection*{Problem 57} If $S$ is connected, is the interior of $S$ connected? Prove this or give a counterexample.
+
+\medskip
+
+\noindent Take two path-connected (but disconnected in union) sets in $\mathbb{R}^2$ and connect them by union with a line 
+between them. Then the set is path-connected and therefore connected. However, at no point along the line between the two 
+sets is there a point with an open neighborhood in $\mathbb{R}^n$ between them. As such, the interior of the set excludes the
+line and is disconnected.
+
+
+\newpage
+\subsection*{Problem 2} A function $f: (a,b) \rightarrow \mathbb{R}$ satisfies a \textbf{H\"{o}lder condition} of order
+$\boldsymbol{\alpha}$ if $\alpha > 0$, and for some constant $H$ and all $u, x \in (a, b)$ we have
+$$|f(u) - f(x)| \leq H|u - x|^{\alpha}$$
+The function is said to be $\alpha$-H\"{o}lder, with $\alpha$-H\"{o}lder constant $H$. (The terms “Lipschitz function of order $\alpha$” and “$\alpha$-Lipschitz function” 
+are sometimes used with the same meaning.)
+
+\bigskip
+
+(a) Prove that an $\alpha$-H\"{o}lder function defined on $(a, b)$ is uniformly continuous and infer 
+that it extends uniquely to a continuous function defined on $[a, b]$. Is the extended function $\alpha$-H\"{o}lder?
+
+\medskip \noindent Given an $\epsilon$ pick $\delta = (\frac{\epsilon}{H})^{\frac{1}{\alpha}}$. Then by the H\"{o}lder
+condition we have $$|u-x|<\delta\implies H|u-x|^{\alpha}<\epsilon$$ for positive $H$ and positive $\alpha$. Then $|f(u)-f(x)|<\epsilon$
+implies uniform continuity. 
+
+\medskip \noindent We prove that there exist unique values of $f(a)$, $f(b)$ such that the extension is continuous. Since we know that 
+for continuous functions convergent sequences get mapped to convergent sequences and limits to limits, the value of $f(a)$ and $f(b)$ 
+can be defined as the limits of $(f(a + 1/n))$ and $(f(b - 1/n))$ for $n\in\mathbb{N}$. Then if these limits exist they must be unique. 
+We prove the limits exist. Given a $\delta$ we have $n_1, n_2$ where max$(1/n_1, 1/n_2) < \delta$, so $|1/n_1-1/n_2|<\delta$ implies
+that for every $\epsilon$, we can pick the corresponding $\delta=(\frac{\epsilon}{H})^{\frac{1}{\alpha}}$ so $|f(a+1/n_1)-f(a+1/n_2)|<\epsilon$. (This process can be 
+mirrored for $f(b-1/n)$.) Thus $(f(a+1/n))$ is a Cauchy sequence and must converge as $f(a+1/n)$ are elements of $\mathbb{R}$. 
+
+\medskip \noindent The extended function is $\alpha$-H\"{o}lder. 
+
+\bigskip
+
+(b) What does $\alpha$-H\"{o}lder continuity mean when $\alpha = 1$?
+
+\medskip \noindent When $\alpha=1$ the function is Lipschitz continuous. We prove first that Lipschitz continuity
+implies $1$-H\"{o}lder: if there is no $H$ that satisfies the H\"{o}lder condition then for any Lipschitz continuity
+constant we can use the mean value theorem to prove the existence of a derivative of the function greater than the constant at
+some point. 
+
+\medskip \noindent Now assume the $1$-H\"{o}lder condition. Then we have $$\frac{|f(u)-f(x)|}{|u-x|}\leq H$$. We note that for any $x'\in (a,b)$
+if $|f'(x')|>H$ then we have $\lim_{h\rightarrow 0}\frac{|f(x'+h)-f(x')|}{|h|} = H+\epsilon$ and no $\delta$ exists that bounds
+$\frac{|f(x'+h)-f(x')|}{|h|}$ within $\epsilon$ of the limit due to the H\"{o}lder condition. By contradiction this means the Lipschitz continuity
+condition is satisfied.
+
+\bigskip
+
+(c) Prove that $\alpha$-H\"{o}lder continuity when $\alpha > 1$ implies that $f$ is constant.
+
+\medskip \noindent \textbf{Lemma: Squeeze Theorem.} Continuous $f, g, h$. If $f(x)$ is bounded between $g(x)$ below and $h(x)$ above then
+$f(x)-g(x)\geq0$ implies the limit $L\geq 0$ since if otherwise then $f(x)-g(x)$ cannot get within $|L|$ of the limit. 
+We distribute the limits since each function is continuous. Same for opposite direction implies $\lim_{x\rightarrow a} f(x) = \lim_{x\rightarrow a} g(x) = \lim_{x\rightarrow a} h(x)$.
+(Not sure if proved in textbook so lazy panicked proof included.)
+
+\medskip \noindent Proof of (c): We have $$\frac{|f(u)-f(x)|}{|u-x|}\leq H|u-x|^{\alpha}\implies -H|u-x|^{\alpha}\leq\frac{f(u)-f(x)}{u-x}\leq H|u-x|^{\alpha}$$ 
+By squeeze theorem this implies that $f'(x)=0$ since $\lim\limits_{h\rightarrow 0}H|h|^{\alpha}=0$. Then if $f$ is not constant
+since $f$ is uniformly continuous we can use the Mean Value Theorem to find that $f'(x)\neq 0$ at some point, which yields a contradiction.
+
+
+\newpage
+\subsection*{Problem 14} For each $r\geq 1$, find a function that is $C^r$ but not $C^{r+1}$. 
+
+\medskip \noindent We use the function $f_r(x)=|x|x^r$. Define $$g(x)=\begin{cases}
+    1 & \text{if } x\geq0, \\
+    -1 & \text{otherwise.}
+\end{cases}$$
+
+By Leibniz' rule we have $f_r'(x)=rx^{r-1}|x|+x^rg(x)$. $g(x)x=|x|$ implies $f_r'(x)=(r+1)f_{r-1}(x)$. Thus since $|x|$ is continuous
+$f_r$ is $C^r$. However, $g(x)$ is not continuous because the preimage of $-1$ is not closed. Thus $f_r(x)$ is not $C^{r+1}$ since $|x|'=g(x)$.
+
+\end{document}
+

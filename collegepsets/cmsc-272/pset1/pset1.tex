@@ -1,0 +1,224 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\chead{Lucas Chen}
+\cfoot{\thepage}
+\rfoot{\today}  
+
+
+%% your macros -->
+\newcommand{\zzz}{\mathbb Z}
+\newcommand{\rrr}{\mathbb R}    %% real numbers
+\newcommand{\ccc}{\mathbb C}    %% complex numbers
+\DeclareMathOperator{\var}{Var}  %% variance
+
+\begin{document}
+\Large
+\noindent
+Assignment {\bf HW 1}   %% <-- Gradescope assignment title here ***
+
+\medskip\noindent
+\hrule
+
+
+\medskip\noindent
+Solutions by {\bf Lucas Chen} \qquad   %% <-- your name here ***
+  {\tt lucasch(at)uchicago.edu}      %% <-- your uchicago email address here ***
+
+\vspace{0.5cm}
+
+\noindent
+This document contains my solutions to
+the Gradescope assignment named on the top of this page.
+Specifically, my solutions to the following problems
+are included:
+
+\vspace{0.4cm}
+\begin{itemize}  %% *** update this list
+\item 3.35 \quad (page 2)
+\item 3.38 (a)(b) \quad (page 3)
+\item 3.41 \quad (page 4)
+\item 3.44 \quad (page 5)
+\item 3.47 (a)(b) \quad (page 6)
+\item 3.50 \quad (page 7)
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent
+I did not forget 
+\begin{itemize}
+  \item to REFRESH my browser for the latest information
+   about each problem
+  \item \underline{to link problems to pages}.\\
+  This page is linked to the problems I did not solve.
+\item to update the items marked *** in the template
+  (my name, email, the Gradescope title of the assignment,
+  the list of problems solved, the \verb>\lhead> statements
+  (left page headers: list of (sub)problems solved on each page)
+\item to make sure no subproblem solution spills over to the next page
+  (except when this is unavoidable, i.e., when the solution to a
+  subproblem does not fit on a page)
+\item if a problem takes more than one page, I linked
+  each of those pages to the problem
+\item I took care not to defeat the mechanisms provided by this template.
+\end{itemize}
+  With each problem, {\bf I stated my sources and collaborations}.\\
+  By submitting this solution \emph{I certify} that
+  \emph{my statement of sources and collaborations is accurate and complete}.
+  I understand that without this certification, my solutions will not be accepted.\\
+  In case I am giving a \underline{link} to a source, \emph{I am also sending this link
+  to the instructor by email.}
+  
+\vspace{0.6cm}
+
+\newpage
+\Large
+\lhead{Problem 3.35}      %% <-- update  ***
+
+\noindent
+3.35 Question. \\
+Let $F_n$ denote the $n$-th Fibonacci number (see Def. 2.11). Give a very simple proof of the following fact. \\
+If the quotients $F_{n+1}/F_n$ converge then their limit is the golden ratio.\\
+Do not use the explicit formula for Fibonacci numbers. \\
+This is a case when it is easier to compute the limit assuming it exists, than proving the existence of the limit.
+
+\medskip\noindent
+\emph{Sources and collaborations.}\\
+Worked with Guan Chen on this solution; he suggested solving the quadratic.
+
+\medskip\noindent
+\emph{Answer.}\\
+We assume there exists a limit. Then for sufficiently high $n$ we have $d(\frac{F_{n+1}}{F_n},\frac{F_{n+2}}{F_{n+1}})<\epsilon$.
+
+\medskip \noindent Take $\frac{F_{n+1}}{F_n}=\frac{F_{n+2}}{F_{n+1}}+a_n$. Then:
+\[\frac{F_{n+1}}{F_n}=\frac{F_{n+1}+F_n}{F_{n+1}}+a_n.\]
+Take $r_n=\frac{F_{n+1}}{F_n}$. Then we have $r_n = 1+\frac{1}{r_n}+a_n$ with $a_n<\epsilon$ for $n>N_\epsilon$ which yields a quadratic $r_n^2-r_n-1-a_n=0$ which evaluates to \[\frac{1+a_n\pm\sqrt{(1+a_n)^2+4}}{2}\]
+and since $\lim_{n\to\infty}a_n=0$, and the ratio must be positive since the Fibonacci sequence is always positive, this approaches $\frac{1+\sqrt{5}}{2}$ and we are done.
+
+\newpage
+\lhead{Problem 3.38 (a) (b)}
+
+\noindent
+3.38(a) Question.\\
+Find two bounded sequences, $(a_n)$ and $(b_n)$, such that $\limsup(a_n+b_n)<\limsup(a_n)+\limsup(b_n)$.
+
+\medskip\noindent
+\emph{Sources and collaborations.} 
+Worked with Guan Chen.
+
+\medskip\noindent
+\emph{Answer.}\\
+We define $(a_n)=\frac{(-1)^n}{2}+3/2$ and $(b_n)=\frac{(-1)^{n+1}}{2}+5/2$. Then
+$\limsup a_n=2$ and $\limsup b_n = 3$ but $a_n+b_n = 4$ $\forall n$ and the condition is satisfied. \hfill $\Box$
+
+\bigskip\hrule
+\vspace{0.5cm}
+
+\noindent
+3.38(b) Question.\\
+Find two sequences, $(a_n)$ and $(b_n)$, such that $\limsup(a_n+b_n)=-\infty$ while $\limsup a_n=\limsup b_n=\infty$.
+
+\medskip\noindent
+\emph{Sources and collaborations.} 
+None.
+
+\medskip\noindent
+\emph{Answer.} \\
+Take the sequences $(a_n) = (1, -2, 2, -4, 3, -6,\dots)$ and \\
+$(b_n) = (-2, 1, -4, 2, -6, 3, \dots)$. Then $\sup (a_n)_{n>N} = \infty$ and $\sup (b_n)_{n>N}=\infty$ but $\sup(a_n+b_n)_{n>N}=\lfloor -N/2 \rfloor$. 
+\hfill $\Box$
+
+\medskip\noindent
+
+\newpage
+\lhead{Problem 3.41}
+
+\medskip\noindent
+3.41 Question.\\
+Prove $\sqrt{n^2+1}-n \sim 1/(2n)$.
+
+\medskip\noindent
+\emph{Sources and collaborations.}
+None.
+
+\medskip\noindent
+\emph{Answer.} \\
+Consider the fraction \[\frac{1/2n}{\sqrt{n^2+1}-n}=\frac{\sqrt{n^2+1}+n}{2n}= \frac{\sqrt{n^2+1}}{2n}+1/2\]
+Then \[\lim_{n\to\infty} \frac{\sqrt{n^2+1}}{2n}+1/2 = \sqrt{\lim_{n\to\infty}\frac{n^2+1}{4n^2}}+1/2\]
+by positive continuity of $\sqrt{x}$
+\[=\sqrt{\lim_{n\to\infty}\frac{n^2}{4n^2}+\lim_{n\to\infty}\frac{1}{4n^2}}+1/2=1/2+1/2=1\]
+
+\newpage
+\lhead{Problem 3.44} 
+
+\noindent
+3.44 Question.\\
+Prove: there exist real numbers $a, b, c$ such that ${2n\choose n} \sim  a \cdot n^b\cdot c^n$. Find $a, b, c$.
+
+\medskip\noindent
+\emph{Sources and collaborations.}
+Isaac Chang implored me to use my ability to read to see the formula immediately above the problem.
+
+\medskip\noindent
+\emph{Answer.} \\
+We apply Stirling's Formula. \[{2n\choose n} = \frac{2n!}{n!n!}\] \[n!\sim \left(\frac{n}{e}\right)^n\sqrt{2\pi n} \text{ and } 2n!\sim \left(\frac{2n}{e}\right)^{2n}\sqrt{4\pi n}.\] Then by Exercise 5.3 \[{2n\choose n} \sim \frac{\left(\frac{2n}{e}\right)^{2n}`\sqrt{4\pi n}}{\left(\frac{n}{e}\right)^{2n}2\pi n}\]
+\[=\frac{4^{n}}{\sqrt{\pi n}}\]
+and we have $a = \frac{1}{\sqrt{\pi}}$, $b= -1/2$, and $c=4$.`
+
+\newpage
+\lhead{Problems 3.47 (a)(b)}
+
+\noindent
+3.47(a) Question.\\
+Assume $a_n, b_n>1$. Consider the following statements:
+
+(A) $a_n \sim b_n$;
+
+(B) $\ln a_n \sim \ln b_n$.
+
+\noindent Prove (A) does not imply (B).
+
+\medskip\noindent
+\emph{Sources and collaborations.}
+None.
+
+\medskip \noindent 
+\emph{Answer.}\\
+Take $a_n = \exp(\frac{1}{2^n})$ and $b_n = \exp(\frac{1}{2^{n+1}})$. Then $\frac{a_n}{b_n}=\exp(\frac{1}{2^{n+1}})$ and $\lim_{n\to\infty}\frac{a_n}{b_n} = \exp(0)=1$, but $\frac{\ln a_n}{\ln b_n}=2\neq 1$. Thus (A) cannot imply (B).
+
+\bigskip \hrule
+\vspace{0.5cm}
+
+\noindent 
+3.47(b) Question.\\
+Prove (A) does imply (B) under the stronger assumption that $a_n\geq 1.01$.
+
+\medskip \noindent 
+\emph{Sources and collaborations.}
+None.
+
+\medskip \noindent 
+\emph{Answer.}\\
+Assume (A). Then $\lim_{n\to\infty} \frac{a_n}{b_n} = 1$, and since $\ln$ is a continuous
+function it preserves limits, yielding \[\lim_{n\to\infty}(\ln a_n - \ln b_n) = 0.\] Since $a_n\geq 1.01$ $\ln(a_n)\geq \ln(1.01)>0$. Then \[\frac{|\ln a_n-\ln b_n|}{\ln a_n}\leq\frac{|\ln a_n-\ln b_n|}{\ln(1.01)}\] and \[\lim_{n\to\infty}\frac{\ln a_n-\ln b_n}{\ln b_n}=\lim_{n\to\infty}\frac{\ln a_n-\ln b_n}{\ln 1.01}= 0\implies \lim_{n\to\infty}\frac{\ln a_n}{\ln b_n} = 1\]
+
+\newpage
+\lhead{Problem 3.50}
+
+\noindent
+3.50 Question.\\
+For the positive integer $m$, let $\nu(m)$ denote the number of distinct prime divisors of $m$. Prove: \[\nu(m)\leq \log_2(m)\]
+
+\medskip\noindent
+\emph{Sources and collaborations.}
+None.
+
+\medskip \noindent
+\emph{Answer.}\\
+The number of prime divisors of m can be multiplied to some divisor of $m$ less than $m$, call it $\prod p_j$. Since all primes $\geq 2$, we have $m\geq\prod p_j\geq \prod_{j=1}^{\nu(m)} 2$. Since $\log_2$ is an increasing function, $\log_2 m \geq \nu(m)$ and we are done.
+
+
+\end{document}

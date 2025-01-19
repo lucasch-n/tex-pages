@@ -1,0 +1,104 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 2}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Problems: Rudin Chapter 8 Problems 12-17
+
+\medskip \noindent \textbf{Solutions:}
+
+\subsection*{Problem 12}
+(a) We solve \[C_n = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x) e^{-inx}\,dx\]
+\[=\frac{1}{2\pi}\int_{-\delta}^{\delta} e^{-inx}\,dx.\]
+\[=\frac{1}{2\pi}\left(-\frac{e^{-inx}}{in}\right)\Bigg{|}_\delta^\delta = \frac{\sin(n\delta)}{\pi n}\]
+For the case $n = 0$ we have $C_0 = \frac{1}{2\pi}\int_{-\delta}^{\delta} 1\,dx = \frac{\delta}{\pi}$.
+
+\medskip \noindent (b) We apply the coefficients to the Fourier series: \[\sum_{n=-\infty}^{\infty}C_n e^{inx} = \sum_{n=-\infty}^{\infty}\frac{\sin(n\delta)}{\pi n} e^{inx}  \]
+Since $f$ is constant and therefore Lipschitz continuous at $0$ its Fourier series converges to it at $0$, thus by plugging in $0$ we achieve \[\sum C_n = \frac{\delta}{\pi}+2\sum_{n=1}^{\infty}\frac{\sin(n\delta)}{\pi n} = 1\] and \[\sum_{n=1}^{\infty}\frac{\sin(n\delta)}{n}=\frac{\pi-\delta}{2}.\]
+
+\medskip \noindent (c) Since the constants and $f$ are all real, by Parseval's theorem we have
+\[\frac{1}{2\pi}\int_{-\pi}^\pi f(x)^2\,dx = \sum_{n = -\infty}^\infty C_n^2\]
+\[\frac{\delta}{\pi}=\frac{\delta^2}{\pi^2}+2\sum_{n=1}^\infty\frac{\sin(n\delta)^2}{\pi^2n^2}\]
+\[\sum_{n=1}^\infty\frac{\sin(n\delta)^2}{\delta n^2} = \frac{\pi-\delta}{2}.\]
+
+\medskip \noindent (d) The answer to (c) can be written as $\sum_{n=1}^\infty \left(\frac{\sin(n\delta)}{n\delta}\right)^2\delta$, which we recognize as an infinite series of Riemann sums of our desired integrand, with rectangle width $\delta$. We must prove that the integral converges, and that our limit converges to the improper integral.
+
+\medskip \noindent We know the integral converges absolutely since it is bounded above by $1/x^2$. Since $\frac{\pi-\delta}{2}$ is monotonic we need only consider values of $\delta$ of the form $\pi/2^m$: if the sums converge correctly to the integral there then we know the limit overall must also converge. Take $S_m =\sum_{n=1}^\infty\left(\frac{\sin(n\pi/2^m)}{n\pi/2^m}\right)^2\pi/2^m$.
+
+\medskip \noindent Take $\epsilon>0$. Then pick $N$ such that $\int_a^\infty \frac{1}{x^2}<\epsilon/3$ for $a>N$. Take $a$ a multiple of $\pi$. Then we have \[\int_a^\infty \left(\frac{\sin(x)}{x}\right)^2\,dx\leq\int_a^\infty\frac{1}{x^2}<\epsilon/3.\] We pick $m$ such that \[d\left(\sum_{n=1}^{2^ma}\left(\frac{\sin(n\pi/2^m)}{n\pi/2^m}\right)^2\pi/2^m, \int_1^a\left(\frac{\sin(x)}{x}\right)^2\,dx\right)<\epsilon/3\] which exists since the left side is part of a series of successively refined Riemann sums whose partitions have consecutive distances equal to $\pi/2^m$. 
+
+\medskip \noindent Finally, we have \[\sum_{n=2^ma}^\infty\left(\frac{\sin(n\pi/2^m)}{n\pi/2^m}\right)^2\pi/2^m \leq \int_a^\infty\frac{1}{x^2}\,dx<\epsilon/3\] since the sum is a right Riemann sum of a function bounded by the monotonically decreasing $\frac{1}{x^2}$ (its area is therefore bounded by the integral).
+
+\medskip \noindent By these inequalities and the triangle inequality we have $d\left(S_m, \int_1^\infty\left(\frac{\sin(x)}{x}\right)^2\,dx\right)<\epsilon$ and since $S_m$ decreases with increase of $m$, the limit converges to the integral and we have 
+\[\int_1^\infty\left(\frac{\sin(x)}{x}\right)^2\,dx = \lim_{\delta\to 0} \frac{\pi-\delta}{2}=\frac{\pi}{2}.\]
+
+\medskip \noindent (e) We have \[\sum_{n=1}^\infty\frac{\sin(\frac{\pi}{2} n)^2}{\frac{\pi}{2} n^2} = \frac{2}{\pi}\sum_{n=1}^\infty \frac{(-1)^n}{n^2} = \frac{\pi}{4}\]
+
+\subsection*{Problem 13} 
+We may treat $f$ as a $2\pi$-periodic function and take the Fourier coefficients as \[C_n=\frac{1}{2\pi}\int_0^{2\pi} f(x)e^{-inx}\,dx\] since both factors of the integrand are $2\pi$-periodic and the integral is the same as the standard formula over $[-\pi, \pi]$.
+
+We thus solve the integral via integration by parts: \[\int_0^{2\pi}xe^{-inx}\,dx=
+\left(-\frac{xe^{-inx}}{in}\right)\Bigg|_0^{2\pi}+\int_0^{2\pi}\frac{e^{-inx}}{in}\,dx.\]
+\[=\frac{-2\pi}{in}\] and thus $C_n=\frac{-1}{in}$. For the case $n=0$ we have $C_0=\pi$. Parseval's theorem yields 
+\[\frac{1}{2\pi}\int_0^{2\pi} x^2\,dx = \sum_{n=-\infty}^\infty\frac{1}{n^2}\]
+\[\frac{4\pi^2}{3}=\pi^2+2\sum_{n=1}^\infty\frac{1}{n^2}\]
+\[\frac{\pi^2}{6}=\sum_{n=1}^\infty\frac{1}{n^2}\]
+
+
+\subsection*{Problem 14}
+We solve for Fourier coefficients.
+\[2\pi C_n=\int_{-\pi}^{\pi}f(x)e^{-inx}\,dx = \int_{-\pi}^0(\pi+x)^2e^{-inx}\,dx + \int_0^\pi(\pi-x)^2e^{-inx}\,dx\]
+\[=\left(-\frac{(\pi+x)^2}{in}+\frac{2(\pi+x)}{n^2}+\frac{2}{in^3}\right)(e^{-inx})\Bigg|_{-\pi}^0\]
+\[+\left(-\frac{(\pi-x)^2}{in}-\frac{2(\pi-x)}{n^2}+\frac{2}{in^3}\right)(e^{-inx})\Bigg|_0^\pi\]
+\[=\frac{4\pi}{n^2}\]
+and \[C_0=2\int_0^\pi(\pi-x)^2\,dx=\frac{\pi^2}{3}\]
+Then since $f$ is continuous with bounded derivative we have 
+\[f(x)=\sum_{n=-\infty}^0\frac{2}{n^2}e^{inx}+ C_0+ \sum_{n=1}^\infty\frac{2}{n^2}e^{inx}\]
+\[=\sum_{n=-\infty}^0\frac{2}{n^2}(\cos(nx)+i\sin(nx))+ \frac{\pi^2}{3}+ \sum_{n=1}^\infty\frac{2}{n^2}(\cos(nx)+i\sin(nx))\]
+\[=\frac{\pi^2}{3}+\sum_{n=1}^\infty\frac{4}{n^2}\cos(nx).\]
+We take $x=0$ which yields \[\pi^2=\frac{\pi^2}{3}+\sum_{n=1}^\infty\frac{4}{n^2}\] and \[\sum_{n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}.\]
+Then we apply Parseval's Theorem to the constants:
+
+\subsection*{Problem 15}
+Take $k_N = (N+1)K_N$. We notice that $2-2\cos x = 2-e^{ix}-e^{-ix}$. Then we separate $(2-2\cos x)k_N$:
+\[(1-e^{-ix})k_N-(e^{ix})(1-e^{-ix})k_N\] where \[k_N=\sum_{n=0}^N D_n\]
+Then \[(1-e^{-ix})k_N=\sum_{n=0}^N(1-e^{-ix})D_n=\sum_{n=0}^Ne^{inx}-e^{-ix(n+1)}\]
+\[(2-2\cos x)k_N=(1-e^ix)\left(\sum_{n=0}^Ne^{inx}-\sum_{n=0}^Ne^{-ix(n+1)}\right)\]
+\[=-e^{ix(n+1)}-e^{-ix(n+1)}+2=2(1-\cos(x(n+1))\]
+\[\implies K_N=\left(\frac{1}{N+1}\right)\frac{1-\cos(x(n+1))}{1-\cos x}\]
+
+\medskip \noindent (a) We prove $K_N\geq 0$. Since $\cos\leq 1$ we have $K_N\geq 0$ for all $x$ outside of multiples of $2\pi$. We consider $K_N(0)$: since the $K_N$ is a sum of variations of $e^{inx}$ $K_N(0)$ is a sum of $1$s and is therefore positive.
+
+\medskip \noindent (b) For $n\neq 0$ we have $\int_{-\pi}^\pi e^{inx}\,dx=0$. Thus since $(N+1)K_N$ is the sum of $N+1$ D-kernels, each of which containing one $e^{0ix}$, it integrates to $1$ over $[-\pi, \pi]$. 
+
+\medskip \noindent (c) We have $1-\cos(x(n+1))\leq 2$ and $\cos\delta\geq\cos x$. Then $\frac{1}{1-\cos\delta}\leq\frac{1}{1-\cos x}$ and the statement is proven.
+
+\medskip \noindent Since $K_N=\frac{\sum_{n=0}^ND_n}{N+1}$ we have \[\frac{1}{2\pi}\int_{-\pi}^\pi f(x-t)K_N(t)\, dt=\frac{1}{N+1}\sum_{n=0}^N\int_{-\pi}^\pi f(x-t)D_n(t)\,dt = \sigma_N\]
+
+\medskip \noindent \textbf{Proof} of Fejer's Theorem.
+
+\medskip \noindent Note that $f$ is continuous over $[-\pi, \pi]$ and therefore uniformly continuous over $\mathbb{R}$. Take $\epsilon>0$ and consider $f(x)-\sigma_N(x)$:
+\[=\frac{1}{2\pi}\int_{-\pi}^\pi K_N(t)(f(x)-f(x-t))\,dt\]
+Since $f$ is uniformly continuous on a compact set it must be bounded: take $M\geq |f|$. Take $\delta\in (0,\pi)$ where $d(x_1, x_2)<\delta\implies d(f(x_1),f(x_2))<\epsilon/2$. Then we have
+\[\frac{1}{2\pi}\left(\int_{-\pi}^{-\delta} K_N(t)(f(x)-f(x-t))\,dt + \int_{-\delta}^\delta K_N(t)(f(x)-f(x-t))\,dt\]\[+\int_\delta^\pi K_N(t)(f(x)-f(x-t))\,dt\Bigg)\]
+\[\leq \frac{M}{\pi}\left(\int_{-\pi}^{-\delta}\frac{2}{(N+1)(1-\cos\delta)}\,dt+\int_{\delta}^{\pi}\frac{2}{(N+1)(1-\cos\delta)}\,dt\right)+\frac{\epsilon}{4\pi}\int_{-\delta}^\delta K_N(t)\,dt\]
+\[\leq \frac{4M}{(N+1)(1-\cos\delta)}+\frac{\epsilon}{2}\]
+Since $1-\cos\delta$ is bounded (and $\delta\neq \pi$) we pick $N$ such that the first term is less than $\epsilon/2$ and the sum is thus less than $\epsilon$, completing the proof.
+	
+
+
+
+\subsection*{Problem 16}
+
+\subsection*{Problem 17}
+
+
+\end{document}
+
