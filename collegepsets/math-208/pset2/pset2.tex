@@ -65,6 +65,9 @@ Then since $f$ is continuous with bounded derivative we have
 \[=\frac{\pi^2}{3}+\sum_{n=1}^\infty\frac{4}{n^2}\cos(nx).\]
 We take $x=0$ which yields \[\pi^2=\frac{\pi^2}{3}+\sum_{n=1}^\infty\frac{4}{n^2}\] and \[\sum_{n=1}^\infty\frac{1}{n^2}=\frac{\pi^2}{6}.\]
 Then we apply Parseval's Theorem to the constants:
+\[\frac{1}{2\pi}\int_{-\pi}^\pi f(x)^2\,dx=\frac{\pi^4}{9}+\sum_{n=1}^\infty\frac{8}{n^4}\]
+\[=\frac{1}{2\pi}\left(\int_{-\pi}^0(\pi+x)^4\,dx + \int_0^\pi(\pi-x)^4\,dx\right)=\frac{1}{2\pi}(\frac{2\pi^5}{5})\]
+\[\sum_{n=1}^\infty\frac{1}{n^4}=\frac{\pi^4}{90}\]
 
 \subsection*{Problem 15}
 Take $k_N = (N+1)K_N$. We notice that $2-2\cos x = 2-e^{ix}-e^{-ix}$. Then we separate $(2-2\cos x)k_N$:
@@ -90,15 +93,29 @@ Since $f$ is uniformly continuous on a compact set it must be bounded: take $M\g
 \[\frac{1}{2\pi}\left(\int_{-\pi}^{-\delta} K_N(t)(f(x)-f(x-t))\,dt + \int_{-\delta}^\delta K_N(t)(f(x)-f(x-t))\,dt\]\[+\int_\delta^\pi K_N(t)(f(x)-f(x-t))\,dt\Bigg)\]
 \[\leq \frac{M}{\pi}\left(\int_{-\pi}^{-\delta}\frac{2}{(N+1)(1-\cos\delta)}\,dt+\int_{\delta}^{\pi}\frac{2}{(N+1)(1-\cos\delta)}\,dt\right)+\frac{\epsilon}{4\pi}\int_{-\delta}^\delta K_N(t)\,dt\]
 \[\leq \frac{4M}{(N+1)(1-\cos\delta)}+\frac{\epsilon}{2}\]
-Since $1-\cos\delta$ is bounded (and $\delta\neq \pi$) we pick $N$ such that the first term is less than $\epsilon/2$ and the sum is thus less than $\epsilon$, completing the proof.
+Since $1-\cos\delta$ is bounded (and $\delta\neq \pi$) we pick $N$ such that the first term is less than $\epsilon/2$ and the sum is thus less than $\epsilon$ for all $x$, completing the proof.
 	
 
 
 
 \subsection*{Problem 16}
+We take \[\frac{1}{2}(f(x+)+f(x-))-\sigma_N(x)=\frac{1}{2\pi}\left(\int_{-\pi}^0f(x+)K_N(t)\,dt+\int_0^\pi f(x-)K_N(t)\,dt\right)-\sigma_N(x)\]
+since $K_N$ is even as the $\sin$ terms of Dirichlet kernels cancel. This evaluates to 
+\[ \frac{1}{2\pi}\left(\int_{-\pi}^0(f(x+)-f(x-t))K_N(t)\,dt+\int_0^\pi(f(x-)-f(x-t))K_N(t)\,dt\right)\]
+For $\epsilon/3>0$ we now take $\delta$ satisfying both the left and right limit conditions.
+Then since $f$ is bounded we proceed as in 15 and our expression is bounded above by \[\frac{4M}{(N+1)(1-\cos\delta)}+\int_{-\delta}^0(f(x+)-f(x-t))K_N\,dt\]\[+\int_0^\delta(f(x+)-f(x-t))K_N\,dt\]
+\[\leq \frac{4M}{(N+1)(1-\cos\delta)}+\frac{\epsilon}{6\pi}\int_{-\delta}^0K_N\,dt+\frac{\epsilon}{6\pi}\int_0^\delta K_N\,dt\]
+\[\leq\frac{3\epsilon}{3}\] if we select $N$ so the first term is less than $\epsilon/3$, and the proof is completed.
+
 
 \subsection*{Problem 17}
+(a) We take $G(x)=e^{-inx}$ and $\alpha(x)=f(x)$, replacing $f(\pi)$ with an upper/lower bound $M$ of $f$ since $f$ is only monotonic on $[-\pi, \pi)$. Then 6.17 yields:
+\[\int_{-\pi}^\pi f(x)e^{-inx}\,dx=\frac{i}{n}\left((-1)^n(M-f(-\pi))-\int_{-\pi}^\pi e^{-inx}\,df(x)\right)\]
+Then: \[|nc_n|\leq\frac{1}{\pi}(M-f(-\pi))\] by the triangle inequality (since the second integral is bounded by $M-f(-\pi)$ as well) and we are done.
 
+\medskip \noindent (b) $f$ bounded and monotonic implies $f$ has only jump discontinuities and therefore its left and right limits at each point $x$ exist. Then 16 implies $\lim_{N\to\infty}\sigma_N(x)=\frac{1}{2}(f(x+)+f(x-))$ for all $x$, and exercise 3.14e yields the desired result.
+
+\medskip \noindent (c) WLOG assume increasing. Define $f_1(x)$ with $f_1(x)=f(x)$ on $(\alpha, \beta)$, and $f_1(x)=\inf_{(\alpha,\beta)}(f(x))$ on $[-\pi, \alpha]$ and $f_1(x) = \sup_{(\alpha, \beta)}(f(x))$ on $[\beta, \pi]$. Then $f_1$ is monotonic on $[-\pi, \pi]$. By the localization theorem $\sigma_N(f;x)-\sigma_N(f_1;x)\to 0$ on $(\alpha, \beta)$ so $\sigma_N(f;x)\to \frac{1}{2}(f_1(x+)+f_1(x-))=\frac{1}{2}(f(x+)+f(x-))$ and the proof is done.
 
 \end{document}
 
