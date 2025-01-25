@@ -1,0 +1,73 @@
+\documentclass{amsart}
+\usepackage{../../../lucas}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+
+\title{Problem Set 3}
+\author{Lucas\ Chen}
+\date{\today}
+\begin{document}
+
+\maketitle
+
+Solutions:
+
+\medskip \noindent \textbf{Problem 1}:
+We begin by proving Young's inequality for $x$, $y>0$ and $p, q$ as defined in the problem:
+
+\medskip \noindent \textbf{Theorem}: Young's inequality. \[xy\leq\frac{x^p}{p}+\frac{y^q}{q}\]
+
+\medskip \noindent \emph{Proof:}
+We write $q$ in terms of $p$:
+\[p+q=pq\implies q=\frac{p}{p-1}\]
+Take $k=p-1$. Then \[\frac{x^p}{p}+\frac{y^q}{q}=\frac{x^{k+1}}{k+1}+\frac{y^{1+\frac{1}{k}}}{1+\frac{1}{k}}=\frac{x^{k+1}+ky^{1+\frac{1}{k}}}{k+1}.\]
+Assume first that $k$ is rational: $k=\frac{r}{s}$. Then the above expression evaluates to \[\frac{sx^{k+1}+ry^{1+\frac{1}{k}}}{r+s}\]
+and thus by AM-GM \[\frac{x^p}{p}+\frac{y^q}{q}\geq \left(x^{r+s}y^{r+s}\right)^{\frac{1}{r+s}}= xy\] with equality iff $x^k=y$. 
+
+\medskip \noindent We extend this result to $k\in \mathbb{R}$. We note that $f
+(k)=\frac{x^{k+1}+ky^{1+\frac{1}{k}}}{k+1}$ is continuous with respect to $k$ for $k\neq 0$ and $k\neq -1$: for now we assume $k>0$ and deal with $k=0$ later. Then since $\mathbb{Q}$ is dense in $\mathbb{R}$, for any $\epsilon>0$ and any $k\in \mathbb{R}$, $\exists k'\in \mathbb{Q}$, $k'\neq \log_x(y)$ where $d(f(k), f(k'))<\epsilon$. Then if $f(k)<0$ $\exists f(k')<f(k)+\epsilon<0$ and we have a contradiction. (I'm not proving the equality condition because it's really hard to do this way, I'm tired, and it isn't asked for in the problem statement.)
+
+\medskip \noindent From Young's inequality we proceed with the proof: 
+Take $a_n'=\frac{a_n}{||a||_p}$ and $b_n'=\frac{b_n}{||b||_q}$.
+Then \[\sum_{n=1}^\infty \frac{|a_nb_n|}{||a||_p||b||_q}=\sum_{n=1}^\infty |a_n'b_n'|\] \[\leq\sum_{n=1}^\infty\frac{|a_n'|^p}{p}+\sum_{n=1}^\infty\frac{|b_n'|^q}{q}=\frac{1}{p}+\frac{1}{q}=1\]
+\[\implies ||ab||_1\leq ||a||_p||b||_q\] and we are done.
+
+\medskip \noindent For the cases $k=0$ and $p=\infty$ the inequality looks the same: \[||ab||_1\leq \max(a)||b||_1\]
+which follows from $\max(a)\geq a_n$. 
+
+\medskip \noindent \textbf{Problem 2}:
+We take \[\sum_{n=1}^\infty|a_n+b_n|^p=\sum_{n=1}^\infty|a_n+b_n||a_n+b_n|^{p-1}\]
+\[\leq \sum_{n=1}^\infty|a_n||a_n+b_n|^{p-1}+\sum_{n=1}^\infty|b_n||a_n+b_n|^{p-1}\]
+\[\leq \left(\left(\sum_{n=1}^\infty|a_n|^p\right)^{1/p}+\left(\sum_{n=1}^\infty|b_n|^p\right)^{1/p}\right)\left(\sum_{n=1}^\infty|a_n+b_n|^{qp-q}\right)^{1/q}\]
+\[= \left(\left(\sum_{n=1}^\infty|a_n|^p\right)^{1/p}+\left(\sum_{n=1}^\infty|b_n|^p\right)^{1/p}\right)\left(\sum_{n=1}^\infty|a_n+b_n|^{p}\right)^{1-1/p}\]
+and the inequality follows from dividing the right factor of the above expression.
+
+\medskip \noindent For $p=1$ the inequality follows from standard triangle inequality, and for $p=\infty$ we note \[\sup(|a_n+b_n|)\leq \sup(|a_n|+|b_n|)\leq\sup|a_n|+\sup|b_n|\] and the inequality holds.
+
+\medskip \noindent \textbf{Problem 3}:
+For $p\in [1, \infty)$ the first two conditions of the norm hold trivially and the triangle inequality via Minkowski. For $p=\infty$ the triangle inequality again holds via Minkowski and $\sup|a_n|=0$ iff $a_n=0$: for $||ka||_\infty = k||a||_\infty$, we take $n$ satisfying $a_n>||a||_\infty-\epsilon/k$ yielding $ka_n>k||a||_\infty-\epsilon$, and we know $k||a||_\infty$ is an upper bound of $ka_n$ trivially so $k||a||_\infty=\sup(ka_n)$ and the norm is valid.
+We note that this in turn proves closure of the space under addition by triangle inequality and scalar multiplication by the analogous property of the norm. The rest of the vector space conditions are trivial.
+
+\medskip \noindent Now we prove completion of the space.
+Take a Cauchy sequence in $\ell^p$, $((a_n)_m)$. We note that for a fixed $n$ the sequence $a_{nm}$ is Cauchy with respect to $m$, since if $||a||_p<\epsilon$ then $a_n\geq \epsilon\implies ||a||_p\geq(a_n^p)^{1/p}\geq\epsilon$, a contradiction.
+Now take the sequence $(A_n)$ where $\lim_{m\to\infty}a_{nm} = A_n$. We prove that $((a_n)_m)\to (A_n)$ and that $(A_n)\in \ell^p$. 
+
+\medskip \noindent Take $\epsilon>0$. We aim to prove that $\exists M$ where for $(B_{nm})_{m\in \mathbb{N}} = (a_{nm}-A_n)$, $m>M$, $||(B_{nm})||_p<\epsilon$. 
+We take $M$ such that \[j,k>M\implies\sum_{n=1}^s|a_{jn}-a_{kn}|^p\leq\sum_{n=1}^\infty|a_{jn}-a_{kn}|^p\leq\left(\frac{\epsilon}{2}\right)^p.\]
+$\forall s\in \mathbb{N}$. Then
+\[\lim_{k\to\infty}\sum_{n=1}^s|a_{jn}-a_{kn}|^p=\sum_{n=1}^s|a_{jn}-A_n|^p\leq\left(\frac{\epsilon}{2}\right)^p\]
+Since this is true for all $s\in \mathbb{N}$ it implies $||(B_{nm})||_p\leq \frac{\epsilon}{2}<\epsilon$ and thus every Cauchy sequence converges. To prove $(A_n)\in\ell^p$ we simply note that $(A_n) = (B_{nm})+(a_{nm})$ and apply the Minkowski inequality, and we are done.
+
+\medskip \noindent For $p=\infty$ we replace $\sum_{n=1}^s|a_{jn}-a_{kn}|^p$ with $\sup_{n\in [1, s]\cap \mathbb{N}}|a_{jn}-a_{kn}|$, the proof proceeds with the exact same inequalities, and we are done.
+
+\medskip \noindent \textbf{Problem 4}: 
+All the norm conditions follow from Problem 3 so we need only prove $c_0$ is closed.
+Assume for a sequence $((a_n)_m)\to (a_n)$ that $a=\lim_{n\to\infty} a_n\neq 0$ but $\lim_{n\to\infty} a_{nm} =0$. Then $\lim_{n\to\infty}|a_n-a_{nm}|=a$ for all $m$ and $\sup(|a_n-a_{nm}|)\geq a$ for all $m$ which contradicts convergence and $c_0$ must be closed and thus Banach.
+
+\medskip \noindent \textbf{Problem 5}:
+Take $||a||_p = 1$. Then \[\left|\sum_{n=1}^\infty a_nb_n\right|\leq \sum_{n=1}^\infty |a_nb_n|\leq ||b||_q\] by H\"{o}lder's inequality and since $b$ is a constant sequence its norm is constant and we are done.
+
+
+
+\end{document}
+
